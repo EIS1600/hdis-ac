@@ -10,7 +10,8 @@ The course, â€œComputational Analysis of Data from Audition Statements--with Râ€
 * **Credits**: 6.0
 * **Meeting time**: Fr 16:00-18:00
 * **Additional meeting time**: *we will need to find a time slot when you can all join and work on your HW assignments together*
-* **Meeting place**: for convenience, all meetings will be held online via Zoom
+* **Meeting place**: for convenience, all meetings will be held online via Zoom: <https://uni-hamburg.zoom.us/j/63482607267?pwd=OVFIZWpndVZOU2RzOWtlVUtaM1lLUT09>;
+* **Course resources:** <https://eis1600.github.io/hdis-audition-statements/>;
 * **Meeting link**: *shared via Slack*; other details are available via STiNE
 * **Office hours**: *tbd* (on Zoom); if you have any questions, please, post them on Slack
 * **Instructor**: Dr. Maxim Romanov, [maxim.romanov@uni-hamburg.de](maxim.romanov@uni-hamburg.de)
