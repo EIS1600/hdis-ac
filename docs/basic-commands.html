@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
+  <title>2.7 Basic Commands | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
   <meta name="description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta property="og:title" content="2.7 Basic Commands | HDIS: Computational Analysis of Data from Audition Statements–with R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="github-repo" content="EIS1600/hdis-audition-statements" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta name="twitter:title" content="2.7 Basic Commands | HDIS: Computational Analysis of Data from Audition Statements–with R" />
   
   <meta name="twitter:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="touch-icon.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="class-05.html"/>
-<link rel="next" href="class-07.html"/>
+<link rel="prev" href="projects.html"/>
+<link rel="next" href="built-in-functions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,18 +228,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="class-06" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">CHAPTER 6</span> Class 06<a href="class-06.html#class-06" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>[<em>subject to updates and corrections</em>]</p>
-
+<div id="basic-commands" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Basic Commands<a href="basic-commands.html#basic-commands" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>let’s create an R script file in <code>classes/class_02/</code> and call it <code>class_02.R</code>
+<ul>
+<li>here is some little filler for our script. Simply copy-paste it into the new script.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="basic-commands.html#cb2-1" tabindex="-1"></a><span class="co"># arithmetic operations</span></span>
+<span id="cb2-2"><a href="basic-commands.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="basic-commands.html#cb2-3" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb2-4"><a href="basic-commands.html#cb2-4" tabindex="-1"></a><span class="dv">3</span> <span class="sc">-</span> <span class="dv">5</span></span>
+<span id="cb2-5"><a href="basic-commands.html#cb2-5" tabindex="-1"></a><span class="dv">3</span> <span class="sc">/</span> <span class="dv">5</span></span>
+<span id="cb2-6"><a href="basic-commands.html#cb2-6" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb2-7"><a href="basic-commands.html#cb2-7" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="basic-commands.html#cb2-8" tabindex="-1"></a><span class="co"># assignment: `&lt;-` or `=`; </span></span>
+<span id="cb2-9"><a href="basic-commands.html#cb2-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb2-10"><a href="basic-commands.html#cb2-10" tabindex="-1"></a>x</span>
+<span id="cb2-11"><a href="basic-commands.html#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="basic-commands.html#cb2-12" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb2-13"><a href="basic-commands.html#cb2-13" tabindex="-1"></a>x <span class="sc">-</span> <span class="dv">5</span></span>
+<span id="cb2-14"><a href="basic-commands.html#cb2-14" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="basic-commands.html#cb2-15" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb2-16"><a href="basic-commands.html#cb2-16" tabindex="-1"></a>y <span class="sc">+</span> x</span>
+<span id="cb2-17"><a href="basic-commands.html#cb2-17" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="basic-commands.html#cb2-18" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">+</span> x</span>
+<span id="cb2-19"><a href="basic-commands.html#cb2-19" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="basic-commands.html#cb2-20" tabindex="-1"></a><span class="co"># = Vs ==</span></span>
+<span id="cb2-21"><a href="basic-commands.html#cb2-21" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="basic-commands.html#cb2-22" tabindex="-1"></a>x <span class="sc">==</span> y</span>
+<span id="cb2-23"><a href="basic-commands.html#cb2-23" tabindex="-1"></a>x <span class="ot">=</span> y</span>
+<span id="cb2-24"><a href="basic-commands.html#cb2-24" tabindex="-1"></a>x <span class="sc">==</span> y</span></code></pre></div>
+<ul>
+<li>now we can try basic R operations:
+<ul>
+<li>we can write them in our R script (top-left part of RStudio interface);</li>
+<li>we can also run them directly in <strong>Console</strong> (bottom-left part of RStudio interface);</li>
+<li>the main differences are:
+<ul>
+<li>we can save all our commands in R script, but we cannot do that in console;</li>
+<li>console, however, is very useful for running commands that we do not want to save (for example, using help commands)</li>
+<li>R script is most useful when we want to do something complex and we need a series of commands that must run in a specific order; this will be the main use of R scripts (as well as R notebooks);</li>
+<li>In R script you can execute all commands one after another (as they appear in the script); in console you can execute only one command at a time;</li>
+</ul></li>
+</ul></li>
+<li><strong>basic arithmetic operations</strong>: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>;
+<ul>
+<li>let’s try some examples from what we pasted into our script;</li>
+</ul></li>
+<li><strong>values and variables</strong>:
+<ul>
+<li><strong>values</strong>:
+<ul>
+<li>when we simply typed our commands as we just did we use values, but they are gone as soon as we type the next one; variables allow us to preserve results for later reuse;</li>
+</ul></li>
+<li><strong>variables</strong>:
+<ul>
+<li>assignment operator (<code>&lt;-</code> or <code>=</code>) and variable assignment;</li>
+<li>difference between <code>=</code> and <code>==</code>;</li>
+</ul></li>
+</ul></li>
+<li><strong>comments</strong>: we can use <code>#</code> in front of any line to turn it into a comment; comment means that R will not try to execute it.</li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="class-05.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-07.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="projects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="built-in-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -270,7 +329,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/060-Class06.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/020-Class02.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -278,7 +337,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/060-Class06.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/020-Class02.Rmd",
 "text": null
 },
 "download": null,

@@ -65,8 +65,9 @@ CADAS-R/
 
 So, how to create a project?
 
-1. open RStudio, then, in the main menu, choose: File > New Project (you should then see “New Project Wizard”, as shown below);
 ![](./images/r_instructions/new_project.png)
+
+1. open RStudio, then, in the main menu, choose: File > New Project (you should then see “New Project Wizard”, as shown below);
 1. Select “Existing Directory” > then click on “Browse”, and then select the folder “CADAS-R”, which you created in the first step; click “Create Project” to complete the process.
 1. Now, what will happen is that in the tab “Files” in the lower right part of RStudio you will see the contents of the folder “CADAS-R”. There will also be a new file, called `CADAS-R.Rproj`. Later on, you will be able to quickly open your project by double-clicking on that file. When you open the project, R automatically sets the working directory (`setwd()`) to the folder of the project and many things just become much easier.
 1. Now, you can add and create new files relevant to your project in the folder “CADAS-R” and they will be easy to find directly from RStudio, using its “Files” Tab, which is usually available in the lower right corner. **Suggestion:** you will benefit greatly from keeping some order in your project folder. For example, keep all the files that you download in a subfolder “downloads”; your your data files in a subfolder “data”, and so on.

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
+  <title>2.8 Built-in Functions | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
   <meta name="description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta property="og:title" content="2.8 Built-in Functions | HDIS: Computational Analysis of Data from Audition Statements–with R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="github-repo" content="EIS1600/hdis-audition-statements" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta name="twitter:title" content="2.8 Built-in Functions | HDIS: Computational Analysis of Data from Audition Statements–with R" />
   
   <meta name="twitter:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="touch-icon.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="class-05.html"/>
-<link rel="next" href="class-07.html"/>
+<link rel="prev" href="basic-commands.html"/>
+<link rel="next" href="librariespackages.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,18 +228,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="class-06" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">CHAPTER 6</span> Class 06<a href="class-06.html#class-06" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>[<em>subject to updates and corrections</em>]</p>
-
+<div id="built-in-functions" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Built-in Functions<a href="built-in-functions.html#built-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s add the following few lines to the end of our R script:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="built-in-functions.html#cb3-1" tabindex="-1"></a><span class="co"># built-in functions</span></span>
+<span id="cb3-2"><a href="built-in-functions.html#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="built-in-functions.html#cb3-3" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
+<span id="cb3-4"><a href="built-in-functions.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="built-in-functions.html#cb3-5" tabindex="-1"></a><span class="fu">max</span>(numbers)</span>
+<span id="cb3-6"><a href="built-in-functions.html#cb3-6" tabindex="-1"></a><span class="fu">min</span>(numbers)</span>
+<span id="cb3-7"><a href="built-in-functions.html#cb3-7" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span>
+<span id="cb3-8"><a href="built-in-functions.html#cb3-8" tabindex="-1"></a><span class="fu">sum</span>(numbers)</span></code></pre></div>
+<ul>
+<li>R comes with some built-in functions, which have this format: <code>function(arguments)</code>
+<ul>
+<li>functions usually pack a few steps that transform and manipulate supplied data (<code>argument</code>) and return the result of those manipulations;</li>
+</ul></li>
+<li>in the code we created a vector (I will explain in a moment what vector is) names <code>numbers</code></li>
+<li>we can try some of the built-in functions and use this variable as an argument. What do you think the following functions will do?
+<ul>
+<li><code>max()</code> :: ?</li>
+<li><code>min()</code> :: ?</li>
+<li><code>mean()</code> :: ?</li>
+<li><code>sum()</code> :: ?</li>
+</ul></li>
+<li>functions may take/require a different number of arguments; arguments may be data that you supply and/or some parameters that trigger a specific behavior of a function;</li>
+<li>in order to find out how a specific function works—and what arguments it takes, you can use help function or operator. For example, if we want to get help for the function <code>mean()</code>, we can do the following (type and execute):
+<ul>
+<li><code>?mean</code> (or <code>??mean</code> — this will give broader results);</li>
+<li><code>help(mean)</code>;</li>
+</ul></li>
+<li>Thus, help tells us that <code>mean()</code> can take the following arguments:
+<ul>
+<li><code>mean(x, trim = 0, na.rm = FALSE, ...)</code></li>
+</ul></li>
+<li>Alternatively, you can always google how to do a certain thing in R…</li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="class-05.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-07.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="basic-commands.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="librariespackages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -270,7 +302,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/060-Class06.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/020-Class02.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -278,7 +310,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/060-Class06.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/020-Class02.Rmd",
 "text": null
 },
 "download": null,

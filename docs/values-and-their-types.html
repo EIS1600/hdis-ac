@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
+  <title>2.10 Values and their types | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
   <meta name="description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta property="og:title" content="2.10 Values and their types | HDIS: Computational Analysis of Data from Audition Statements–with R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="github-repo" content="EIS1600/hdis-audition-statements" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta name="twitter:title" content="2.10 Values and their types | HDIS: Computational Analysis of Data from Audition Statements–with R" />
   
   <meta name="twitter:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="touch-icon.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="class-05.html"/>
-<link rel="next" href="class-07.html"/>
+<link rel="prev" href="librariespackages.html"/>
+<link rel="next" href="basic-data-structures-and-their-practical-usage.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,18 +228,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="class-06" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">CHAPTER 6</span> Class 06<a href="class-06.html#class-06" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>[<em>subject to updates and corrections</em>]</p>
-
+<div id="values-and-their-types" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> Values and their types<a href="values-and-their-types.html#values-and-their-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are several main types of values in R (these are the most important ones):</p>
+<ul>
+<li><em>numeric</em>: <code>3</code> or <code>3,14</code></li>
+<li><em>character</em>: <code>character</code> or <code>"3.14"</code></li>
+<li><em>logical</em>: <code>TRUE</code> or <code>FALSE</code></li>
+</ul>
+<p>You can check the type of value by using <code>class()</code> function, suppling the value or the variable as an argument.</p>
+<p>You can convert between types:</p>
+<ul>
+<li><code>as.numeric()</code> to convert to numeric; you will not be able to convert to numeric a vector that contains letter characters;</li>
+<li><code>as.character()</code> to convert to character; any vector can be converted to character;</li>
+</ul>
+<p>There are some other types, which we will cover when they become relevant.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="class-05.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-07.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="librariespackages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basic-data-structures-and-their-practical-usage.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -270,7 +281,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/060-Class06.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/020-Class02.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -278,7 +289,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/060-Class06.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/020-Class02.Rmd",
 "text": null
 },
 "download": null,

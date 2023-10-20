@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
+  <title>2.9 Libraries/Packages | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
   <meta name="description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta property="og:title" content="2.9 Libraries/Packages | HDIS: Computational Analysis of Data from Audition Statements–with R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="github-repo" content="EIS1600/hdis-audition-statements" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="CHAPTER 6 Class 06 | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta name="twitter:title" content="2.9 Libraries/Packages | HDIS: Computational Analysis of Data from Audition Statements–with R" />
   
   <meta name="twitter:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="touch-icon.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="class-05.html"/>
-<link rel="next" href="class-07.html"/>
+<link rel="prev" href="built-in-functions.html"/>
+<link rel="next" href="values-and-their-types.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,18 +228,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="class-06" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">CHAPTER 6</span> Class 06<a href="class-06.html#class-06" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>[<em>subject to updates and corrections</em>]</p>
-
+<div id="librariespackages" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Libraries/Packages<a href="librariespackages.html#librariespackages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>The concept of R packages and their role in extending R’s functionality;
+<ul>
+<li>you can think of packages as additional programs for R (like MS Word on your computers that gives you a useful tool for writing your papers);</li>
+<li>packages give you access to more functions;</li>
+</ul></li>
+<li>Packages can be installed:
+<ul>
+<li>using the <code>install.packages()</code> function (the name of the library should be in quotation marks);
+<ul>
+<li>let’s install <code>ggplot2</code> with this command;</li>
+<li>let’s also install <code>stringi</code> with this command;</li>
+</ul></li>
+<li>using interface: <strong>Tools &gt; Install Packages</strong>
+<ul>
+<li>let’s install <code>tidyverse</code> via the interface;</li>
+</ul></li>
+<li>let’s also install library <code>swirl</code> :: you will need it for your homework;</li>
+</ul></li>
+<li>Packages can be loaded using function <code>library()</code> (or <code>require()</code>);
+<ul>
+<li><code>library(ggplot2)</code></li>
+<li><code>library(tidyverse)</code></li>
+<li><code>library(stringi)</code></li>
+</ul></li>
+<li>Alternatively, you can call specific functions directly from specific libraries:
+<ul>
+<li><code>stringi::stri_rand_lipsum(2)</code> :: try this example;</li>
+<li>this way is sometimes necessary when there are functions with the same name in different loaded packages;</li>
+<li>you can try to run the following line of code to generate a graph:
+<ul>
+<li><code>ggplot2::ggplot(mtcars) + ggplot2::geom_point(ggplot2::aes(x = mpg, y = hp))</code></li>
+</ul></li>
+<li>this code becomes simple, if you have loaded the library <code>ggplot2</code> in advance:
+<ul>
+<li><code>ggplot(mtcars) + geom_point(aes(x = mpg, y = hp))</code></li>
+</ul></li>
+</ul></li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="class-05.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="class-07.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="built-in-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="values-and-their-types.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -270,7 +307,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/060-Class06.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/020-Class02.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -278,7 +315,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/060-Class06.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/020-Class02.Rmd",
 "text": null
 },
 "download": null,
