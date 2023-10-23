@@ -6,19 +6,53 @@
 
 ## General Computer Terms
 
-- file manager
-- command line
-- path
-- folder
-- file
+- **file manager**: a software application that provides a user interface to manage files and directories.
+  - *German*: Dateimanager;
+  - *Arabic*: مدير الملفات (Mudīr al-mulafāt);
+  - *Persian*: مدیر پرونده (Modir-e Parvandeh)
+- **command line**: A text-based interface where users input commands to control the computer.
+  - *German*: Befehlszeile;
+  - *Arabic*: سطر الأوامر (satr al-awamir);
+  - *Persian*: خط فرمان (xatt-e farman);
+- **path**: a reference to a specific location in a file system, typically consisting of a sequence of directories leading to a specific file or directory.
+  - *German*: Pfad
+  - *Arabic*: مسار (masar)
+  - *Persian*: مسیر (masir)
+- **folder**: a virtual container within a file system used to store and organize files and other folders.
+  - *German*: Ordner;
+  - *Arabic*: مجلد (majallad);
+  - *Persian*: پوشه (poshe);
+- **file**: A digital container for storing data or information on a computer system.
+  - *German*: Datei;
+  - *Arabic*: ملف (malaf);
+  - *Persian*: فایل (file);
 
 ## NLP and Linguistics
 
-- natural language processing
-- ngram
-- token
-- corpus linguistics
-- computational linguistics
+- **natural language processing (NLP)**: The branch of artificial intelligence focused on enabling computers to understand, interpret, and generate human language.
+  - *German*: Natürliche Sprachverarbeitung;
+  - *Arabic*: معالجة اللغة الطبيعية (mu‘ālajat al-lughah al-ṭabī‘īyah);
+  - *Persian*: پردازش زبان طبیعی (pardazesh-e zabān-e tabi'i);
+- **ngram**: A contiguous sequence of n items (such as letters, words, or symbols) from a given sample of text or speech.
+  - *German*: N-Gramm;
+  - *Arabic*: ن-جرام (n-gram);
+  - *Persian*: ن-گرام (n-gram);
+- **token**: A sequence of characters in text that represents a unit of meaning, often corresponding to a word or a symbol.
+  - *German*: Token;
+  - *Arabic*: رمز (ramz);
+  - *Persian*: توکن (token);
+- **corpus**: A large and structured set of texts, often used for linguistic research and natural language processing tasks.
+  - *German*: Korpus;
+  - *Arabic*: مدونة (madwana);
+  - *Persian*: متن‌نگار (matn-negar);
+- **corpus linguistics**: The study of language based on large collections of "real life" language use stored in corpora.
+  - *German*: Korpuslinguistik;
+  - *Arabic*: علم اللغة المدوني (‘ilm al-lughah al-madwani);
+  - *Persian*: زبان‌شناسی متنی (zabān-shenāsi-ye matni);
+- **computational linguistics**: An interdisciplinary field concerned with the computational aspects of the human language capacity and the application of computational methods to linguistic questions.
+  - *German*: Computerlinguistik;
+  - *Arabic*: اللسانيات الحاسوبية (al-lisāniyāt al-ḥāsūbīyah);
+  - *Persian*: زبان‌شناسی محاسباتی (zabān-shenāsi-ye moḥāsebatī);
 
 ## Machine Learning
 
