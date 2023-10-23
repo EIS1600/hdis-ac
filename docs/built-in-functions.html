@@ -23,7 +23,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2023-10-20" />
+<meta name="date" content="2023-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -231,14 +231,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="built-in-functions" class="section level2 hasAnchor" number="2.8">
 <h2><span class="header-section-number">2.8</span> Built-in Functions<a href="built-in-functions.html#built-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s add the following few lines to the end of our R script:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="built-in-functions.html#cb3-1" tabindex="-1"></a><span class="co"># built-in functions</span></span>
-<span id="cb3-2"><a href="built-in-functions.html#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="built-in-functions.html#cb3-3" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
-<span id="cb3-4"><a href="built-in-functions.html#cb3-4" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="built-in-functions.html#cb3-5" tabindex="-1"></a><span class="fu">max</span>(numbers)</span>
-<span id="cb3-6"><a href="built-in-functions.html#cb3-6" tabindex="-1"></a><span class="fu">min</span>(numbers)</span>
-<span id="cb3-7"><a href="built-in-functions.html#cb3-7" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span>
-<span id="cb3-8"><a href="built-in-functions.html#cb3-8" tabindex="-1"></a><span class="fu">sum</span>(numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="built-in-functions.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># built-in functions</span></span>
+<span id="cb3-2"><a href="built-in-functions.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="built-in-functions.html#cb3-3" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
+<span id="cb3-4"><a href="built-in-functions.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="built-in-functions.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(numbers)</span>
+<span id="cb3-6"><a href="built-in-functions.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(numbers)</span>
+<span id="cb3-7"><a href="built-in-functions.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span>
+<span id="cb3-8"><a href="built-in-functions.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(numbers)</span></code></pre></div>
 <ul>
 <li>R comes with some built-in functions, which have this format: <code>function(arguments)</code>
 <ul>
