@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo "- Generating: ./hdis-audition-statements/."
+# Get the directory of the current script
+DIR=$(dirname "$0")
+echo "- Generating: $DIR."
 
 #Rscript -e "setwd('./hdis-audition-statements/'); bookdown::render_book('index.Rmd', "bookdown::gitbook")"
 Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
