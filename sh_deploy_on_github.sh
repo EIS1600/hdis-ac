@@ -10,5 +10,7 @@ echo "- Website generated using bookdown package."
 
 
 # Pushing to GITHUB
-git add . && git commit -m "website automatic update" && git push
+git add .
+git commit -m "website automatic update"
+git push
 echo "- WEBSITE has been pushed to GITHUB."
