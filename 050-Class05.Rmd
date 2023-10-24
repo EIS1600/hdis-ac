@@ -1,6 +1,9 @@
-# Class 05
+# Data Manipulation II
 
-[*subject to updates and corrections*]
+## This Chapter
 
+- we will go over the solutions to the problems from the previous Chapter
 
+## Problems
 
+...

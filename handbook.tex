@@ -1,0 +1,1681 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+%% Support for zero-width non-joiner characters.
+\makeatletter
+\def\zerowidthnonjoiner{%
+  % Prevent ligatures and adjust kerning, but still support hyphenating.
+  \texorpdfstring{%
+    \TextOrMath{\nobreak\discretionary{-}{}{\kern.03em}%
+      \ifvmode\else\nobreak\hskip\z@skip\fi}{}%
+  }{}%
+}
+\makeatother
+\ifPDFTeX
+  \DeclareUnicodeCharacter{200C}{\zerowidthnonjoiner}
+\else
+  \catcode`^^^^200c=\active
+  \protected\def ^^^^200c{\zerowidthnonjoiner}
+\fi
+%% End of ZWNJ support
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={HDIS: Computational Analysis of Data from Audition Statements--with R},
+  pdfauthor={Maxim G. Romanov},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{HDIS: Computational Analysis of Data from Audition Statements--with R}
+\author{Maxim G. Romanov}
+\date{2023-10-23}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses. The current course, ``Computational Analysis of Data from Audition Statements--with R'', aims to introduce students to the main methods of data analysis that would be suitable for historical data. Students will learn the basics of the programming language R, which is one of the top choices in the field of Digital Humanities and Digital History. By the end of the course, students will understand how to work with data and how to extract the most valuable insights from it (exploratory data analysis). Students will practice on a dataset created from audition statements from medieval Damascus, thus also gaining original insights into the social history of medieval Islamic learning. There are no prerequisites for this course, except the basic knowledge of Arabic, since the data from audition statements is in Arabic. The course is complimentary to 57-521, where students will be learning how to read the original handwritten audition statements.
+
+\hypertarget{about-the-course}{%
+\chapter*{About the Course}\label{about-the-course}}
+\addcontentsline{toc}{chapter}{About the Course}
+
+The course, ``Computational Analysis of Data from Audition Statements--with R'', aims to introduce students to the main methods of data analysis that would be suitable for historical data. Students will learn the basics of the programming language R, which is one of the top choices in the field of Digital Humanities and Digital History. By the end of the course, students will understand how to work with data and how to extract the most valuable insights from it (exploratory data analysis). Students will practice on a dataset created from audition statements from medieval Damascus, thus also gaining original insights into the social history of medieval Islamic learning. There are no prerequisites for this course, except the basic knowledge of Arabic, since the data from audition statements is in Arabic. The course is complimentary to 57-521, where students will be learning how to read the original handwritten audition statements.
+
+\hypertarget{syllabus}{%
+\section*{Syllabus}\label{syllabus}}
+\addcontentsline{toc}{section}{Syllabus}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Full nomenclature}: {[}UHH AAI WiSe 23/24{]} 57-525 ONLINE: Computational Analysis of Data from Audition Statements (Complimentary to 57-521)
+\item
+  \textbf{Language of instruction}: English
+\item
+  \textbf{Hours per week}: 2
+\item
+  \textbf{Credits}: 6.0
+\item
+  \textbf{Meeting time}: Fr 16:00-18:00
+\item
+  \textbf{Additional meeting time}: \emph{we will need to find a time slot when you can all join and work on your HW assignments together}
+\item
+  \textbf{Meeting place}: for convenience, all meetings will be held online via Zoom: \url{https://uni-hamburg.zoom.us/j/63482607267?pwd=OVFIZWpndVZOU2RzOWtlVUtaM1lLUT09};
+\item
+  \textbf{Course resources:} \url{https://eis1600.github.io/hdis-audition-statements/};
+\item
+  \textbf{Meeting link}: \emph{shared via Slack}; other details are available via STiNE
+\item
+  \textbf{Office hours}: \emph{tbd} (on Zoom); if you have any questions, please, post them on Slack
+\item
+  \textbf{Instructor}: Dr.~Maxim Romanov, \url{maxim.romanov@uni-hamburg.de}
+\end{itemize}
+
+\hypertarget{general-description}{%
+\subsection*{General Description}\label{general-description}}
+\addcontentsline{toc}{subsection}{General Description}
+
+The course aims to introduce students to the main methods of data analysis that would be suitable for historical data. Students will learn the basics of the programming language R, which is one of the top choices in the field of Digital Humanities and Digital History. By the end of the course, students will understand how to work with data and how to extract the most valuable insights from it (exploratory data analysis). Students will practice on a dataset created from audition statements from medieval Damascus, thus also gaining original insights into the social history of medieval Islamic learning. There are no prerequisites for this course, except the basic knowledge of Arabic, since the data from audition statements is in Arabic. The course is complimentary to 57-521, where students will be learning how to read the original handwritten audition statements.
+
+Personal computers are required both for in-class work and for your homework. Your computer must run a full version of either Windows, MacOS, or Linux; unfortunately, neither tablets nor Chrome-based laptops are suitable for this course. No prior programming experience is required, but familiarity with the command line and basic principles of programming will be beneficial.
+
+\hypertarget{learning-objectives}{%
+\subsection*{Learning objectives}\label{learning-objectives}}
+\addcontentsline{toc}{subsection}{Learning objectives}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Get basic familiarity with the programming language R;
+\item
+  Learn basic analytical techniques;
+\item
+  Gain an understanding of working with data and modeling data;
+\item
+  Practice these skills on a collection of historical data;
+\end{enumerate}
+
+\hypertarget{didactic-concept}{%
+\subsection*{Didactic concept}\label{didactic-concept}}
+\addcontentsline{toc}{subsection}{Didactic concept}
+
+This is a hands-on practical course, which requires regular attendance and completion of homework assignments. The participants of the course are encouraged to attend weekly ``office hours'', where they can work on their homework assignments and get immediate feedback from the instructor. The main didactic approach of the course is to maximize the engagement of the participants with the programming language: this will provide a level of confidence and comfort in dealing with admittedly an alien subject within the scope of African and Asian studies; attaining this level of comfort is the key to absorbing the necessary theoretical, conceptual, and practical knowledge. Upon the completion of assigned tasks, the students are encouraged to bring their own datasets, since the engagement with their own data will provide a better grounding in this new subject.
+
+\hypertarget{literature}{%
+\subsection*{Literature}\label{literature}}
+\addcontentsline{toc}{subsection}{Literature}
+
+All the necessary study materials will be provided. Below you can find a list of additional materials.
+
+\hypertarget{course-evaluation-requirements-for-the-full-credit}{%
+\subsection*{Course Evaluation: requirements for the full credit}\label{course-evaluation-requirements-for-the-full-credit}}
+\addcontentsline{toc}{subsection}{Course Evaluation: requirements for the full credit}
+
+\begin{itemize}
+\tightlist
+\item
+  mandatory attendance and participation;
+\item
+  timely homework assignments;
+\item
+  final project (computational analysis + analytical commentary);
+\item
+  no examination;
+\end{itemize}
+
+Final projects can be prepared either individually or in groups.
+
+\hypertarget{class-participation}{%
+\subsection*{Class Participation}\label{class-participation}}
+\addcontentsline{toc}{subsection}{Class Participation}
+
+Each class session will consist in large part of practical hands-on exercises led by the instructor. Personal computers are required. We can accommodate whatever operating system you use (Windows, Mac, Linux), but it should be a full computer/laptop, not a tablet that uses an ``incomplete'' version of any major operating system. Don't forget that asking for help counts as participation!
+
+\hypertarget{homework}{%
+\subsection*{Homework}\label{homework}}
+\addcontentsline{toc}{subsection}{Homework}
+
+Just as in research and real life, collaboration is a very good way to learn and is therefore encouraged. If you need help with any assignment, you are welcome to ask a fellow student. If you do work together on homework assignments, then when you submit it please include a brief note (just a sentence or two) to indicate who did what.
+
+\textbf{NB:} On submitting homework, see below.
+
+\hypertarget{final-project}{%
+\subsection*{Final Project}\label{final-project}}
+\addcontentsline{toc}{subsection}{Final Project}
+
+Final project will be discussed later. You will have an option to build on what we will be doing in class, but you are most encouraged to pick a topic of your own. The best option will be to work on something relevant to your field of study, your term paper or your thesis.
+
+\hypertarget{additional-study-materials}{%
+\subsection*{Additional Study Materials}\label{additional-study-materials}}
+\addcontentsline{toc}{subsection}{Additional Study Materials}
+
+\begin{itemize}
+\tightlist
+\item
+  Arnold, Taylor, and Lauren Tilton. \emph{Humanities Data in R}. New York, NY: Springer Science+Business Media, 2015 (shared via Slack)
+\item
+  Healy, Kieran. \emph{Data Visualization: A Practical Guide.} Princeton University Press, 2018. ISBN: 978-0691181622. \url{http://socviz.co/}
+\item
+  Hadley Wickham \& Garrett Grolemund, \emph{R for Data Science: Import, Tidy, Transform, Visualize, and Model Data.} O'Reilly, 2017. ISBN: 978-1491910399. \url{https://r4ds.had.co.nz/}
+\item
+  Wickham, Hadley. \emph{Advanced R}, Second Edition. 2 edition. Boca Raton: Chapman and Hall/CRC, 2019. \url{http://adv-r.had.co.nz/}
+\item
+  Also check \url{https://bookdown.org/} for more books on R
+\item
+  \emph{Coding Club R Tutorials} (focus on Ecology and Environmental Sciences), \url{https://ourcodingclub.github.io/tutorials.html}
+\end{itemize}
+
+\emph{NB:} By the way, this website is also built with R. Check: Yihui Xie. \emph{bookdown: Authoring Books and Technical Documents with R Markdown}, 2022 \url{https://bookdown.org/yihui/bookdown/}
+
+\hypertarget{software-tools-technologies}{%
+\subsection*{Software, Tools, \& Technologies:}\label{software-tools-technologies}}
+\addcontentsline{toc}{subsection}{Software, Tools, \& Technologies:}
+
+The following is the list of software, applications and packages that we will be using in the course. Make sure to have them installed by the class when we are supposed to use them.
+
+The main tools for the course will be the programming language \texttt{R} and \texttt{RStudio}, the premier integrated development environment for \texttt{R}.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{R}: \url{https://cloud.r-project.org/} (choose the version for your operating system!)
+\item
+  \texttt{RStudio}: \url{https://rstudio.com/products/rstudio/download/} (RStudio Desktop, Open Source License --- the free version)
+\end{itemize}
+
+We will also use a variety of packages for \texttt{R}, which we will be installing when necessary.
+
+\hypertarget{submitting-homework}{%
+\subsection*{Submitting Homework:}\label{submitting-homework}}
+\addcontentsline{toc}{subsection}{Submitting Homework:}
+
+\begin{itemize}
+\tightlist
+\item
+  Homework assignments are to be submitted by the beginning of the next class;
+\item
+  For the first few classes you must email them to the instructor (as attachments)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    In the subject of your email, please, use the following format: \texttt{CourseAPPREVIATION-LessonID-HW-Lastname-matriculationNumber}, for example, if I were to submit homework for the first lesson, my subject header would look like: \texttt{CADAS-L01-HW-Romanov-12435687}.
+  \end{itemize}
+\item
+  DH is a collaborative field, so you are most welcome to work on your homework assignments in groups, however, you must still submit it. That is, if a groups of three works on one assignment, there must be three separate submissions: either emailed from each member's email and published at each member's github page.
+\end{itemize}
+
+\hypertarget{schedule}{%
+\subsection*{Schedule}\label{schedule}}
+\addcontentsline{toc}{subsection}{Schedule}
+
+\textbf{Location}: Online
+
+\begin{itemize}
+\item
+  \texttt{01\ Fri,\ 20.\ Oct.\ 2023\ 16:00-18:00}
+\item
+  \texttt{02\ Fri,\ 27.\ Oct.\ 2023\ 16:00-18:00}
+\item
+  \texttt{03\ Fri,\ 03.\ Nov.\ 2023\ 16:00-18:00}
+\item
+  \texttt{04\ Fri,\ 10.\ Nov.\ 2023\ 16:00-18:00}
+\item
+  \texttt{05\ Fri,\ 17.\ Nov.\ 2023\ 16:00-18:00}
+\item
+  \texttt{06\ Fri,\ 24.\ Nov.\ 2023\ 16:00-18:00} (*)
+\item
+  \texttt{07\ Fri,\ 01.\ Dec.\ 2023\ 16:00-18:00}
+\item
+  \texttt{08\ Fri,\ 08.\ Dec.\ 2023\ 16:00-18:00} (*)
+\item
+  \texttt{09\ Fri,\ 15.\ Dec.\ 2023\ 16:00-18:00} (*)
+\item
+  \texttt{10\ Fri,\ 22.\ Dec.\ 2023\ 16:00-18:00}
+\item
+  \texttt{11\ Fri,\ 12.\ Jan.\ 2024\ 16:00-18:00}
+\item
+  \texttt{12\ Fri,\ 19.\ Jan.\ 2024\ 16:00-18:00}
+\item
+  \texttt{13\ Fri,\ 26.\ Jan.\ 2024\ 16:00-18:00}
+\item
+  \texttt{14\ Fri,\ 02.\ Feb.\ 2024\ 16:00-18:00}
+\end{itemize}
+
+\hypertarget{lesson-topics-subject-to-modifications}{%
+\subsection*{\texorpdfstring{Lesson Topics (\emph{subject to modifications})}{Lesson Topics (subject to modifications)}}\label{lesson-topics-subject-to-modifications}}
+\addcontentsline{toc}{subsection}{Lesson Topics (\emph{subject to modifications})}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{{[} \texttt{\#01} {]}} Introduction; Syllabus; Setting Everything Up;
+\item
+  \textbf{{[} \texttt{\#02} {]}} Part I---Basics: RStudio, Basic R Commands, Swirl Tutorials
+\item
+  \textbf{{[} \texttt{\#03} {]}} Part I---Basics: R Markdown and R Notebooks
+\item
+  \textbf{{[} \texttt{\#04} {]}} Part I---Basics: Control Flow; Regular Expressions;
+\item
+  \textbf{{[} \texttt{\#05} {]}} Part I---Basics: Data Manipulations;
+\item
+  \textbf{{[} \texttt{\#06} {]}} Part I---Basics: Visualizations with \texttt{plot()} and \texttt{ggplot()};
+\item
+  \textbf{{[} \texttt{\#07} {]}} Part I---Basics: Tidying Data;
+\item
+  \textbf{{[} \texttt{\#08} {]}} Part II---Analyses: Audition Statement Data;
+\item
+  \textbf{{[} \texttt{\#09} {]}} Part II---Analyses: Audition Statement Data;
+\item
+  \textbf{{[} \texttt{\#10} {]}} Part II---Analyses: Audition Statement Data;
+\item
+  \textbf{{[} \texttt{\#11} {]}} Part II---Analyses: Audition Statement Data;
+\item
+  \textbf{{[} \texttt{\#12} {]}} Part II---Analyses: Audition Statement Data;
+\item
+  \textbf{{[} \texttt{\#13} {]}} Part II---Analyses: Audition Statement Data;
+\item
+  \textbf{{[} \texttt{\#14} {]}} Part II---Analyses: Audition Statement Data;
+\end{itemize}
+
+\hypertarget{class-01.-setting-everything-up}{%
+\chapter{Class 01. Setting Everything Up}\label{class-01.-setting-everything-up}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{links-for-things-to-install}{%
+\section{Links for things to install}\label{links-for-things-to-install}}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://cloud.r-project.org/} :: R is the programming language that we will be using;
+\item
+  \url{https://posit.co/downloads/} :: RStudio is an integrated development environment (IDE) for R (In other words, a convenient interface that makes it easier to code in R.)
+\item
+  \url{https://learnr-examples.shinyapps.io/ex-setup-r/} :: an interactive tutorial on how to install everything, with useful additional explanations.
+\end{itemize}
+
+\hypertarget{setting-things-up}{%
+\section{Setting Things Up}\label{setting-things-up}}
+
+\textbf{Important, like \emph{really-super-duper-important}!!!}:
+
+We will need to set everything up so that it is much easier during the course. Creating folders and subfolders it is crucially important that you create them the exact way it is described below: 1) use only small letters; 2) instead of spaces between words, use ``\_'' (underscore). It is important that you set things up exactly like that. If you make mistakes in naming folders correctly, code that we will be using will most likely not work, because it will not be able to find files that it needs to load and/or save.
+
+\textbf{Setting up our main folder:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{CADAS-R}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Create that folder in ``Documents'' (one of the default folders both on Mac and Windows); or anywhere else---ideally where you keep all your other folders related to other courses that you are taking; just remember where you create it;
+  \item
+    In your folder then create the following structure:
+  \end{itemize}
+\end{itemize}
+
+\begin{verbatim}
+CADAS-R/
+    ├── downloads/
+    ├── data/
+    │   ├── raw_data/
+    │   └── processed_pata/
+    ├── literature/
+    │   ├── articles/
+    │   └── books/
+    ├── classes/
+    │   ├── class_01/
+    │   ├── class_02/
+    │   └── class_03/
+    ├── pPresentations/
+    └── meeting_notes/
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{/downloads/}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    here we will store all the course-related files that you will be downloading;
+  \end{itemize}
+\item
+  \texttt{/data/}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    here we will keep files with our data;
+  \item
+    we will not really need \texttt{/raw\_data/} and \texttt{/processed\_data/}, but, usually, in your own future projects you may want to have such a division, to keep the original data in one folder and data that you have processed (cleaned, updated, etc.) in a different folder;
+  \end{itemize}
+\item
+  \texttt{/literature/}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is a way to organize readings, relevant to your project; we will keep here relevant files;
+  \item
+    Using bibliography managers, like Zotero, is a better option though;
+  \item
+    Download the following books, and place them in your folder (these are mainly for your reference):
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \url{https://www.dropbox.com/s/n1vp6ix87js0j5k/ArnoldHumanities2015.pdf?dl=0}
+    \item
+      \url{https://www.dropbox.com/s/zfryoznbkogqssg/HadleyAdvanced2014.pdf?dl=0}
+    \item
+      \url{https://www.dropbox.com/s/kh18de2cym65gfi/HadleyGgplot22016.pdf?dl=0}
+    \end{itemize}
+  \item
+    Note, how the names of PDFs are following the same pattern: \texttt{AuthorTitleYEAR.pdf}.
+  \end{itemize}
+\item
+  \texttt{/classes/}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    here we will be placing files relevant to specific classes; mainly, these folders will keep the scripts that you will be working on;
+  \end{itemize}
+\item
+  \texttt{/presentations/}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A folder for your final presentation/project;
+  \end{itemize}
+\item
+  \texttt{/meeting\_notes/}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    You may want to store your notes separately;
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{creating-a-project}{%
+\section{Creating a Project}\label{creating-a-project}}
+
+\begin{itemize}
+\tightlist
+\item
+  now that you have created everything, you need to create what is called a ``Project'' in RStudio. This will create a single file, which you can open in order to load all the necessary settings relevant to our course.
+\item
+  using ``Projects'' will help you to keep different research tasks separately and, most importantly, keep all the files relevant to specific tasks well-organized.
+\end{itemize}
+
+So, how to create a project?
+
+\includegraphics{./images/r_instructions/new_project.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  open RStudio, then, in the main menu, choose: File \textgreater{} New Project (you should then see ``New Project Wizard'', as shown below);
+\item
+  Select ``Existing Directory'' \textgreater{} then click on ``Browse'', and then select the folder ``CADAS-R'', which you created in the first step; click ``Create Project'' to complete the process.
+\item
+  Now, what will happen is that in the tab ``Files'' in the lower right part of RStudio you will see the contents of the folder ``CADAS-R''. There will also be a new file, called \texttt{CADAS-R.Rproj}. Later on, you will be able to quickly open your project by double-clicking on that file. When you open the project, R automatically sets the working directory (\texttt{setwd()}) to the folder of the project and many things just become much easier.
+\item
+  Now, you can add and create new files relevant to your project in the folder ``CADAS-R'' and they will be easy to find directly from RStudio, using its ``Files'' Tab, which is usually available in the lower right corner. \textbf{Suggestion:} you will benefit greatly from keeping some order in your project folder. For example, keep all the files that you download in a subfolder ``downloads''; your your data files in a subfolder ``data'', and so on.
+\end{enumerate}
+
+\hypertarget{homework-assignments}{%
+\section{Homework assignments}\label{homework-assignments}}
+
+\begin{itemize}
+\tightlist
+\item
+  Homework (Links will take you to tutorials):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{http://programminghistorian.org/} is a great resource for learning the basics of practical digital humanities. I encourage you to browse the lessons carefully, just to get a sense of what you can learn to do: \url{http://programminghistorian.org/en/lessons/}. Please, read the following assigned lessons carefully. In some cases, it is well worth trying to repeat all the steps on your own computer. I will mark those.
+  \item
+    \textbf{Data organization}: understanding and applying basic principles of data organization will save you a lot of time in the future and will help you to keep your data well organized and easily accessible.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      James Baker, ``Preserving Your Research Data,'' \emph{Programming Historian 3} (2014), \url{https://doi.org/10.46430/phen0039}.
+    \end{itemize}
+  \item
+    \textbf{Command Line} is the most foundational tool for anyone interested in doing anything remotely interesting with computers. Unlike graphical-user-interfaces (GIU), here you give commands to the computer by typing them in directly. You will need one of the following two tutorials, depending on whether you use Mac or Windows. You should try to repeat at least some of the commands given in tutorials. These tutorials are a little bit more detailed than what you will need for now; the most important thing for you to understand is how to navigate your computer (i.s., move from one folder to another), copy and move files, create folders, etc.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \textbf{Mac}. Ian Milligan and James Baker, ``Introduction to the Bash Command Line,'' \emph{Programming Historian 3} (2014), \url{https://doi.org/10.46430/phen0037}
+    \item
+      \textbf{Windows}. Ted Dawson, ``Introduction to the Windows Command Line with PowerShell,'' \emph{Programming Historian 5} (2016), \url{https://doi.org/10.46430/phen0054}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{class-02-rstudio-basic-r-commands-swirl-tutorials}{%
+\chapter{Class 02: RStudio, Basic R Commands, Swirl Tutorials}\label{class-02-rstudio-basic-r-commands-swirl-tutorials}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{last-class-review}{%
+\section{Last Class Review}\label{last-class-review}}
+
+\begin{itemize}
+\tightlist
+\item
+  syllabus, course requirements;
+\item
+  software: \texttt{R} and \texttt{RStudio}---must be installed by now;
+\end{itemize}
+
+\hypertarget{this-class}{%
+\section{This Class}\label{this-class}}
+
+\begin{itemize}
+\tightlist
+\item
+  Overview of R
+\item
+  RStudio and its interface;
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Describe the RStudio interface and its main components (Console, Script Editor, Environment, and Plots/Packages/Help);
+  \item
+    Explain the benefits of using RStudio for R programming;
+  \end{itemize}
+\item
+  File types and projects;
+\item
+  Basic operators and commands;
+\item
+  Built-in functions and libraries;
+\item
+  Basic data structures and when they are used;
+\item
+  \texttt{swirl()} tutorials as homework assignments;
+\end{itemize}
+
+\hypertarget{overview-of-r}{%
+\section{Overview of R}\label{overview-of-r}}
+
+\begin{itemize}
+\tightlist
+\item
+  R, its features, and its relevance to historians;
+\item
+  R as an open-source programming language and its community;
+\item
+  Comprehensive R Archive Network (CRAN);
+\end{itemize}
+
+\hypertarget{rstudio-interface}{%
+\section{RStudio Interface}\label{rstudio-interface}}
+
+\begin{itemize}
+\tightlist
+\item
+  RStudio interface and its main components (Console, Script Editor, Environment, and Plots/Packages/Help)
+\item
+  The benefits of using RStudio for R programming
+\end{itemize}
+
+\begin{longtable}[]{@{}c@{}}
+\toprule\noalign{}
+\includegraphics{./images/r_instructions/RStudio.png} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Rstudio Interface \\
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  top-left:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Open Scripts and Files}: this is where you will be working with your R scripts;
+  \end{itemize}
+\item
+  bottom-left:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{R console}: this is where you can run R code (without committing it to a script; very handy for quickly testing something);
+  \item
+    \textbf{Terminal}: skipping for now
+  \end{itemize}
+\item
+  top-right:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Environment}: all active variables are listed here; you can also load data through the ``Import Dataset'' dialog from here; this tab is useful to keep track of what is loaded into your current state of R;
+  \item
+    \textbf{History}: here you will find the complete list of commands that you have run already;
+  \item
+    plus, some other tabs which are not too relevant for now;
+  \end{itemize}
+\item
+  bottom-right:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Files}: this is your file browser, which is useful when you work with \emph{projects};
+  \item
+    \textbf{Plots}: all your temporary plots will be appearing here;
+  \item
+    \textbf{Packages}: this is the list of all installed and loaded packages (not the most important tab);
+  \item
+    \textbf{Help}: whenever you invoke help, details will be shown here;
+  \item
+    \textbf{Viewer}: this tab will be showing the results of HTML output; most useful for working with notebooks (next class);
+  \item
+    plus, some other tabs which are not too relevant for now;
+  \end{itemize}
+\end{itemize}
+
+\begin{quote}
+for a video explanation: \url{https://www.youtube.com/watch?v=XdgfhqNtje4}
+\end{quote}
+
+\hypertarget{main-file-types}{%
+\section{Main File Types}\label{main-file-types}}
+
+\begin{itemize}
+\tightlist
+\item
+  main file types: R script, R notebook, and R markdown;
+
+  \begin{itemize}
+  \tightlist
+  \item
+    R script: contains only R code and comments; most useful for ``silent'' processing of data and time-consuming analyses that are best run from command line;
+  \item
+    R notebook (R markdown): allows one to combine executable R code and academic prose; with this format one can create documents that can be regenerated when data is updated
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \emph{scenario}: you describe some statistical data---on population, for example; in a year or two you get an updated file; your old descriptions may still be true---overall population, distribution of population over years, etc., but the data changed; you can simply regenerate your notebook with new data and all the numbers and graphs will be updated.\\
+    \end{itemize}
+  \end{itemize}
+\item
+  you can create them from: \texttt{File\ \textgreater{}\ New\ File} or the icon with green plus (top left corner);
+
+  \begin{itemize}
+  \tightlist
+  \item
+    for now, we will try an R script;
+  \item
+    next class we will start with R notebooks;
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{projects}{%
+\section{Projects}\label{projects}}
+
+\begin{itemize}
+\tightlist
+\item
+  RStudio projects make it straightforward to divide your work into multiple contexts, each with their own working directory, workspace, history, and source documents.
+\item
+  Creating our project:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{File} \textgreater{} \texttt{New\ Project}
+  \item
+    \texttt{Existing\ Directory}
+  \item
+    choose the directory for the course that we created last time: \texttt{CADAS-R} (we agreed that you create it in your ``Documents'' folder---both Mac ands Windows have such a folder)
+  \item
+    click \texttt{Create\ Project}
+  \end{itemize}
+\item
+  Using your Project:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    you now can open RStudio by clicking on the \texttt{CADAS-R.Rproj} file in your course folder; this will automatically adjust RStudio settings to that folder
+  \item
+    in \textbf{Files} (bottom-right corner) you will automatically see the folder of your project;
+  \item
+    you can now use paths relative to your project's folder:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      review: what are relative and absolute paths?
+    \end{itemize}
+  \end{itemize}
+\item
+  Closing your Project:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If you did any work with your project and then want to close it, RStudio will ask you if you want to \texttt{Save\ workspace\ image\ to\ ...}, click \texttt{Do\ not\ save}; while saving may be useful occasionally, in most cases that creates a large temporary file which makes your Rstudio slower.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{basic-commands}{%
+\section{Basic Commands}\label{basic-commands}}
+
+\begin{itemize}
+\tightlist
+\item
+  let's create an R script file in \texttt{classes/class\_02/} and call it \texttt{class\_02.R}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    here is some little filler for our script. Simply copy-paste it into the new script.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# arithmetic operations}
+
+\DecValTok{3} \SpecialCharTok{+} \DecValTok{5}
+\DecValTok{3} \SpecialCharTok{{-}} \DecValTok{5}
+\DecValTok{3} \SpecialCharTok{/} \DecValTok{5}
+\DecValTok{3} \SpecialCharTok{*} \DecValTok{5}
+
+\CommentTok{\# assignment: \textasciigrave{}\textless{}{-}\textasciigrave{} or \textasciigrave{}=\textasciigrave{}; }
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{3} \SpecialCharTok{+} \DecValTok{5}
+\NormalTok{x}
+
+\NormalTok{x }\SpecialCharTok{*} \DecValTok{5}
+\NormalTok{x }\SpecialCharTok{{-}} \DecValTok{5}
+
+\NormalTok{y }\OtherTok{\textless{}{-}} \DecValTok{3} \SpecialCharTok{*} \DecValTok{5}
+\NormalTok{y }\SpecialCharTok{+}\NormalTok{ x}
+
+\NormalTok{z }\OtherTok{\textless{}{-}}\NormalTok{ y }\SpecialCharTok{+}\NormalTok{ x}
+
+\CommentTok{\# = Vs ==}
+
+\NormalTok{x }\SpecialCharTok{==}\NormalTok{ y}
+\NormalTok{x }\OtherTok{=}\NormalTok{ y}
+\NormalTok{x }\SpecialCharTok{==}\NormalTok{ y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  now we can try basic R operations:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    we can write them in our R script (top-left part of RStudio interface);
+  \item
+    we can also run them directly in \textbf{Console} (bottom-left part of RStudio interface);
+  \item
+    the main differences are:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      we can save all our commands in R script, but we cannot do that in console;
+    \item
+      console, however, is very useful for running commands that we do not want to save (for example, using help commands)
+    \item
+      R script is most useful when we want to do something complex and we need a series of commands that must run in a specific order; this will be the main use of R scripts (as well as R notebooks);
+    \item
+      In R script you can execute all commands one after another (as they appear in the script); in console you can execute only one command at a time;
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{basic arithmetic operations}: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/};
+
+  \begin{itemize}
+  \tightlist
+  \item
+    let's try some examples from what we pasted into our script;
+  \end{itemize}
+\item
+  \textbf{values and variables}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{values}:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      when we simply typed our commands as we just did we use values, but they are gone as soon as we type the next one; variables allow us to preserve results for later reuse;
+    \end{itemize}
+  \item
+    \textbf{variables}:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      assignment operator (\texttt{\textless{}-} or \texttt{=}) and variable assignment;
+    \item
+      difference between \texttt{=} and \texttt{==};
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{comments}: we can use \texttt{\#} in front of any line to turn it into a comment; comment means that R will not try to execute it.
+\end{itemize}
+
+\hypertarget{built-in-functions}{%
+\section{Built-in Functions}\label{built-in-functions}}
+
+Let's add the following few lines to the end of our R script:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# built{-}in functions}
+
+\NormalTok{numbers }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+
+\FunctionTok{max}\NormalTok{(numbers)}
+\FunctionTok{min}\NormalTok{(numbers)}
+\FunctionTok{mean}\NormalTok{(numbers)}
+\FunctionTok{sum}\NormalTok{(numbers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  R comes with some built-in functions, which have this format: \texttt{function(arguments)}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    functions usually pack a few steps that transform and manipulate supplied data (\texttt{argument}) and return the result of those manipulations;
+  \end{itemize}
+\item
+  in the code we created a vector (I will explain in a moment what vector is) names \texttt{numbers}
+\item
+  we can try some of the built-in functions and use this variable as an argument. What do you think the following functions will do?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{max()} :: ?
+  \item
+    \texttt{min()} :: ?
+  \item
+    \texttt{mean()} :: ?
+  \item
+    \texttt{sum()} :: ?
+  \end{itemize}
+\item
+  functions may take/require a different number of arguments; arguments may be data that you supply and/or some parameters that trigger a specific behavior of a function;
+\item
+  in order to find out how a specific function works---and what arguments it takes, you can use help function or operator. For example, if we want to get help for the function \texttt{mean()}, we can do the following (type and execute):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{?mean} (or \texttt{??mean} --- this will give broader results);
+  \item
+    \texttt{help(mean)};
+  \end{itemize}
+\item
+  Thus, help tells us that \texttt{mean()} can take the following arguments:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{mean(x,\ trim\ =\ 0,\ na.rm\ =\ FALSE,\ ...)}
+  \end{itemize}
+\item
+  Alternatively, you can always google how to do a certain thing in R\ldots{}
+\end{itemize}
+
+\hypertarget{librariespackages}{%
+\section{Libraries/Packages}\label{librariespackages}}
+
+\begin{itemize}
+\tightlist
+\item
+  The concept of R packages and their role in extending R's functionality;
+
+  \begin{itemize}
+  \tightlist
+  \item
+    you can think of packages as additional programs for R (like MS Word on your computers that gives you a useful tool for writing your papers);
+  \item
+    packages give you access to more functions;
+  \end{itemize}
+\item
+  Packages can be installed:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    using the \texttt{install.packages()} function (the name of the library should be in quotation marks);
+
+    \begin{itemize}
+    \tightlist
+    \item
+      let's install \texttt{ggplot2} with this command;
+    \item
+      let's also install \texttt{stringi} with this command;
+    \end{itemize}
+  \item
+    using interface: \textbf{Tools \textgreater{} Install Packages}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      let's install \texttt{tidyverse} via the interface;
+    \end{itemize}
+  \item
+    let's also install library \texttt{swirl} :: you will need it for your homework;
+  \end{itemize}
+\item
+  Packages can be loaded using function \texttt{library()} (or \texttt{require()});
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{library(ggplot2)}
+  \item
+    \texttt{library(tidyverse)}
+  \item
+    \texttt{library(stringi)}
+  \end{itemize}
+\item
+  Alternatively, you can call specific functions directly from specific libraries:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{stringi::stri\_rand\_lipsum(2)} :: try this example;
+  \item
+    this way is sometimes necessary when there are functions with the same name in different loaded packages;
+  \item
+    you can try to run the following line of code to generate a graph:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{ggplot2::ggplot(mtcars)\ +\ ggplot2::geom\_point(ggplot2::aes(x\ =\ mpg,\ y\ =\ hp))}
+    \end{itemize}
+  \item
+    this code becomes simple, if you have loaded the library \texttt{ggplot2} in advance:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{ggplot(mtcars)\ +\ geom\_point(aes(x\ =\ mpg,\ y\ =\ hp))}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{values-and-their-types}{%
+\section{Values and their types}\label{values-and-their-types}}
+
+There are several main types of values in R (these are the most important ones):
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{numeric}: \texttt{3} or \texttt{3,14}
+\item
+  \emph{character}: \texttt{character} or \texttt{"3.14"}
+\item
+  \emph{logical}: \texttt{TRUE} or \texttt{FALSE}
+\end{itemize}
+
+You can check the type of value by using \texttt{class()} function, suppling the value or the variable as an argument.
+
+You can convert between types:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{as.numeric()} to convert to numeric; you will not be able to convert to numeric a vector that contains letter characters;
+\item
+  \texttt{as.character()} to convert to character; any vector can be converted to character;
+\end{itemize}
+
+There are some other types, which we will cover when they become relevant.
+
+\hypertarget{basic-data-structures-and-their-practical-usage}{%
+\section{Basic Data Structures and Their Practical Usage}\label{basic-data-structures-and-their-practical-usage}}
+
+One can say that everything in R revolves around vectors and vector algebra. This is not as scary as it may sound, but it has an extremely profound effect on how everything is done in R.
+
+A vector is a fundamental data structure that represents a one-dimensional array containing elements of the same data type. Vectors are used to store and manipulate collections of values, such as numbers, characters, or logical values. They are the basic building blocks for more complex data structures like matrices, data frames, and lists.
+
+Unless there is evidence to the opposite, you can assume that a variable/value is a vector. All operations in R work like vector operations, which makes R effective, efficient, and quite elegant.
+
+Vectors in R are versatile and can be used to perform various operations, such as element-wise arithmetic, comparisons, and aggregations. R has a rich set of built-in functions for working with vectors, which makes it a powerful language for data manipulation and analysis.
+
+Keep in mind that the elements of a vector must be of the same type. If you try to combine different types of elements in a vector, R will attempt to coerce the elements to a common type, following a hierarchy of types (logical \textless{} integer \textless{} double \textless{} character). For example, if you combine numeric and character values in a vector, R will convert the numeric values to character values. If you need to store elements of different types, you can use a list, which is a more flexible data structure in R.
+
+\hypertarget{basic-data-structures}{%
+\subsection{Basic data structures}\label{basic-data-structures}}
+
+\begin{itemize}
+\tightlist
+\item
+  vectors;
+\item
+  matrices;
+\item
+  dataframes/tibbles;
+\item
+  lists;
+\end{itemize}
+
+\hypertarget{main-properties-of-basic-data-structures}{%
+\subsection{Main properties of basic data structures}\label{main-properties-of-basic-data-structures}}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{single dimension} (x axis):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    vectors: each vector is a vector
+  \item
+    a vector can hold data of only one type!
+  \end{itemize}
+\item
+  \emph{two-dimensions} (x-axis: rows, y-axis: columns):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    matrices:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      a vector folded into two dimensions; (each element can be accessed as if it were a vector - 1dim coordinates, or as if it were a matrix -- 2dim coordinates;)
+    \item
+      like a vector, a matrix can only hold data of one type!
+    \end{itemize}
+  \item
+    dataframes / tibbles;
+
+    \begin{itemize}
+    \tightlist
+    \item
+      columns and rows, where each column is a vector (i.e., must be the same type);
+    \end{itemize}
+  \end{itemize}
+\item
+  \emph{heterogeneous}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    lists:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      anything can be an item in a list;
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{most-common-usage-of-basic-data-structures}{%
+\subsection{Most Common Usage of Basic Data Structures:}\label{most-common-usage-of-basic-data-structures}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{storing data}: most commonly, data frames / tibbles are used for storing data;
+
+  \begin{itemize}
+  \tightlist
+  \item
+    you will load data into R in a form of a data frame and then you will start your analyses;
+  \end{itemize}
+\item
+  \textbf{calculations (modifications, alterations, updates, etc.)}: these are most commonly performed on vectors, or, most commonly, columns of data frames or, in case of matrices, on complete matrices or their columns or rows. Matrices are used almost exclusively for complex calculations (for example, we can use them for identifying groups of individuals with similar characteristics).
+\item
+  \textbf{export of data from complex functions}: list are very convenient to return results of complex functions, since they can hold any types of data structures in a single object; we are not going to use them much (if at all); they become useful after you reach a certain level of complexity in your work with R;
+\end{itemize}
+
+\hypertarget{basic-data-structures-examples}{%
+\subsection{Basic Data Structures Examples}\label{basic-data-structures-examples}}
+
+\hypertarget{vectors}{%
+\subsubsection{Vectors}\label{vectors}}
+
+In R, a vector is a one-dimensional array that can store a collection of values of the same type. You can create a vector using the \texttt{c()} function, which combines multiple values into a single vector. Here's an example of vectors. (Check what happens with \texttt{mixed\_vector}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numeric\_vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{50}\NormalTok{)}
+\NormalTok{character\_vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"apple"}\NormalTok{, }\StringTok{"banana"}\NormalTok{, }\StringTok{"cherry"}\NormalTok{, }\StringTok{"date"}\NormalTok{, }\StringTok{"fig"}\NormalTok{)}
+\NormalTok{mixed\_vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{50}\NormalTok{, }\StringTok{"banana"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Print out:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{10} \DecValTok{20} \DecValTok{30} \DecValTok{40} \DecValTok{50}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"apple"}  \StringTok{"banana"} \StringTok{"cherry"} \StringTok{"date"}   \StringTok{"fig"} 
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"10"}     \StringTok{"20"}     \StringTok{"30"}     \StringTok{"40"}     \StringTok{"50"}     \StringTok{"banana"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{matrices}{%
+\subsubsection{Matrices}\label{matrices}}
+
+In R, a matrix is a two-dimensional array that can store a collection of values of the same type, organized in rows and columns. You can create a matrix using the \texttt{matrix()} function. Here's an example of a numeric matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numeric\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Print out:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{1}    \DecValTok{3}    \DecValTok{5}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{2}    \DecValTok{4}    \DecValTok{6}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{data.framestibbles}{%
+\subsubsection{Data.frames/tibbles}\label{data.framestibbles}}
+
+A data frame is a table-like data structure in R, where each column can contain different types of data, and rows represent observations. A \texttt{tibble} (short for ``tidy data frame'') is a modern version of a data frame, introduced by the \texttt{tidyverse} package collection, which offers some improvements over the traditional data frame, such as better printing and subsetting.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load required libraries}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(tibble)}
+
+\CommentTok{\# Define the data}
+\NormalTok{names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Alice"}\NormalTok{, }\StringTok{"Bob"}\NormalTok{, }\StringTok{"Charlie"}\NormalTok{)}
+\NormalTok{ages }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{22}\NormalTok{)}
+\NormalTok{gender }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"M"}\NormalTok{)}
+
+\CommentTok{\# Create the data frame}
+\NormalTok{my\_dataframe }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Name =}\NormalTok{ names, }\AttributeTok{Age =}\NormalTok{ ages, }\AttributeTok{Gender =}\NormalTok{ gender)}
+
+\CommentTok{\# Create the tibble}
+\NormalTok{my\_tibble }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{Name =}\NormalTok{ names, }\AttributeTok{Age =}\NormalTok{ ages, }\AttributeTok{Gender =}\NormalTok{ gender)}
+\end{Highlighting}
+\end{Shaded}
+
+Print out for data.frame:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{     Name Age Gender}
+\DecValTok{1}\NormalTok{   Alice  }\DecValTok{25}\NormalTok{      F}
+\DecValTok{2}\NormalTok{     Bob  }\DecValTok{30}\NormalTok{      M}
+\DecValTok{3}\NormalTok{ Charlie  }\DecValTok{22}\NormalTok{      M}
+\end{Highlighting}
+\end{Shaded}
+
+Print out for tibble:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# A tibble: 3 × 3}
+\NormalTok{  Name     Age Gender}
+  \SpecialCharTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}}  \ErrorTok{\textless{}}\NormalTok{dbl}\SpecialCharTok{\textgreater{}} \ErrorTok{\textless{}}\NormalTok{chr}\SpecialCharTok{\textgreater{}} 
+\DecValTok{1}\NormalTok{ Alice     }\DecValTok{25}\NormalTok{ F     }
+\DecValTok{2}\NormalTok{ Bob       }\DecValTok{30}\NormalTok{ M     }
+\DecValTok{3}\NormalTok{ Charlie   }\DecValTok{22}\NormalTok{ M     }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{lists}{%
+\subsubsection{Lists}\label{lists}}
+
+In R, a list is a versatile data structure that can store a collection of values, where each element can be of a different type or even another data structure like a vector, matrix, or another list. You can create a list using the \texttt{list()} function. Here's an example of a list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define the data}
+\NormalTok{names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Alice"}\NormalTok{, }\StringTok{"Bob"}\NormalTok{, }\StringTok{"Charlie"}\NormalTok{)}
+\NormalTok{matrix\_data }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\NormalTok{sublist }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{temperature =} \DecValTok{72}\NormalTok{, }\AttributeTok{weather =} \StringTok{"sunny"}\NormalTok{)}
+
+\CommentTok{\# Create the list}
+\NormalTok{my\_list }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{Names =}\NormalTok{ names, }\AttributeTok{Data =}\NormalTok{ matrix\_data, }\AttributeTok{Sublist =}\NormalTok{ sublist)}
+\end{Highlighting}
+\end{Shaded}
+
+Print out:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{$}\NormalTok{Names}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Alice"}   \StringTok{"Bob"}     \StringTok{"Charlie"}
+
+\SpecialCharTok{$}\NormalTok{Data}
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{1}    \DecValTok{3}    \DecValTok{5}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{2}    \DecValTok{4}    \DecValTok{6}
+
+\SpecialCharTok{$}\NormalTok{Sublist}
+\SpecialCharTok{$}\NormalTok{Sublist}\SpecialCharTok{$}\NormalTok{temperature}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{72}
+
+\SpecialCharTok{$}\NormalTok{Sublist}\SpecialCharTok{$}\NormalTok{weather}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"sunny"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{rds-files}{%
+\subsubsection{RDS Files}\label{rds-files}}
+
+They provide a convenient and efficient way to save and load R objects such as vectors, matrices, data frames, lists, and models. RDS files use a compact representation, which makes them smaller in size and faster to read and write compared to text-based file formats like CSV or TSV.
+
+You can save an R object to an RDS file using the \texttt{saveRDS()} function and load an R object from an RDS file using the \texttt{readRDS()} function.
+
+RDS files are particularly useful when working with large datasets or complex objects, as they allow for fast and efficient storage and retrieval. However, keep in mind that RDS files are specific to R and may not be compatible with other programming languages or software without additional conversion.
+
+Summary:
+
+\begin{itemize}
+\tightlist
+\item
+  quick and small, because they are binary;
+\item
+  very handy, because one can use the same command to save/load any data structure;
+\end{itemize}
+
+\hypertarget{homework-with-swirl}{%
+\section{\texorpdfstring{Homework with \texttt{swirl()}}{Homework with swirl()}}\label{homework-with-swirl}}
+
+\begin{itemize}
+\tightlist
+\item
+  Homework assignment: \textbf{Swirl Course Tutorials};
+\item
+  Swirl Course: \texttt{R\ Programing}(you will be asked to install it in the beginning);
+
+  \begin{itemize}
+  \tightlist
+  \item
+    other course can be installed with \texttt{install\_course("name\ of\ the\ course")} (perhaps, the only relevant to us course will be ``Exploratory Data Analysis'');
+  \end{itemize}
+\item
+  Swirl: start the \texttt{R\ Programming} course;
+\item
+  Swirl tutorials to complete:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    for Lesson 02:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Basic Building Blocks;
+    \item
+      Workspace and Files;
+    \item
+      Sequences of Numbers;
+    \item
+      Vectors;
+    \end{itemize}
+  \item
+    for Lesson 03:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Missing Values;
+    \item
+      Subsetting Vectors;
+    \item
+      Matrices and Dataframes;
+    \item
+      Logic;
+    \end{itemize}
+  \end{itemize}
+\item
+  Swirl commands:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{library(swirl)} to load the library;
+  \item
+    then type \texttt{swirl()} to start it;
+  \item
+    your main course is \texttt{R\ Programming}
+  \item
+    start it and complete the assigned modules;
+  \item
+    in the middle of the lesson, you can use \texttt{play()} to go into a free mode, if you need to check something in R;
+  \item
+    type \texttt{nxt()} to return to the lesson;
+  \end{itemize}
+\item
+  Swirl Additional Courses:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{http://swirlstats.com/scn/title.html}
+  \item
+    there are some more courses, with quite a few in German and Spanish;
+  \item
+    recommend you to try for practice;
+  \end{itemize}
+\item
+  \textbf{Swirl assignment submission}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    when you reach the end of the course, choose yes if you want to receive credit;
+  \item
+    type in your email;
+  \item
+    type in XXXXX for your Corsera.org token;
+  \item
+    then, you will get an error; do not worry, I want you to take a screenshot of this screen and email it to me as your confirmation; (take a screenshot of either your entire screen, or of the entire RStudio screen).
+  \item
+    in the topic of our email, use the format described in the syllabus;
+
+    \begin{itemize}
+    \tightlist
+    \item
+      please, send one email per module, that is to say, you will need to send me 4 emails by the next class;
+    \item
+      I recommend you to do these whenever you have time; it is best to do them not in one go, but rather take breaks between them;
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{class-03}{%
+\chapter{Class 03}\label{class-03}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-04}{%
+\chapter{Class 04}\label{class-04}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-05}{%
+\chapter{Class 05}\label{class-05}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-06}{%
+\chapter{Class 06}\label{class-06}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-07}{%
+\chapter{Class 07}\label{class-07}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-08}{%
+\chapter{Class 08}\label{class-08}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-09}{%
+\chapter{Class 09}\label{class-09}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-10}{%
+\chapter{Class 10}\label{class-10}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-11}{%
+\chapter{Class 11}\label{class-11}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-12}{%
+\chapter{Class 12}\label{class-12}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-13}{%
+\chapter{Class 13}\label{class-13}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\hypertarget{class-14}{%
+\chapter{Class 14}\label{class-14}}
+
+{[}\emph{subject to updates and corrections}{]}
+
+\textbf{NB:} The idea is to create a detailed glossary in multiple languages to facilitate understanding. Languages: English, German, Arabic, Persian, Turkish, etc. Entries may be supplied by illustration for more efficiency and clarity.
+
+\hypertarget{general-computer-terms}{%
+\section{General Computer Terms}\label{general-computer-terms}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{file manager}: a software application that provides a user interface to manage files and directories.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Dateimanager;
+  \item
+    \emph{Arabic}: مدير الملفات (Mudīr al-mulafāt);
+  \item
+    \emph{Persian}: مدیر پرونده (Modir-e Parvandeh);
+  \end{itemize}
+\item
+  \textbf{command line}: A text-based interface where users input commands to control the computer.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Befehlszeile;
+  \item
+    \emph{Arabic}: سطر الأوامر (satr al-awamir);
+  \item
+    \emph{Persian}: خط فرمان (xatt-e farman);
+  \end{itemize}
+\item
+  \textbf{path}: a reference to a specific location in a file system, typically consisting of a sequence of directories leading to a specific file or directory.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Pfad;
+  \item
+    \emph{Arabic}: مسار (masar);
+  \item
+    \emph{Persian}: مسیر (masir);
+  \end{itemize}
+\item
+  \textbf{folder}: a virtual container within a file system used to store and organize files and other folders.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Ordner;
+  \item
+    \emph{Arabic}: مجلد (majallad);
+  \item
+    \emph{Persian}: پوشه (poshe);
+  \end{itemize}
+\item
+  \textbf{file}: A digital container for storing data or information on a computer system.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Datei;
+  \item
+    \emph{Arabic}: ملف (malaf);
+  \item
+    \emph{Persian}: فایل (file);
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{r-specific-terms}{%
+\section{R-Specific Terms}\label{r-specific-terms}}
+
+\ldots{}
+
+\hypertarget{nlp-and-linguistics}{%
+\section{NLP and Linguistics}\label{nlp-and-linguistics}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{natural language processing (NLP)}: The branch of artificial intelligence focused on enabling computers to understand, interpret, and generate human language.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Natürliche Sprachverarbeitung;
+  \item
+    \emph{Arabic}: معالجة اللغة الطبيعية (mu`ālajat al-lughah al-ṭabī`īyah);
+  \item
+    \emph{Persian}: پردازش زبان طبیعی (pardazesh-e zabān-e tabi'i);
+  \end{itemize}
+\item
+  \textbf{ngram}: A contiguous sequence of n items (such as letters, words, or symbols) from a given sample of text or speech.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: N-Gramm;
+  \item
+    \emph{Arabic}: ن-جرام (n-gram);
+  \item
+    \emph{Persian}: ن-گرام (n-gram);
+  \end{itemize}
+\item
+  \textbf{token}: A sequence of characters in text that represents a unit of meaning, often corresponding to a word or a symbol.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Token;
+  \item
+    \emph{Arabic}: رمز (ramz);
+  \item
+    \emph{Persian}: توکن (token);
+  \end{itemize}
+\item
+  \textbf{corpus}: A large and structured set of texts, often used for linguistic research and natural language processing tasks.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Korpus;
+  \item
+    \emph{Arabic}: مدونة (madwana);
+  \item
+    \emph{Persian}: متن‌نگار (matn-negar);
+  \end{itemize}
+\item
+  \textbf{corpus linguistics}: The study of language based on large collections of ``real life'' language use stored in corpora.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Korpuslinguistik;
+  \item
+    \emph{Arabic}: علم اللغة المدوني ('ilm al-lughah al-madwani);
+  \item
+    \emph{Persian}: زبان‌شناسی متنی (zabān-shenāsi-ye matni);
+  \end{itemize}
+\item
+  \textbf{computational linguistics}: An interdisciplinary field concerned with the computational aspects of the human language capacity and the application of computational methods to linguistic questions.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{German}: Computerlinguistik;
+  \item
+    \emph{Arabic}: اللسانيات الحاسوبية (al-lisāniyāt al-ḥāsūbīyah);
+  \item
+    \emph{Persian}: زبان‌شناسی محاسباتی (zabān-shenāsi-ye moḥāsebatī);
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{machine-learning}{%
+\section{Machine Learning}\label{machine-learning}}
+
+\begin{itemize}
+\tightlist
+\item
+  machine learning
+\item
+  deep learning
+\item
+  optical character recognition (OCR)
+\item
+  handwritten tet recognition (HTR)
+\item
+  training a model
+\item
+  artificial intelligence
+\end{itemize}
+
+\ldots{}
+
+\end{document}

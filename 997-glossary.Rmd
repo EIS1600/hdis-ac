@@ -1,5 +1,5 @@
 `r if (knitr::is_html_output()) '
-# Glossary of Computer Terms{-}
+# Glossary of Computer Terms
 '`
 
 **NB:** The idea is to create a detailed glossary in multiple languages to facilitate understanding. Languages: English, German, Arabic, Persian, Turkish, etc. Entries may be supplied by illustration for more efficiency and clarity.
@@ -9,15 +9,15 @@
 - **file manager**: a software application that provides a user interface to manage files and directories.
   - *German*: Dateimanager;
   - *Arabic*: مدير الملفات (Mudīr al-mulafāt);
-  - *Persian*: مدیر پرونده (Modir-e Parvandeh)
+  - *Persian*: مدیر پرونده (Modir-e Parvandeh);
 - **command line**: A text-based interface where users input commands to control the computer.
   - *German*: Befehlszeile;
   - *Arabic*: سطر الأوامر (satr al-awamir);
   - *Persian*: خط فرمان (xatt-e farman);
 - **path**: a reference to a specific location in a file system, typically consisting of a sequence of directories leading to a specific file or directory.
-  - *German*: Pfad
-  - *Arabic*: مسار (masar)
-  - *Persian*: مسیر (masir)
+  - *German*: Pfad;
+  - *Arabic*: مسار (masar);
+  - *Persian*: مسیر (masir);
 - **folder**: a virtual container within a file system used to store and organize files and other folders.
   - *German*: Ordner;
   - *Arabic*: مجلد (majallad);
@@ -26,6 +26,11 @@
   - *German*: Datei;
   - *Arabic*: ملف (malaf);
   - *Persian*: فایل (file);
+
+## R-Specific Terms
+
+...
+
 
 ## NLP and Linguistics
 

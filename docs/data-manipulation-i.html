@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Data Manipulation I | HDIS: Computational Analysis of Data from Audition Statements–with R</title>
+  <meta name="description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Data Manipulation I | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
+  <meta name="github-repo" content="EIS1600/hdis-audition-statements" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Data Manipulation I | HDIS: Computational Analysis of Data from Audition Statements–with R" />
+  
+  <meta name="twitter:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
+  
+
+<meta name="author" content="Maxim G. Romanov" />
+
+
+<meta name="date" content="2023-10-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="touch-icon.png" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="r-markdown-and-r-notebooks.html"/>
+<link rel="next" href="data-manipulation-ii.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Handbook of Digital Islamicate Studies</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html"><i class="fa fa-check"></i>About the Course</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#syllabus"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#general-description"><i class="fa fa-check"></i>General Description</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#didactic-concept"><i class="fa fa-check"></i>Didactic concept</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#literature"><i class="fa fa-check"></i>Literature</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#course-evaluation-requirements-for-the-full-credit"><i class="fa fa-check"></i>Course Evaluation: requirements for the full credit</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#class-participation"><i class="fa fa-check"></i>Class Participation</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#homework"><i class="fa fa-check"></i>Homework</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#final-project"><i class="fa fa-check"></i>Final Project</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#additional-study-materials"><i class="fa fa-check"></i>Additional Study Materials</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#software-tools-technologies"><i class="fa fa-check"></i>Software, Tools, &amp; Technologies:</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#submitting-homework"><i class="fa fa-check"></i>Submitting Homework:</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="about-the-course.html"><a href="about-the-course.html#lesson-topics-subject-to-modifications"><i class="fa fa-check"></i>Lesson Topics (<em>subject to modifications</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="setting-everything-up.html"><a href="setting-everything-up.html"><i class="fa fa-check"></i><b>1</b> Setting Everything Up</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="setting-everything-up.html"><a href="setting-everything-up.html#links-for-things-to-install"><i class="fa fa-check"></i><b>1.1</b> Links for things to install</a></li>
+<li class="chapter" data-level="1.2" data-path="setting-everything-up.html"><a href="setting-everything-up.html#setting-things-up"><i class="fa fa-check"></i><b>1.2</b> Setting Things Up</a></li>
+<li class="chapter" data-level="1.3" data-path="setting-everything-up.html"><a href="setting-everything-up.html#creating-a-project"><i class="fa fa-check"></i><b>1.3</b> Creating a Project</a></li>
+<li class="chapter" data-level="1.4" data-path="setting-everything-up.html"><a href="setting-everything-up.html#homework-assignments"><i class="fa fa-check"></i><b>1.4</b> Homework assignments</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html"><i class="fa fa-check"></i><b>2</b> RStudio, Basic R Commands, Swirl Tutorials</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#this-chapter"><i class="fa fa-check"></i><b>2.1</b> This Chapter</a></li>
+<li class="chapter" data-level="2.2" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#overview-of-r"><i class="fa fa-check"></i><b>2.2</b> Overview of R</a></li>
+<li class="chapter" data-level="2.3" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#rstudio-interface"><i class="fa fa-check"></i><b>2.3</b> RStudio Interface</a></li>
+<li class="chapter" data-level="2.4" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#main-file-types"><i class="fa fa-check"></i><b>2.4</b> Main File Types</a></li>
+<li class="chapter" data-level="2.5" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#projects"><i class="fa fa-check"></i><b>2.5</b> Projects</a></li>
+<li class="chapter" data-level="2.6" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#basic-commands"><i class="fa fa-check"></i><b>2.6</b> Basic Commands</a></li>
+<li class="chapter" data-level="2.7" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#built-in-functions"><i class="fa fa-check"></i><b>2.7</b> Built-in Functions</a></li>
+<li class="chapter" data-level="2.8" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#librariespackages"><i class="fa fa-check"></i><b>2.8</b> Libraries/Packages</a></li>
+<li class="chapter" data-level="2.9" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#values-and-their-types"><i class="fa fa-check"></i><b>2.9</b> Values and their types</a></li>
+<li class="chapter" data-level="2.10" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#basic-data-structures-and-their-practical-usage"><i class="fa fa-check"></i><b>2.10</b> Basic Data Structures and Their Practical Usage</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#basic-data-structures"><i class="fa fa-check"></i><b>2.10.1</b> Basic data structures</a></li>
+<li class="chapter" data-level="2.10.2" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#main-properties-of-basic-data-structures"><i class="fa fa-check"></i><b>2.10.2</b> Main properties of basic data structures</a></li>
+<li class="chapter" data-level="2.10.3" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#most-common-usage-of-basic-data-structures"><i class="fa fa-check"></i><b>2.10.3</b> Most Common Usage of Basic Data Structures:</a></li>
+<li class="chapter" data-level="2.10.4" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#basic-data-structures-examples"><i class="fa fa-check"></i><b>2.10.4</b> Basic Data Structures Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="rstudio-basic-r-commands-swirl-tutorials.html"><a href="rstudio-basic-r-commands-swirl-tutorials.html#homework-with-swirl"><i class="fa fa-check"></i><b>2.11</b> Homework with <code>swirl()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-markdown-and-r-notebooks.html"><a href="r-markdown-and-r-notebooks.html"><i class="fa fa-check"></i><b>3</b> R Markdown and R Notebooks</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-markdown-and-r-notebooks.html"><a href="r-markdown-and-r-notebooks.html#previous-lesson"><i class="fa fa-check"></i><b>3.1</b> Previous lesson</a></li>
+<li class="chapter" data-level="3.2" data-path="r-markdown-and-r-notebooks.html"><a href="r-markdown-and-r-notebooks.html#this-lesson"><i class="fa fa-check"></i><b>3.2</b> This lesson</a></li>
+<li class="chapter" data-level="3.3" data-path="r-markdown-and-r-notebooks.html"><a href="r-markdown-and-r-notebooks.html#r-notebookmarkdown"><i class="fa fa-check"></i><b>3.3</b> R Notebook/Markdown</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-markdown-and-r-notebooks.html"><a href="r-markdown-and-r-notebooks.html#r-notebook-yml-header"><i class="fa fa-check"></i><b>3.3.1</b> R Notebook/ YML Header</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-markdown-and-r-notebooks.html"><a href="r-markdown-and-r-notebooks.html#basics-of-markdown"><i class="fa fa-check"></i><b>3.3.2</b> Basics of Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-markdown-and-r-notebooks.html"><a href="r-markdown-and-r-notebooks.html#homework-1"><i class="fa fa-check"></i><b>3.4</b> Homework</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation I</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#this-chapter-1"><i class="fa fa-check"></i><b>4.1</b> This Chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#why-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Why <code>tidyverse</code>?</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#main-data-file-formats-csv-and-tsv"><i class="fa fa-check"></i><b>4.3</b> Main Data File Formats: CSV and TSV</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-data-into-r"><i class="fa fa-check"></i><b>4.4</b> Loading Data into R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-csv-and-tsv-files"><i class="fa fa-check"></i><b>4.4.1</b> Loading CSV and TSV files</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#r-specific-data-format-rds"><i class="fa fa-check"></i><b>4.4.2</b> R-specific Data “Format”: RDS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-pua-data"><i class="fa fa-check"></i><b>4.5</b> Loading PUA data</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#exploring-pua-data"><i class="fa fa-check"></i><b>4.6</b> Exploring PUA Data</a></li>
+<li class="chapter" data-level="4.7" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#main-commands-for-engaging-with-a-tibble"><i class="fa fa-check"></i><b>4.7</b> Main commands for engaging with a tibble</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#chaining-with"><i class="fa fa-check"></i><b>4.7.1</b> Chaining with <code>%&gt;%</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#important-functions-from-dplyr"><i class="fa fa-check"></i><b>4.8</b> Important Functions from <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.9" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#important-functions-from-tidyr"><i class="fa fa-check"></i><b>4.9</b> Important Functions from <code>tidyr</code></a></li>
+<li class="chapter" data-level="4.10" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#function-usage"><i class="fa fa-check"></i><b>4.10</b> Function usage</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#filter"><i class="fa fa-check"></i><b>4.10.1</b> <code>filter()</code></a></li>
+<li class="chapter" data-level="4.10.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#select"><i class="fa fa-check"></i><b>4.10.2</b> <code>select()</code></a></li>
+<li class="chapter" data-level="4.10.3" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.10.3</b> <code>mutate()</code> and <code>transmute()</code></a></li>
+<li class="chapter" data-level="4.10.4" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#rename"><i class="fa fa-check"></i><b>4.10.4</b> <code>rename()</code></a></li>
+<li class="chapter" data-level="4.10.5" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#arrange"><i class="fa fa-check"></i><b>4.10.5</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="4.10.6" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#group_by-ungroup"><i class="fa fa-check"></i><b>4.10.6</b> <code>group_by()</code> / <code>ungroup()</code></a></li>
+<li class="chapter" data-level="4.10.7" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#summarise-or-summarize"><i class="fa fa-check"></i><b>4.10.7</b> <code>summarise()</code> or <code>summarize()</code></a></li>
+<li class="chapter" data-level="4.10.8" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#join_-functions"><i class="fa fa-check"></i><b>4.10.8</b> <code>join_*</code> functions</a></li>
+<li class="chapter" data-level="4.10.9" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#pivot_-functions"><i class="fa fa-check"></i><b>4.10.9</b> <code>pivot_*()</code> functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#homework-tasks"><i class="fa fa-check"></i><b>4.11</b> Homework Tasks</a></li>
+<li class="chapter" data-level="4.12" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#appendix-window-function-in-tidyverse"><i class="fa fa-check"></i><b>4.12</b> Appendix: “Window” function in <code>tidyverse</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-ii.html"><a href="data-manipulation-ii.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation II</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-ii.html"><a href="data-manipulation-ii.html#this-chapter-2"><i class="fa fa-check"></i><b>5.1</b> This Chapter</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-ii.html"><a href="data-manipulation-ii.html#problems"><i class="fa fa-check"></i><b>5.2</b> Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html"><i class="fa fa-check"></i><b>6</b> Control Flow; Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#this-chapter-3"><i class="fa fa-check"></i><b>6.1</b> This Chapter</a></li>
+<li class="chapter" data-level="6.2" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#control-flow"><i class="fa fa-check"></i><b>6.2</b> Control Flow</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#conditional-statements"><i class="fa fa-check"></i><b>6.2.1</b> Conditional statements</a></li>
+<li class="chapter" data-level="6.2.2" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#loops"><i class="fa fa-check"></i><b>6.2.2</b> Loops</a></li>
+<li class="chapter" data-level="6.2.3" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#functions"><i class="fa fa-check"></i><b>6.2.3</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#regular-expressions-in-r"><i class="fa fa-check"></i><b>6.3</b> Regular Expressions in R</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#basics-of-regular-expressions"><i class="fa fa-check"></i><b>6.3.1</b> Basics of Regular Expressions</a></li>
+<li class="chapter" data-level="6.3.2" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#regular-expressions-in-r-1"><i class="fa fa-check"></i><b>6.3.2</b> Regular Expressions in R</a></li>
+<li class="chapter" data-level="6.3.3" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#tips-for-regular-expressions-in-r"><i class="fa fa-check"></i><b>6.3.3</b> Tips for Regular Expressions in R</a></li>
+<li class="chapter" data-level="6.3.4" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#in-class-practice"><i class="fa fa-check"></i><b>6.3.4</b> In-Class Practice</a></li>
+<li class="chapter" data-level="6.3.5" data-path="control-flow-regular-expressions.html"><a href="control-flow-regular-expressions.html#the-practice-regex-file"><i class="fa fa-check"></i><b>6.3.5</b> The Practice Regex File</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html"><i class="fa fa-check"></i><b>7</b> Getting Your Data Right</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#this-chapter-4"><i class="fa fa-check"></i><b>7.1</b> This Chapter</a></li>
+<li class="chapter" data-level="7.2" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#getting-your-own-data"><i class="fa fa-check"></i><b>7.2</b> 1. Getting your own data</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#ways-of-obtaining-data"><i class="fa fa-check"></i><b>7.2.1</b> Ways of obtaining data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#major-formats"><i class="fa fa-check"></i><b>7.2.2</b> Major formats</a></li>
+<li class="chapter" data-level="7.2.3" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#ways-of-obtaining-data-1"><i class="fa fa-check"></i><b>7.2.3</b> Ways of obtaining data</a></li>
+<li class="chapter" data-level="7.2.4" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#major-formats-1"><i class="fa fa-check"></i><b>7.2.4</b> Major formats</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#tidying-data"><i class="fa fa-check"></i><b>7.3</b> 2. Tidying Data</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#basic-principles-of-organizing-data-tidy-data"><i class="fa fa-check"></i><b>7.3.1</b> Basic principles of organizing data: <em>Tidy Data</em></a></li>
+<li class="chapter" data-level="7.3.2" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#clean-data-tidy-data-additional-explanations"><i class="fa fa-check"></i><b>7.3.2</b> Clean Data / Tidy Data: <em>additional explanations</em></a></li>
+<li class="chapter" data-level="7.3.3" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#discussion-a-bulliet-dataset"><i class="fa fa-check"></i><b>7.3.3</b> <em>Discussion</em>: “A Bulliet Dataset”</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#modeling-data"><i class="fa fa-check"></i><b>7.4</b> 3. Modeling Data</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#categorization-as-a-way-of-modeling-data"><i class="fa fa-check"></i><b>7.4.1</b> Categorization as a Way of modeling data</a></li>
+<li class="chapter" data-level="7.4.2" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#normalization"><i class="fa fa-check"></i><b>7.4.2</b> Normalization</a></li>
+<li class="chapter" data-level="7.4.3" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#note-proxies-features-abstractions"><i class="fa fa-check"></i><b>7.4.3</b> Note: <em>Proxies</em>, <em>Features</em>, <em>Abstractions</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#deep-look-into-the-pua-dataset"><i class="fa fa-check"></i><b>7.5</b> 4. Deep Look into the PUA Dataset</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#updated-pua-dataset"><i class="fa fa-check"></i><b>7.5.1</b> Updated PUA Dataset</a></li>
+<li class="chapter" data-level="7.5.2" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#normalized-and-improved-pua-dataset"><i class="fa fa-check"></i><b>7.5.2</b> Normalized and Improved PUA Dataset</a></li>
+<li class="chapter" data-level="7.5.3" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#modeling-pua-dataset"><i class="fa fa-check"></i><b>7.5.3</b> Modeling PUA Dataset</a></li>
+<li class="chapter" data-level="7.5.4" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#conceptual-models-for-your-data"><i class="fa fa-check"></i><b>7.5.4</b> Conceptual Models for Your Data</a></li>
+<li class="chapter" data-level="7.5.5" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#implementation"><i class="fa fa-check"></i><b>7.5.5</b> Implementation</a></li>
+<li class="chapter" data-level="7.5.6" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#homework-assignment"><i class="fa fa-check"></i><b>7.5.6</b> Homework assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#reference-materials"><i class="fa fa-check"></i><b>7.6</b> Reference Materials</a></li>
+<li class="chapter" data-level="7.7" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#appendix-1-pua-data-tables"><i class="fa fa-check"></i><b>7.7</b> Appendix 1: PUA Data Tables</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#main-table"><i class="fa fa-check"></i><b>7.7.1</b> Main Table</a></li>
+<li class="chapter" data-level="7.7.2" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#connection-tables"><i class="fa fa-check"></i><b>7.7.2</b> Connection Tables</a></li>
+<li class="chapter" data-level="7.7.3" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#auxiliary-tables"><i class="fa fa-check"></i><b>7.7.3</b> Auxiliary Tables</a></li>
+<li class="chapter" data-level="7.7.4" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#metadata-tables"><i class="fa fa-check"></i><b>7.7.4</b> Metadata Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="getting-your-data-right.html"><a href="getting-your-data-right.html#appendix-2-ocr-in-r"><i class="fa fa-check"></i><b>7.8</b> Appendix 2: OCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html"><i class="fa fa-check"></i><b>8</b> Visualizations: <code>plot()</code> and <code>ggplot()</code></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#this-chapter-5"><i class="fa fa-check"></i><b>8.1</b> This Chapter</a></li>
+<li class="chapter" data-level="8.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#conceptual-issues"><i class="fa fa-check"></i><b>8.2</b> Conceptual Issues</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#perception"><i class="fa fa-check"></i><b>8.2.1</b> Perception</a></li>
+<li class="chapter" data-level="8.2.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#the-rules-of-thumb-for-visualizations"><i class="fa fa-check"></i><b>8.2.2</b> The Rules of Thumb for Visualizations</a></li>
+<li class="chapter" data-level="8.2.3" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#types-of-graphs-and-when-to-use-them"><i class="fa fa-check"></i><b>8.2.3</b> Types of Graphs and When to Use Them</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#r-built-in-graphics-functions-quick-overview"><i class="fa fa-check"></i><b>8.3</b> R Built-in Graphics Functions: Quick Overview</a></li>
+<li class="chapter" data-level="8.4" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#tidyverse-graphs-ggplot2"><i class="fa fa-check"></i><b>8.4</b> <code>Tidyverse</code> Graphs: <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#grammar-of-graphics"><i class="fa fa-check"></i><b>8.4.1</b> Grammar of Graphics</a></li>
+<li class="chapter" data-level="8.4.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#code-breakdown"><i class="fa fa-check"></i><b>8.4.2</b> Code Breakdown</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#simpler-graphs"><i class="fa fa-check"></i><b>8.5</b> Simpler graphs</a></li>
+<li class="chapter" data-level="8.6" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#other-types-of-graphs"><i class="fa fa-check"></i><b>8.6</b> Other types of graphs</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#scatter-plots"><i class="fa fa-check"></i><b>8.6.1</b> 1. Scatter plots</a></li>
+<li class="chapter" data-level="8.6.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#line-charts"><i class="fa fa-check"></i><b>8.6.2</b> 2. Line charts</a></li>
+<li class="chapter" data-level="8.6.3" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#bar-charts"><i class="fa fa-check"></i><b>8.6.3</b> 3. Bar charts</a></li>
+<li class="chapter" data-level="8.6.4" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#histograms"><i class="fa fa-check"></i><b>8.6.4</b> 4. Histograms</a></li>
+<li class="chapter" data-level="8.6.5" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#wordclouds"><i class="fa fa-check"></i><b>8.6.5</b> 5. Wordclouds</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#homework-assignment-1"><i class="fa fa-check"></i><b>8.7</b> Homework assignment</a></li>
+<li class="chapter" data-level="8.8" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendices"><i class="fa fa-check"></i><b>8.8</b> Appendices</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-1-when-a-simple-table-may-suffice"><i class="fa fa-check"></i><b>8.8.1</b> Appendix 1: When a “Simple” Table May Suffice</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-interactive-graphs"><i class="fa fa-check"></i><b>8.9</b> Appendix: Interactive Graphs</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-checklist-for-creating-visualizations"><i class="fa fa-check"></i><b>8.9.1</b> Appendix: Checklist for Creating Visualizations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-scientific-notation"><i class="fa fa-check"></i><b>8.10</b> Appendix: Scientific Notation</a></li>
+<li class="chapter" data-level="8.11" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#homework-solutions-partial"><i class="fa fa-check"></i><b>8.11</b> Homework solutions (partial)</a>
+<ul>
+<li class="chapter" data-level="8.11.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#line-charts-1"><i class="fa fa-check"></i><b>8.11.1</b> Line charts</a></li>
+<li class="chapter" data-level="8.11.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#bar-charts-1"><i class="fa fa-check"></i><b>8.11.2</b> 3. Bar charts</a></li>
+<li class="chapter" data-level="8.11.3" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#histograms-1"><i class="fa fa-check"></i><b>8.11.3</b> 4. Histograms</a></li>
+<li class="chapter" data-level="8.11.4" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#wordclouds---homework"><i class="fa fa-check"></i><b>8.11.4</b> 5. Wordclouds - Homework</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="class-09.html"><a href="class-09.html"><i class="fa fa-check"></i><b>9</b> Class 09</a></li>
+<li class="chapter" data-level="10" data-path="class-10.html"><a href="class-10.html"><i class="fa fa-check"></i><b>10</b> Class 10</a></li>
+<li class="chapter" data-level="11" data-path="class-11.html"><a href="class-11.html"><i class="fa fa-check"></i><b>11</b> Class 11</a></li>
+<li class="chapter" data-level="12" data-path="class-12.html"><a href="class-12.html"><i class="fa fa-check"></i><b>12</b> Class 12</a></li>
+<li class="chapter" data-level="13" data-path="class-13.html"><a href="class-13.html"><i class="fa fa-check"></i><b>13</b> Class 13</a></li>
+<li class="chapter" data-level="14" data-path="class-14.html"><a href="class-14.html"><i class="fa fa-check"></i><b>14</b> Class 14</a></li>
+<li class="chapter" data-level="15" data-path="glossary-of-computer-terms.html"><a href="glossary-of-computer-terms.html"><i class="fa fa-check"></i><b>15</b> Glossary of Computer Terms</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="glossary-of-computer-terms.html"><a href="glossary-of-computer-terms.html#general-computer-terms"><i class="fa fa-check"></i><b>15.1</b> General Computer Terms</a></li>
+<li class="chapter" data-level="15.2" data-path="glossary-of-computer-terms.html"><a href="glossary-of-computer-terms.html#r-specific-terms"><i class="fa fa-check"></i><b>15.2</b> R-Specific Terms</a></li>
+<li class="chapter" data-level="15.3" data-path="glossary-of-computer-terms.html"><a href="glossary-of-computer-terms.html#nlp-and-linguistics"><i class="fa fa-check"></i><b>15.3</b> NLP and Linguistics</a></li>
+<li class="chapter" data-level="15.4" data-path="glossary-of-computer-terms.html"><a href="glossary-of-computer-terms.html#machine-learning"><i class="fa fa-check"></i><b>15.4</b> Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="appendices-1.html"><a href="appendices-1.html"><i class="fa fa-check"></i><b>16</b> Appendices</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="appendices-1.html"><a href="appendices-1.html#appendix-i-importance-of-basic-computer-skills-for-humanists"><i class="fa fa-check"></i><b>16.1</b> Appendix I: Importance of basic computer skills for humanists</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="appendices-1.html"><a href="appendices-1.html#importance-of-basic-computer-skills-for-humanists"><i class="fa fa-check"></i><b>16.1.1</b> Importance of basic computer skills for humanists</a></li>
+<li class="chapter" data-level="16.1.2" data-path="appendices-1.html"><a href="appendices-1.html#access-to-information"><i class="fa fa-check"></i><b>16.1.2</b> Access to information</a></li>
+<li class="chapter" data-level="16.1.3" data-path="appendices-1.html"><a href="appendices-1.html#organization-and-management-of-research-material"><i class="fa fa-check"></i><b>16.1.3</b> Organization and management of research material</a></li>
+<li class="chapter" data-level="16.1.4" data-path="appendices-1.html"><a href="appendices-1.html#file-organization"><i class="fa fa-check"></i><b>16.1.4</b> File Organization</a></li>
+<li class="chapter" data-level="16.1.5" data-path="appendices-1.html"><a href="appendices-1.html#finding-your-way-around-the-computer"><i class="fa fa-check"></i><b>16.1.5</b> Finding your way around the computer</a></li>
+<li class="chapter" data-level="16.1.6" data-path="appendices-1.html"><a href="appendices-1.html#common-file-formats-and-extensions"><i class="fa fa-check"></i><b>16.1.6</b> Common file formats and extensions</a></li>
+<li class="chapter" data-level="16.1.7" data-path="appendices-1.html"><a href="appendices-1.html#organizing-files-and-folders-for-research-projects"><i class="fa fa-check"></i><b>16.1.7</b> Organizing files and folders for research projects</a></li>
+<li class="chapter" data-level="16.1.8" data-path="appendices-1.html"><a href="appendices-1.html#demonstration-of-file-navigation-using-a-file-explorer-windows-or-finder-mac"><i class="fa fa-check"></i><b>16.1.8</b> Demonstration of file navigation using a file explorer (Windows) or Finder (Mac)</a></li>
+<li class="chapter" data-level="16.1.9" data-path="appendices-1.html"><a href="appendices-1.html#command-line-basics"><i class="fa fa-check"></i><b>16.1.9</b> Command Line Basics</a></li>
+<li class="chapter" data-level="16.1.10" data-path="appendices-1.html"><a href="appendices-1.html#introduction-to-command-line-interfaces"><i class="fa fa-check"></i><b>16.1.10</b> Introduction to command line interfaces</a></li>
+<li class="chapter" data-level="16.1.11" data-path="appendices-1.html"><a href="appendices-1.html#command-line-basic-commands"><i class="fa fa-check"></i><b>16.1.11</b> Command Line: Basic Commands</a></li>
+<li class="chapter" data-level="16.1.12" data-path="appendices-1.html"><a href="appendices-1.html#creating-moving-renaming-and-deleting-files-and-folders"><i class="fa fa-check"></i><b>16.1.12</b> Creating, moving, renaming, and deleting files and folders</a></li>
+<li class="chapter" data-level="16.1.13" data-path="appendices-1.html"><a href="appendices-1.html#tips-for-efficient-command-line-usage"><i class="fa fa-check"></i><b>16.1.13</b> Tips for efficient command line usage</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i><b>17</b> Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">HDIS: Computational Analysis of Data from Audition Statements–with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation-i" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Data Manipulation I<a href="data-manipulation-i.html#data-manipulation-i" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="this-chapter-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> This Chapter<a href="data-manipulation-i.html#this-chapter-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>last class focused mainly on formatting, this class will add code chunks into our R markdown documents;</li>
+<li>we will learn and practice working with tabular data (simply put, tables):
+<ul>
+<li>main relevant data format: TSV / CSV;</li>
+<li>loading data;</li>
+<li>manipulating data;</li>
+<li>generating and extracting observations from data;</li>
+</ul></li>
+<li>we will start analyzing some data from the PUA database; you will need the following file, which will be shared via Slack. Make sure to put it in the correct folder as shown below (create missing subfolders if they are missing):
+<ul>
+<li><code>Data/PUA_Processed/PUA_allDataTables_asList.rds</code> :: this file contains all the data from the original relational database (MySQL) of the PUA project. Like any relational database, this one consists of a series of interconnected tables, which are all described in the appendix to this lesson.</li>
+<li><code>Data/Pua_Processed/PUA_personaje.tsv</code> :: this is the main table from the PUA database; in fact, this one is included in the RDS file given above; we will use this file only for practicing loading data into RStudio from TSV, since this is one of the most common operations for loading data.</li>
+<li><em>questions</em>:
+<ul>
+<li>what format is this data stored in and how can we load it in R?</li>
+<li>what is the internal structure of the data?</li>
+</ul></li>
+</ul></li>
+</ul>
+<!--ANSWER:  The data is stored in the RDS format (“R Data Single”); the object inside the RDS file is a LIST. As was discussed in one of the preceding lessons, LISTS are great for aggregating lots of data in different formats into a single variable, while RDS files are best for storing such complex objects; -->
+<!--
+
+## Main Data Structures — Review
+
+- review of main data structures and how we can subset them;
+    - subsetting refers to focusing on a specific part of our variable such as singe element, a range, a column, a raw — and their combinations;
+        - vectors, matrices: ranges, single values;
+        - matrices, dataframes/tibbles: columns, rows, single values, ranges;
+        - lists: single values > then whatever is applicable to the data structure type of the selected item (vector, matrix, dataframe/tibble, another list)
+
+-->
+</div>
+<div id="why-tidyverse" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Why <code>tidyverse</code>?<a href="data-manipulation-i.html#why-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>The <code>tidyverse</code> is an opinionated <a href="https://www.tidyverse.org/packages">collection of R packages</a> designed for data science. All packages share an underlying design philosophy, grammar, and data structures. Here we find a set of functions to perform common data manipulation tasks on data frames, making the process more efficient, readable, and expressive. Although <code>tidyverse</code> is not specifically designed for historians, it can be highly relevant and useful for them when working with structured data. (Hadley Wickham is one of the key creators and developers of <code>tydyverse</code>.)</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li><strong>Data organization</strong>: we often work with large datasets containing various types of information, such as dates, names, events, and locations. The <code>tidyverse</code> package allows us to organize and clean these datasets efficiently.</li>
+<li><strong>Data filtering</strong>: we may need to focus on specific subsets of data, such as filtering by time periods, regions, or other relevant criteria. The <code>tidyverse</code> package provides functions like <code>filter()</code> and <code>slice()</code> that make it easy to filter and subset data.</li>
+<li><strong>Data transformation</strong>: we often need to create new variables or modify existing ones. The <code>mutate()</code> function allows users to create new columns based on existing data, while <code>transmute()</code> can be used to create a new data frame with only the newly created variables.</li>
+<li><strong>Data aggregation</strong>: Analyzing data by grouping it based on certain variables, such as time periods, regions, or categories, is a common task for us as historians. The <code>tidyverse</code> package provides the <code>group_by()</code> function, which makes it easy to group data, and functions like <code>summarize()</code> and <code>tally()</code> to perform summary operations on the grouped data.</li>
+<li><strong>Data merging</strong>: we often need to combine data from multiple sources or datasets. The <code>tidyverse</code> provides functions like <code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, and <code>full_join()</code> that make it easy to merge data frames based on common variables.</li>
+<li><strong>Data reshaping</strong>: we may need to reshape our data for different types of analysis, such as converting data from wide format to long format or vice versa. The <code>tidyverse</code> facilitates data reshaping.</li>
+<li><strong>Readability</strong>: <code>tidyverse</code> uses a syntax that is easy to read and understand, even for those who are not familiar with R. This is particularly helpful for humanists who may not have extensive programming experience but still need to work with data.</li>
+</ol>
+<p>To sum up, we can efficiently manipulate, analyze, and visualize our data, which enables us to gain insights and draw conclusions from historical records more effectively.</p>
+<p>The <code>tidyverse</code> includes several popular packages for data manipulation, visualization, and modeling, such as:</p>
+<ol style="list-style-type: decimal">
+<li><code>readr</code>: For reading and writing data, particularly CSV and TSV files.</li>
+<li><code>tibble</code>: For working with modern, enhanced data frames called tibbles.</li>
+<li><code>dplyr</code>: For data manipulation, including filtering, selecting, and transforming data.</li>
+<li><code>tidyr</code>: For cleaning and reshaping data, making it easier to work with.</li>
+<li><code>stringr</code>: For working with strings, providing functions to manipulate, extract, and search text.</li>
+<li><code>ggplot2</code>: For data visualization, creating powerful and flexible graphics.</li>
+<li><code>purrr</code>: For functional programming and iteration, making it easier to work with lists and apply functions to data.</li>
+<li><code>lubridate</code>: For working with dates and times, making it easier to parse, manipulate, and perform arithmetic with date-time objects.</li>
+</ol>
+<p>Together, these packages provide a comprehensive set of tools for data science workflows. Last but not least, as the <code>tidyverse</code> approach has gained significant popularity in recent years, numerous additional libraries adhering to the <code>tidyverse</code> principles for working with data have emerged. This positions the <code>tidyverse</code> as the central hub for everything related to R.</p>
+</div>
+<div id="main-data-file-formats-csv-and-tsv" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Main Data File Formats: CSV and TSV<a href="data-manipulation-i.html#main-data-file-formats-csv-and-tsv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First, let’s talk about data formats just a little bit. We are primarily focusing on tabular data, which essentially means tables—like what you might create in MS Excel, Google Spreadsheets, of some other program like that. These programs, however, usually rely on their own proprietary formats. Meanwhile, most analytical programs and programming languages “prefer” plain text formats like CSV or TSV, which are essentially two flavors of the same format.</p>
+<p>CSV (Comma-Separated Values) and TSV (Tab-Separated Values) are both simple and widely-used file formats for storing and exchanging tabular data. They are plain-text formats that represent data in a table, with rows and columns. The primary difference between the two formats lies in the delimiter used to separate the values in each row.</p>
+<p>CSV Format:</p>
+<ul>
+<li>In a CSV file, values are separated by commas (<code>,</code>).</li>
+<li>Each row in the file represents a record (an observation or an instance), and each column represents a variable (a feature or an attribute).</li>
+<li>The first row often contains column headers, indicating the names of the variables.</li>
+<li>Since CSV files are plain text, they can be opened and edited using any text editor or spreadsheet program, such as Microsoft Excel, Google Sheets, or LibreOffice Calc.</li>
+</ul>
+<p>Example of a CSV file:</p>
+<pre class="csv"><code>Name,Age,Occupation
+Alice,30,Engineer
+Bob,25,Data Scientist
+Charlie,35,Teacher</code></pre>
+<p>TSV Format:</p>
+<ul>
+<li>In a TSV file, values are separated by tabs (<code>\t</code>).</li>
+<li>Similar to CSV files, each row represents a record, and each column represents a variable.</li>
+<li>TSV files also often have a header row with column names.</li>
+<li>TSV files can be opened and edited using text editors and spreadsheet programs, just like CSV files.</li>
+</ul>
+<p>Example of a TSV file (<code>\t</code> is actually an invisible character; here is it made visible for demonstration purposes; <code>\t</code> is a regular expression for a TAB character):</p>
+<pre class="tsv"><code>Name\tAge\tOccupation
+Alice\t30\tEngineer
+Bob\t25\tData Scientist
+Charlie\t35\tTeacher</code></pre>
+<p>Both CSV and TSV formats are popular because they are easy to read and write, both for humans and for computer programs. They can be used to store and share various types of data, such as numerical, categorical, or textual data. However, when working with data that contains commas or tabs within the values themselves, it is essential to use appropriate quoting or escaping methods to avoid confusion between the delimiters and the actual data values.</p>
+<ul>
+<li>TSV has an advantage over CSV in a way that its values can contain commas without complicating the format. <code>\t</code> characters are highly unlikely to appear in values of your data (if they do, you need to clean your data!). <strong>Note</strong>: technically, CSV can accommodate commas in values: the value of each cell has to be surrounded by quotation marks—example below—but even with this, some applications are likely to read the format incorrectly.</li>
+</ul>
+<p>Example of CSV with commas in values:</p>
+<pre class="csv"><code>&quot;Name&quot;,&quot;Age&quot;,&quot;Occupation&quot;
+&quot;Parker, Alice&quot;,&quot;30&quot;,&quot;Engineer&quot;
+&quot;Marley, Bob&quot;,&quot;25&quot;,&quot;Data Scientist&quot;
+&quot;Sheen, Charlie&quot;,&quot;35&quot;,&quot;Teacher&quot;</code></pre>
+<ul>
+<li>Neither TSV nor CSV can support multi-line values (since they encode the entire row as a single line). Luckily, there is an easy workaround that helps to deal with this issue: one can replace <code>\n</code> (new line characters) with some arbitrary combination of characters that is unlikely to occur in your data (for example, <code>%%%%%</code> or <code>#####</code>), which will convert multi-line values into single-line values; one can then easily replace the combination of characters back with <code>\n</code> when values need to be displayed as multi-liners.</li>
+</ul>
+</div>
+<div id="loading-data-into-r" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Loading Data into R<a href="data-manipulation-i.html#loading-data-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="loading-csv-and-tsv-files" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Loading CSV and TSV files<a href="data-manipulation-i.html#loading-csv-and-tsv-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are several functions and additional libraries that can help us load data into R, but we will focus on <code>readr</code> library, since it is a part of <code>tidyverse</code>.</p>
+<p>If you load some data for the first time, it is best to use <strong>Import Dataset</strong> wizard (Tab “Environment” in the top-right section of RStudio) &gt; from the drop-down menu, select “From Text (readr)…”. Below is the image of the open wizard, where I already selected the file that I want to load:</p>
+<p><img src="images/PUAR/PUAR_ImportDatasetWizard.png" /></p>
+<p>This wizard is extremely helpful, since you can adjust a number of parameters and see right away if your data is read correctly. You have plenty of options that you can tweak and they will be reflected in “Code Preview” (bottom-right section). “Code Preview” is perhaps the most convenient feature—you can simply copy-paste that code into your script and then reuse later. In our case the code will look like (I have slightly changed the file name):</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-manipulation-i.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># technically, library(readr)</span></span>
+<span id="cb22-2"><a href="data-manipulation-i.html#cb22-2" aria-hidden="true" tabindex="-1"></a>PUA_personaje <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;Data/Pua_Processed/PUA_personaje.tsv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<ul>
+<li>the function takes a relative path to the file (remember, we are working with our project, so the working directory is the main folder of our project);</li>
+<li>it specifies that the delimiter is <code>\t</code>;</li>
+<li>escape characters (<code>"</code>) are not used;</li>
+<li>white spaces are automatically trimmed. This is a very useful feature, since there is always a chance that some unnecessary white space character will creep into your data. “White spaces” are, for example, empty lines at the end of the file, and unnecessary spaces at the beginning and/or at the end of each value.</li>
+<li>last but not least, <code>readr</code> does a quite decent job guessing the type of values for each column; but you can also manually change the type for each column and that will be reflected in the code preview.</li>
+</ul>
+<p>If, by any chance, you got your data into R as a <code>data.frame</code>, you can easily convert it to <code>tibble</code> with <code>as_tibble()</code> function (do not forget to save it into a variable!).</p>
+<p>You can save any data frame / tibble into a file using another function from the <code>readr</code> library in the following manner:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-manipulation-i.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(PUA_personaje, <span class="st">&quot;Data/Pua_Processed/PUA_personaje_saved.tsv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<p>The saved file will be slightly different from the original (we have not done any modification to the data)—empty cells will have values <code>NA</code>. The use of <code>NA</code> (<em>not available</em>) is one of the highly recommended practices when you work with data: when a cell is empty it is not entirely clear whether the data is missing (i.e., it was not added yet) or not available (someone already tried to add the value, but it was not possible to find it). When <code>NA</code> is used explicitly, we can safely treat it as <em>not available</em>.</p>
+</div>
+<div id="r-specific-data-format-rds" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> R-specific Data “Format”: RDS<a href="data-manipulation-i.html#r-specific-data-format-rds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Note.</strong> When you need to save data generated in R into a file, you will have to use different functions for saving, depending on the structure of of your generated data. This may complicate things significantly. If cases when you are not planning to use this data outside of R, the easiest way is to save your data into an <code>*.RDS</code> file—any data structure can be saved easily into this format and loaded back from it.</p>
+<p>It may so happen that your data comes in <code>*.RDS</code> files. Standing for “R Data Single” (or “R Data Storage”, or “R Data Structure”), RDS is a binary file format used by R for storing R objects, such as data frames, vectors, matrices, and lists (in fact, one can save a number of R objects into a single RSD file). RDS files are compact, efficient, and platform-independent, which makes them suitable for storing large datasets and sharing data between different R environments.</p>
+<p>There are two primary functions in R for working with RSD files:</p>
+<ol style="list-style-type: decimal">
+<li><code>saveRDS()</code>: This function is used to save a single R object to an RSD file.</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-manipulation-i.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save an R object to an RSD file</span></span>
+<span id="cb24-2"><a href="data-manipulation-i.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(object, <span class="st">&quot;your_file.rds&quot;</span>)</span></code></pre></div>
+<p>Replace <code>object</code> with the name of the R object you want to save, and <code>"file_name.rds"</code> with the desired file name.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><code>readRDS()</code>: This function is used to read an R object from an RSD file.</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-manipulation-i.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read an R object from an RSD file</span></span>
+<span id="cb25-2"><a href="data-manipulation-i.html#cb25-2" aria-hidden="true" tabindex="-1"></a>object <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;your_file.rds&quot;</span>)</span></code></pre></div>
+<p>Replace <code>"your_file.rds"</code> with the name of the RSD file you want to read, and <code>object</code> with the name you want to assign to the loaded R object.</p>
+<p>RDS files are also extremely convenient in cases when you need to generate intermediate/temporary results as a part of your data analysis routine.</p>
+</div>
+</div>
+<div id="loading-pua-data" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Loading PUA data<a href="data-manipulation-i.html#loading-pua-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-manipulation-i.html#cb26-1" aria-hidden="true" tabindex="-1"></a>PUA <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;Data/PUA_processed/PUA_allDataTables_asList.rds&quot;</span>)</span></code></pre></div>
+<!--
+
+## PUA Dataset Technical Description
+
+![[PUA_R - Appendix - PUA Data Tables]]
+
+-->
+</div>
+<div id="exploring-pua-data" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Exploring PUA Data<a href="data-manipulation-i.html#exploring-pua-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>PUA data is quite complex, consisting of 25 interconnected tables. We have two options: load 25 tables, one after another; or, save all tables into a single object—list—which we save as an RDS file, which can be loaded with a single command.</p>
+<p><strong><code>summary()</code></strong>. We can get a general summary of any R object with the command <code>summary()</code>. Thus, if we run <code>summary(PUA)</code>, we will get a summary of the <code>PUA</code> object, which should look like the following:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-manipulation-i.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(PUA)</span>
+<span id="cb27-2"><a href="data-manipulation-i.html#cb27-2" aria-hidden="true" tabindex="-1"></a>                         Length Class       Mode</span>
+<span id="cb27-3"><a href="data-manipulation-i.html#cb27-3" aria-hidden="true" tabindex="-1"></a>actividad                 <span class="dv">5</span>     spec_tbl_df list</span>
+<span id="cb27-4"><a href="data-manipulation-i.html#cb27-4" aria-hidden="true" tabindex="-1"></a>autor                     <span class="dv">7</span>     spec_tbl_df list</span>
+<span id="cb27-5"><a href="data-manipulation-i.html#cb27-5" aria-hidden="true" tabindex="-1"></a>bibliografia              <span class="dv">6</span>     spec_tbl_df list</span>
+<span id="cb27-6"><a href="data-manipulation-i.html#cb27-6" aria-hidden="true" tabindex="-1"></a>caracteristica            <span class="dv">5</span>     spec_tbl_df list</span>
+<span id="cb27-7"><a href="data-manipulation-i.html#cb27-7" aria-hidden="true" tabindex="-1"></a>cargo                     <span class="dv">6</span>     spec_tbl_df list</span>
+<span id="cb27-8"><a href="data-manipulation-i.html#cb27-8" aria-hidden="true" tabindex="-1"></a>disciplina                <span class="dv">5</span>     spec_tbl_df list</span>
+<span id="cb27-9"><a href="data-manipulation-i.html#cb27-9" aria-hidden="true" tabindex="-1"></a>familia                  <span class="dv">13</span>     spec_tbl_df list</span>
+<span id="cb27-10"><a href="data-manipulation-i.html#cb27-10" aria-hidden="true" tabindex="-1"></a>fuente                    <span class="dv">7</span>     spec_tbl_df list</span>
+<span id="cb27-11"><a href="data-manipulation-i.html#cb27-11" aria-hidden="true" tabindex="-1"></a>keywords                  <span class="dv">2</span>     spec_tbl_df list</span>
+<span id="cb27-12"><a href="data-manipulation-i.html#cb27-12" aria-hidden="true" tabindex="-1"></a>lugar                     <span class="dv">8</span>     spec_tbl_df list</span>
+<span id="cb27-13"><a href="data-manipulation-i.html#cb27-13" aria-hidden="true" tabindex="-1"></a>nisba                     <span class="dv">6</span>     spec_tbl_df list</span>
+<span id="cb27-14"><a href="data-manipulation-i.html#cb27-14" aria-hidden="true" tabindex="-1"></a>personaje                <span class="dv">19</span>     spec_tbl_df list</span>
+<span id="cb27-15"><a href="data-manipulation-i.html#cb27-15" aria-hidden="true" tabindex="-1"></a>personaje_actividad       <span class="dv">4</span>     spec_tbl_df list</span>
+<span id="cb27-16"><a href="data-manipulation-i.html#cb27-16" aria-hidden="true" tabindex="-1"></a>personaje_alias           <span class="dv">4</span>     spec_tbl_df list</span>
+<span id="cb27-17"><a href="data-manipulation-i.html#cb27-17" aria-hidden="true" tabindex="-1"></a>personaje_caracteristica  <span class="dv">3</span>     spec_tbl_df list</span>
+<span id="cb27-18"><a href="data-manipulation-i.html#cb27-18" aria-hidden="true" tabindex="-1"></a>personaje_cargo           <span class="dv">6</span>     spec_tbl_df list</span>
+<span id="cb27-19"><a href="data-manipulation-i.html#cb27-19" aria-hidden="true" tabindex="-1"></a>personaje_disciplina      <span class="dv">4</span>     spec_tbl_df list</span>
+<span id="cb27-20"><a href="data-manipulation-i.html#cb27-20" aria-hidden="true" tabindex="-1"></a>personaje_fuente          <span class="dv">4</span>     spec_tbl_df list</span>
+<span id="cb27-21"><a href="data-manipulation-i.html#cb27-21" aria-hidden="true" tabindex="-1"></a>personaje_lugar           <span class="dv">6</span>     spec_tbl_df list</span>
+<span id="cb27-22"><a href="data-manipulation-i.html#cb27-22" aria-hidden="true" tabindex="-1"></a>personaje_nisba           <span class="dv">4</span>     spec_tbl_df list</span>
+<span id="cb27-23"><a href="data-manipulation-i.html#cb27-23" aria-hidden="true" tabindex="-1"></a>personaje_obra            <span class="dv">5</span>     spec_tbl_df list</span>
+<span id="cb27-24"><a href="data-manipulation-i.html#cb27-24" aria-hidden="true" tabindex="-1"></a>personaje_referencia      <span class="dv">5</span>     spec_tbl_df list</span>
+<span id="cb27-25"><a href="data-manipulation-i.html#cb27-25" aria-hidden="true" tabindex="-1"></a>personaje_relacion        <span class="dv">4</span>     spec_tbl_df list</span>
+<span id="cb27-26"><a href="data-manipulation-i.html#cb27-26" aria-hidden="true" tabindex="-1"></a>tiporelacion              <span class="dv">2</span>     spec_tbl_df list</span>
+<span id="cb27-27"><a href="data-manipulation-i.html#cb27-27" aria-hidden="true" tabindex="-1"></a>tiporelacionlugar         <span class="dv">2</span>     spec_tbl_df list</span></code></pre></div>
+<ul>
+<li>We can see the names of all the tables (<code>spec_tbl_df</code>), and the <code>Length</code> column tells us how many columns each table has. (You can also get a similar summary in the “Environment” tab in the top-right corner—for the variable <code>PUA</code>).</li>
+</ul>
+<p><strong><code>$</code></strong>. We can access each and every table with the <code>$</code> operator. For example, we can access <code>personaje</code> table with <code>PUA$personaje</code>. We can also combine that with <code>summary()</code> command to get the summary for that specific table, where the data from each column is summarized:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-manipulation-i.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">summary</span>(PUA<span class="sc">$</span>personaje)</span>
+<span id="cb28-2"><a href="data-manipulation-i.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  idPersonaje      idFamilia        nombreA         </span>
+<span id="cb28-3"><a href="data-manipulation-i.html#cb28-3" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span>    <span class="dv">1</span>   Min.   <span class="sc">:</span>  <span class="fl">0.00</span>   Length<span class="sc">:</span><span class="dv">12813</span>      </span>
+<span id="cb28-4"><a href="data-manipulation-i.html#cb28-4" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span> <span class="dv">3219</span>   1st Qu.<span class="sc">:</span>  <span class="fl">0.00</span>   Class <span class="sc">:</span>character  </span>
+<span id="cb28-5"><a href="data-manipulation-i.html#cb28-5" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span> <span class="dv">6436</span>   Median <span class="sc">:</span>  <span class="fl">0.00</span>   Mode  <span class="sc">:</span>character  </span>
+<span id="cb28-6"><a href="data-manipulation-i.html#cb28-6" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span> <span class="dv">6440</span>   Mean   <span class="sc">:</span> <span class="fl">85.16</span>                     </span>
+<span id="cb28-7"><a href="data-manipulation-i.html#cb28-7" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span> <span class="dv">9665</span>   3rd Qu.<span class="sc">:</span>  <span class="fl">0.00</span>                     </span>
+<span id="cb28-8"><a href="data-manipulation-i.html#cb28-8" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="dv">12896</span>   Max.   <span class="sc">:</span><span class="fl">829.00</span>                     </span>
+<span id="cb28-9"><a href="data-manipulation-i.html#cb28-9" aria-hidden="true" tabindex="-1"></a>                 NA<span class="st">&#39;s   :115                        </span></span>
+<span id="cb28-10"><a href="data-manipulation-i.html#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="st">   nombreE             suhra             nacimiento    </span></span>
+<span id="cb28-11"><a href="data-manipulation-i.html#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="st"> Length:12813       Length:12813       Min.   :  0.00  </span></span>
+<span id="cb28-12"><a href="data-manipulation-i.html#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="st"> Class :character   Class :character   1st Qu.:  0.00  </span></span>
+<span id="cb28-13"><a href="data-manipulation-i.html#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="st"> Mode  :character   Mode  :character   Median :  0.00  </span></span>
+<span id="cb28-14"><a href="data-manipulation-i.html#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="st">                                       Mean   : 71.41  </span></span>
+<span id="cb28-15"><a href="data-manipulation-i.html#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="st">                                       3rd Qu.:  0.00  </span></span>
+<span id="cb28-16"><a href="data-manipulation-i.html#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="st">                                       Max.   :806.00  </span></span>
+<span id="cb28-17"><a href="data-manipulation-i.html#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="st">                                       NA&#39;</span>s   <span class="sc">:</span><span class="dv">115</span>     </span>
+<span id="cb28-18"><a href="data-manipulation-i.html#cb28-18" aria-hidden="true" tabindex="-1"></a> nacimiento_comentario     muerte      muerte_comentario </span>
+<span id="cb28-19"><a href="data-manipulation-i.html#cb28-19" aria-hidden="true" tabindex="-1"></a> Length<span class="sc">:</span><span class="dv">12813</span>          Min.   <span class="sc">:</span>  <span class="fl">0.0</span>   Length<span class="sc">:</span><span class="dv">12813</span>      </span>
+<span id="cb28-20"><a href="data-manipulation-i.html#cb28-20" aria-hidden="true" tabindex="-1"></a> Class <span class="sc">:</span>character      1st Qu.<span class="sc">:</span>  <span class="fl">0.0</span>   Class <span class="sc">:</span>character  </span>
+<span id="cb28-21"><a href="data-manipulation-i.html#cb28-21" aria-hidden="true" tabindex="-1"></a> Mode  <span class="sc">:</span>character      Median <span class="sc">:</span><span class="fl">312.0</span>   Mode  <span class="sc">:</span>character  </span>
+<span id="cb28-22"><a href="data-manipulation-i.html#cb28-22" aria-hidden="true" tabindex="-1"></a>                       Mean   <span class="sc">:</span><span class="fl">275.9</span>                     </span>
+<span id="cb28-23"><a href="data-manipulation-i.html#cb28-23" aria-hidden="true" tabindex="-1"></a>                       3rd Qu.<span class="sc">:</span><span class="fl">533.0</span>                     </span>
+<span id="cb28-24"><a href="data-manipulation-i.html#cb28-24" aria-hidden="true" tabindex="-1"></a>                       Max.   <span class="sc">:</span><span class="fl">921.0</span>                     </span>
+<span id="cb28-25"><a href="data-manipulation-i.html#cb28-25" aria-hidden="true" tabindex="-1"></a>                       NA<span class="st">&#39;s   :115                       </span></span>
+<span id="cb28-26"><a href="data-manipulation-i.html#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="st">      edad        edad_comentario    resumenBiografico </span></span>
+<span id="cb28-27"><a href="data-manipulation-i.html#cb28-27" aria-hidden="true" tabindex="-1"></a><span class="st"> Min.   :  0.00   Length:12813       Length:12813      </span></span>
+<span id="cb28-28"><a href="data-manipulation-i.html#cb28-28" aria-hidden="true" tabindex="-1"></a><span class="st"> 1st Qu.:  0.00   Class :character   Class :character  </span></span>
+<span id="cb28-29"><a href="data-manipulation-i.html#cb28-29" aria-hidden="true" tabindex="-1"></a><span class="st"> Median :  0.00   Mode  :character   Mode  :character  </span></span>
+<span id="cb28-30"><a href="data-manipulation-i.html#cb28-30" aria-hidden="true" tabindex="-1"></a><span class="st"> Mean   : 11.16                                        </span></span>
+<span id="cb28-31"><a href="data-manipulation-i.html#cb28-31" aria-hidden="true" tabindex="-1"></a><span class="st"> 3rd Qu.:  0.00                                        </span></span>
+<span id="cb28-32"><a href="data-manipulation-i.html#cb28-32" aria-hidden="true" tabindex="-1"></a><span class="st"> Max.   :118.00                                        </span></span>
+<span id="cb28-33"><a href="data-manipulation-i.html#cb28-33" aria-hidden="true" tabindex="-1"></a><span class="st"> NA&#39;</span>s   <span class="sc">:</span><span class="dv">115</span>                                           </span>
+<span id="cb28-34"><a href="data-manipulation-i.html#cb28-34" aria-hidden="true" tabindex="-1"></a>     creado                      </span>
+<span id="cb28-35"><a href="data-manipulation-i.html#cb28-35" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="dv">2010-12-29</span> <span class="dv">01</span><span class="sc">:</span><span class="dv">12</span><span class="sc">:</span><span class="fl">44.00</span>  </span>
+<span id="cb28-36"><a href="data-manipulation-i.html#cb28-36" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="dv">2010-12-29</span> <span class="dv">01</span><span class="sc">:</span><span class="dv">13</span><span class="sc">:</span><span class="fl">21.00</span>  </span>
+<span id="cb28-37"><a href="data-manipulation-i.html#cb28-37" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="dv">2010-12-29</span> <span class="dv">01</span><span class="sc">:</span><span class="dv">14</span><span class="sc">:</span><span class="fl">23.00</span>  </span>
+<span id="cb28-38"><a href="data-manipulation-i.html#cb28-38" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="dv">2011-03-26</span> <span class="dv">14</span><span class="sc">:</span><span class="dv">31</span><span class="sc">:</span><span class="fl">49.92</span>  </span>
+<span id="cb28-39"><a href="data-manipulation-i.html#cb28-39" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="dv">2010-12-29</span> <span class="dv">01</span><span class="sc">:</span><span class="dv">15</span><span class="sc">:</span><span class="fl">49.00</span>  </span>
+<span id="cb28-40"><a href="data-manipulation-i.html#cb28-40" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="dv">2019-08-02</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">34</span><span class="sc">:</span><span class="fl">43.00</span>  </span>
+<span id="cb28-41"><a href="data-manipulation-i.html#cb28-41" aria-hidden="true" tabindex="-1"></a> NA<span class="st">&#39;s   :328                     </span></span>
+<span id="cb28-42"><a href="data-manipulation-i.html#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="st">   modificado                       publicado     </span></span>
+<span id="cb28-43"><a href="data-manipulation-i.html#cb28-43" aria-hidden="true" tabindex="-1"></a><span class="st"> Min.   :2010-12-29 01:12:44.00   Min.   :0.0000  </span></span>
+<span id="cb28-44"><a href="data-manipulation-i.html#cb28-44" aria-hidden="true" tabindex="-1"></a><span class="st"> 1st Qu.:2010-12-29 01:16:40.00   1st Qu.:1.0000  </span></span>
+<span id="cb28-45"><a href="data-manipulation-i.html#cb28-45" aria-hidden="true" tabindex="-1"></a><span class="st"> Median :2013-12-02 11:10:37.50   Median :1.0000  </span></span>
+<span id="cb28-46"><a href="data-manipulation-i.html#cb28-46" aria-hidden="true" tabindex="-1"></a><span class="st"> Mean   :2014-05-29 14:09:49.69   Mean   :0.9867  </span></span>
+<span id="cb28-47"><a href="data-manipulation-i.html#cb28-47" aria-hidden="true" tabindex="-1"></a><span class="st"> 3rd Qu.:2016-10-06 09:28:28.75   3rd Qu.:1.0000  </span></span>
+<span id="cb28-48"><a href="data-manipulation-i.html#cb28-48" aria-hidden="true" tabindex="-1"></a><span class="st"> Max.   :2019-09-02 19:40:39.00   Max.   :1.0000  </span></span>
+<span id="cb28-49"><a href="data-manipulation-i.html#cb28-49" aria-hidden="true" tabindex="-1"></a><span class="st"> NA&#39;</span>s   <span class="sc">:</span><span class="dv">115</span>                                      </span>
+<span id="cb28-50"><a href="data-manipulation-i.html#cb28-50" aria-hidden="true" tabindex="-1"></a> maestrosOrientales  nacimientoec       muerteec     </span>
+<span id="cb28-51"><a href="data-manipulation-i.html#cb28-51" aria-hidden="true" tabindex="-1"></a> Length<span class="sc">:</span><span class="dv">12813</span>       Min.   <span class="sc">:</span>   <span class="fl">0.0</span>   Min.   <span class="sc">:</span>   <span class="fl">0.0</span>  </span>
+<span id="cb28-52"><a href="data-manipulation-i.html#cb28-52" aria-hidden="true" tabindex="-1"></a> Class <span class="sc">:</span>character   1st Qu.<span class="sc">:</span>   <span class="fl">0.0</span>   1st Qu.<span class="sc">:</span>   <span class="fl">0.0</span>  </span>
+<span id="cb28-53"><a href="data-manipulation-i.html#cb28-53" aria-hidden="true" tabindex="-1"></a> Mode  <span class="sc">:</span>character   Median <span class="sc">:</span>   <span class="fl">0.0</span>   Median <span class="sc">:</span> <span class="fl">871.0</span>  </span>
+<span id="cb28-54"><a href="data-manipulation-i.html#cb28-54" aria-hidden="true" tabindex="-1"></a>                    Mean   <span class="sc">:</span> <span class="fl">161.7</span>   Mean   <span class="sc">:</span> <span class="fl">571.2</span>  </span>
+<span id="cb28-55"><a href="data-manipulation-i.html#cb28-55" aria-hidden="true" tabindex="-1"></a>                    3rd Qu.<span class="sc">:</span>   <span class="fl">0.0</span>   3rd Qu.<span class="sc">:</span><span class="fl">1126.0</span>  </span>
+<span id="cb28-56"><a href="data-manipulation-i.html#cb28-56" aria-hidden="true" tabindex="-1"></a>                    Max.   <span class="sc">:</span><span class="fl">1403.0</span>   Max.   <span class="sc">:</span><span class="fl">1515.0</span>  </span>
+<span id="cb28-57"><a href="data-manipulation-i.html#cb28-57" aria-hidden="true" tabindex="-1"></a>                    NA<span class="st">&#39;s   :115      NA&#39;</span>s   <span class="sc">:</span><span class="dv">210</span>     </span>
+<span id="cb28-58"><a href="data-manipulation-i.html#cb28-58" aria-hidden="true" tabindex="-1"></a> fuentesCitadas    </span>
+<span id="cb28-59"><a href="data-manipulation-i.html#cb28-59" aria-hidden="true" tabindex="-1"></a> Length<span class="sc">:</span><span class="dv">12813</span>      </span>
+<span id="cb28-60"><a href="data-manipulation-i.html#cb28-60" aria-hidden="true" tabindex="-1"></a> Class <span class="sc">:</span>character  </span>
+<span id="cb28-61"><a href="data-manipulation-i.html#cb28-61" aria-hidden="true" tabindex="-1"></a> Mode  <span class="sc">:</span>character </span></code></pre></div>
+<p>As you can see, this function provides, in the case of character data: 1) the number of of values in each column; 2) their type; and 3) their mode. In the context of our work, there is practically no difference between type and mode, as you can see. In the case of numeric data, you can see that a general statistical summary (for example, in <code>nacimiento</code>): minimal value (<code>Min.</code>), quartiles (<code>1st Qu.</code>, <code>Median</code>, <code>3rd Qu.</code>), average mean (<code>Mean</code>), and maximum value (<code>Max.</code>). In the case of numeric data, <code>summary()</code> gives you insight into the general distribution of your data.</p>
+<!--
+The main thing that we can look at here is the difference between `mean` and `median`.  When a distribution has significant differences between its mean and median, it is typically described as being skewed. Skewness is a measure of asymmetry in a distribution. There are two types of skewness: positive skew (right skew) and negative skew (left skew).
+
+1.  Positive skew (right skew): In this case, the mean is greater than the median. The tail on the right side of the distribution is longer or fatter than the left side. This indicates that there are more extreme values on the right side of the distribution.
+2.  Negative skew (left skew): In this case, the mean is less than the median. The tail on the left side of the distribution is longer or fatter than the right side. This indicates that there are more extreme values on the left side of the distribution.
+-->
+<p><strong><code>View()</code></strong> Another way to look at the loaded data is to use <code>View()</code>. Thus, <code>View(PUA)</code> will give us the following summary view:</p>
+<p><img src="images/PUAR/PUAR_ViewList.png" /></p>
+<p>In a similar manner, we can view a specific tibble inside the PUA value. Thus, <code>View(PUA$personaje)</code> will give us the following view:</p>
+<p><img src="images/PUAR/PUAR_ViewTibble.png" /></p>
+<p>Usually, you can also open this table view by simply clicking on the name of the loaded tibble in “Environment” in top-right section; in our current case, however, we have our tibbles inside a list (but you can always assign a specific tibble from the list to a variable). This view can be searched/filtered and you can rearrange the entire table by any of the columns. This is not necessarily something that you will be using a lot, but sometimes it does come in handy. Additionally, you can click on a blue circle with a white triangle button next to the name of your tibble and you will get another convenient summary, like shown on the image below:</p>
+<p><img src="images/PUAR/PUAR_TibbleSummaryEnvironment.png" /></p>
+<ul>
+<li>if you simply type the name of your tibble in the console and hit enter, you will get a shortened version of the tibble. Here you can use commands like <code>head()</code> and <code>tail()</code>—the first one will show the first 6 rows of data, while the last one —the last 6 rows of data.</li>
+</ul>
+<p><strong><code>tibble$column</code></strong>. You can use <code>$</code> to look at the contents of a specific column. If you type the name of the tibble and add <code>$</code> right after, you will see a pop-up window which will suggest you the names of available columns. This is the easiest way to refer to a specific column. For example, <code>PUA$personaje$nombreA</code> will print out the <code>nombreA</code> column, in the tibble <code>personaje</code> of our main loaded list <code>PUA</code>.</p>
+<p><strong><code>unique()</code></strong> is your standard way to get only unique values for a vector/column. Thus, for example, we can combine <code>$</code> and <code>unique</code> to get only unique values fro many column. Using <code>length()</code> will give us the count.</p>
+<ul>
+<li><code>PUA$personaje$nombreA</code> will print out the <code>nombreA</code> column, in the tibble <code>personaje</code> of our main loaded list <code>PUA</code>;</li>
+<li><code>length(PUA$personaje$nombreA)</code> will tell us how many individuals we have altogether. Try it. (Should be 12,813);</li>
+<li><code>length(unique(PUA$personaje$idFamilia))</code> will give us the number of unique families in the dataset. Try it. (Should be 815; technically);</li>
+<li>any operation that can be applied to a vector, can be applied to a column.</li>
+</ul>
+</div>
+<div id="main-commands-for-engaging-with-a-tibble" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Main commands for engaging with a tibble<a href="data-manipulation-i.html#main-commands-for-engaging-with-a-tibble" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="chaining-with" class="section level3 hasAnchor" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> Chaining with <code>%&gt;%</code><a href="data-manipulation-i.html#chaining-with" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two main ways to manipulate tibbles in R:</p>
+<ol style="list-style-type: decimal">
+<li>you create a new state of a tibble and you save it into a new/same variable, and then keep repeating this type of step creating new modifications of your data;</li>
+<li>alternatively, you can “chain” multiple modifications into a single readable expression. In <code>tidyverse</code>, for chaining we use a pipe operator that looks like this <code>%&gt;%</code>.</li>
+</ol>
+<p>As an example, let’s get a count of how many people we have for the 6th AH century, whose age was between 70 and 79 (<em>septuagenarians</em>). In order to get this number, we will need to go through a sequence of the following steps:</p>
+<ul>
+<li>we filter all individuals by their death dates, which must fall between 501 and 600 (in other words, their death dates must be within this range); the main column for this is <code>muerte</code>;</li>
+<li>we then filter out those whose age is below 70 and those, whose age is above 79 (column <code>edad</code>) ;</li>
+<li>we then count the number of resulting rows;</li>
+</ul>
+<p>And now, let’s take a look how these operations can be done in these two different ways:</p>
+<ul>
+<li>without chaining:</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-manipulation-i.html#cb29-1" aria-hidden="true" tabindex="-1"></a>septuagenarians <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje</span>
+<span id="cb29-2"><a href="data-manipulation-i.html#cb29-2" aria-hidden="true" tabindex="-1"></a>septuagenarians <span class="ot">&lt;-</span> <span class="fu">filter</span>(septuagenarians, muerte <span class="sc">&gt;=</span> <span class="dv">501</span>, muerte <span class="sc">&lt;=</span> <span class="dv">600</span>)</span>
+<span id="cb29-3"><a href="data-manipulation-i.html#cb29-3" aria-hidden="true" tabindex="-1"></a>septuagenarians <span class="ot">&lt;-</span> <span class="fu">filter</span>(septuagenarians, edad <span class="sc">&gt;=</span> <span class="dv">70</span>, edad <span class="sc">&lt;=</span> <span class="dv">79</span>)</span>
+<span id="cb29-4"><a href="data-manipulation-i.html#cb29-4" aria-hidden="true" tabindex="-1"></a>septuagenarians <span class="ot">&lt;-</span> <span class="fu">nrow</span>(septuagenarians)</span>
+<span id="cb29-5"><a href="data-manipulation-i.html#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="data-manipulation-i.html#cb29-6" aria-hidden="true" tabindex="-1"></a>septuagenarians</span></code></pre></div>
+<ul>
+<li>with chaining:</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-manipulation-i.html#cb30-1" aria-hidden="true" tabindex="-1"></a>septuagenarians <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="data-manipulation-i.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(muerte <span class="sc">&gt;=</span> <span class="dv">501</span>, muerte <span class="sc">&lt;=</span> <span class="dv">600</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="data-manipulation-i.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(edad <span class="sc">&gt;=</span> <span class="dv">70</span>, edad <span class="sc">&lt;=</span> <span class="dv">79</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="data-manipulation-i.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb30-5"><a href="data-manipulation-i.html#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="data-manipulation-i.html#cb30-6" aria-hidden="true" tabindex="-1"></a>septuagenarians</span></code></pre></div>
+<p>The method with chaining gives us shorter expressions, and, in general, it is much easier and more readable. It makes complex operations really simple and easy. That said, occasionally, you would need to save your intermediate results into new variables. It is often best to keep original data in the initial variable and save any modifications that you want to work with (i.e., you want to use them multiple times) into new variables. This way you will be able to easily get the original data without reloading it.</p>
+<p>The <code>%&gt;%</code> (pipe operator) from the <code>magrittr</code> package is an essential tool when working with <code>dplyr</code> functions. It allows you to chain multiple <code>dplyr</code> functions together, making your code more readable and easier to understand.</p>
+</div>
+</div>
+<div id="important-functions-from-dplyr" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Important Functions from <code>dplyr</code><a href="data-manipulation-i.html#important-functions-from-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>dplyr</code> is a key package within the Tidyverse ecosystem that provides a set of tools for data manipulation. Here is an overview of some of the most important <code>dplyr</code> functions:</p>
+<ol style="list-style-type: decimal">
+<li><code>filter()</code>: Filters rows based on specified conditions. This function helps you to extract a subset of rows from a dataset that meet certain criteria.</li>
+<li><code>select()</code>: Selects specific columns from a dataset. This function is useful when you want to work with a subset of columns, either by specifying their names or using helper functions like <code>starts_with()</code>, <code>ends_with()</code>, and <code>contains()</code>.</li>
+<li><code>mutate()</code>: Creates new columns or modifies existing ones based on expressions involving existing columns. This function is often used to perform calculations or transformations on the data. (<code>transmute()</code> is similar to <code>mutate()</code>, but it only keeps the newly created or modified columns in the output, discarding the original columns.)</li>
+<li><code>arrange()</code>: Orders the rows in a dataset based on one or more columns. By default, it sorts the data in ascending order, but you can use the <code>desc()</code> function to sort in descending order.</li>
+<li><code>group_by()</code>: Groups data by one or more columns, typically used in combination with aggregation or window functions to perform grouped calculations.</li>
+<li><code>summarise()</code> or <code>summarize()</code>: Calculates summary statistics for each group after using <code>group_by()</code>. Common summary statistics include mean, median, sum, count, minimum, and maximum.</li>
+<li><code>rename()</code>: Renames columns in a dataset, making it easier to work with datasets with non-descriptive or unclear column names.</li>
+<li><code>join_*</code> functions: A family of functions for combining datasets based on common columns. Some common join functions are <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, and <code>full_join()</code>.</li>
+<li>Window functions: These functions allow you to perform calculations across a set of rows related to the current row, often used with time series data or data that has a natural ordering. Examples include <code>lag()</code>, <code>lead()</code>, <code>cumsum()</code>, <code>cumprod()</code>, <code>cummin()</code>, <code>cummax()</code>, and various ranking functions like <code>row_number()</code>, <code>dense_rank()</code>, and <code>min_rank()</code>. Window functions are particularly useful for time series analysis, when we need to calculate how some variable changes from one period to the next.</li>
+</ol>
+<p>By mastering these key <code>dplyr</code> functions, you can perform a wide range of data manipulation tasks effectively and efficiently in R using the <code>tidyverse</code>.</p>
+</div>
+<div id="important-functions-from-tidyr" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Important Functions from <code>tidyr</code><a href="data-manipulation-i.html#important-functions-from-tidyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>tidyr</code> is a another package within the <code>tidyverse</code> ecosystem that focuses on cleaning and reshaping data. Here is an overview of some of the most important <code>tidyr</code> functions:</p>
+<ol style="list-style-type: decimal">
+<li><code>pivot_longer()</code>: Converts data from wide to long format, gathering multiple columns into a single column. This function is useful when you have multiple columns representing different categories or time periods, and you want to bring them together into a single column.</li>
+<li><code>pivot_wider()</code>: Converts data from long to wide format, spreading a single column into multiple columns. This function is useful when you have data in long format with one row per observation and you want to spread it across multiple columns.</li>
+<li><code>separate()</code>: Splits a single column into multiple columns based on a specified delimiter or pattern. This function is helpful when you have a single column containing multiple pieces of information that need to be separated into distinct columns.</li>
+<li><code>unite()</code>: Combines multiple columns into a single column, often with a specified delimiter. This function is useful when you need to merge information from multiple columns into a single column.</li>
+<li><code>drop_na()</code>: Removes rows with missing values (NA) in one or more specified columns. This function helps you clean your data by removing incomplete records.</li>
+<li><code>replace_na()</code>: Replaces missing values (NA) with a specified value or values. This function can be used to fill in missing data with a default value or an estimate.</li>
+<li><code>fill()</code>: Fills missing values (NA) in a column with the last non-missing value encountered, either forward or backward. This function is particularly useful when working with time series data or data with a natural ordering.</li>
+<li><code>nest()</code>: Creates a nested data frame by collapsing multiple columns into a single column containing a list of data frames.</li>
+<li><code>unnest()</code>: Reverses the operation of <code>nest()</code>, expanding a list column of data frames into multiple columns.</li>
+</ol>
+</div>
+<div id="function-usage" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Function usage<a href="data-manipulation-i.html#function-usage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The list above gives you an idea of what kind of operations you can do with them. In what follows you will learn how to use most of these functions through practical examples (some functions are needed only for rather complicated cases, which we will not be covering here).</p>
+<div id="filter" class="section level3 hasAnchor" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> <code>filter()</code><a href="data-manipulation-i.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This function filters rows based on specified conditions. This function helps you to extract a subset of rows from a dataset that meet certain criteria.</p>
+<p>In this example, we will get individuals from the 6th AH century:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-manipulation-i.html#cb31-1" aria-hidden="true" tabindex="-1"></a>cent_600AH <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="data-manipulation-i.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(muerte <span class="sc">&gt;=</span> <span class="dv">501</span>, muerte <span class="sc">&lt;=</span> <span class="dv">600</span>)</span></code></pre></div>
+<p><strong>Note:</strong> it is important to note that names of your variables cannot start with digits; for example, <code>600AH</code> will not be possible—that is why I opted for <code>cent_600AH</code>.</p>
+<p>In this example, we will get septuagenarians from the 6th century AH:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-manipulation-i.html#cb32-1" aria-hidden="true" tabindex="-1"></a>septuagenarians600AH <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="data-manipulation-i.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(muerte <span class="sc">&gt;=</span> <span class="dv">501</span>, muerte <span class="sc">&lt;=</span> <span class="dv">600</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="data-manipulation-i.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(edad <span class="sc">&gt;=</span> <span class="dv">70</span>, edad <span class="sc">&lt;=</span> <span class="dv">79</span>)</span></code></pre></div>
+<p><strong>Note:</strong> we could have also used the variable <code>cent_600AH</code>, in which case we would have needed only the last filter operation.</p>
+</div>
+<div id="select" class="section level3 hasAnchor" number="4.10.2">
+<h3><span class="header-section-number">4.10.2</span> <code>select()</code><a href="data-manipulation-i.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This function selects specific columns from a dataset. This function is useful when you want to work with a subset of columns, either by specifying their names or using helper functions like <code>starts_with()</code>, <code>ends_with()</code>, and <code>contains()</code>.</p>
+<p>Most commonly you will use this function to make a copy of your data with a smaller number of columns, dropping those that you do not need for analysis. In the example below, we will create a light version of our <code>personaje</code> tibble, keeping only the most important columns:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-manipulation-i.html#cb33-1" aria-hidden="true" tabindex="-1"></a>personajeLite <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="data-manipulation-i.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idPersonaje, idFamilia, nombreA,</span>
+<span id="cb33-3"><a href="data-manipulation-i.html#cb33-3" aria-hidden="true" tabindex="-1"></a>         nacimiento, muerte, edad)</span></code></pre></div>
+<p>You can drop specific columns by adding a <code>-</code> (minus/dash) or <code>!</code> (exclamation mark) in front of the name of that columns. Let’s drop <code>edad</code> from our light data, but, also, let’s not save the results:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-manipulation-i.html#cb34-1" aria-hidden="true" tabindex="-1"></a>personajeLite <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>edad)</span></code></pre></div>
+<p>In some cases you may want to try something out without saving the results of your manipulations in a variable. You can do it in the manner shown above. Note, we are not saving our results (there is no <code>&lt;-</code> assignment operator, and no new variable). If you run this code, R will simply print out the results in console—the same tibble, but without column <code>edad</code>.</p>
+<p>Additionally, you can use <code>starts_with()</code>, <code>ends_with()</code>, and <code>contains()</code> if you want to quickly select columns that have the same element in their names—either in the beginning, in the end, or anywhere. For example, we have columns whose names begin with <code>id</code>. We can use <code>starts_with("id")</code>. You can use <code>-</code> or <code>!</code> in front of these functions to drop those columns instead. For example, we can drop “comment” columns, whose names end with <code>_comentario</code>.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-manipulation-i.html#cb35-1" aria-hidden="true" tabindex="-1"></a>personaje_IDs <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;id&quot;</span>))</span>
+<span id="cb35-2"><a href="data-manipulation-i.html#cb35-2" aria-hidden="true" tabindex="-1"></a>personaje_noComments <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;_comentario&quot;</span>))</span></code></pre></div>
+</div>
+<div id="mutate-and-transmute" class="section level3 hasAnchor" number="4.10.3">
+<h3><span class="header-section-number">4.10.3</span> <code>mutate()</code> and <code>transmute()</code><a href="data-manipulation-i.html#mutate-and-transmute" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>mutate()</code> function creates new columns or modifies existing ones based on expressions involving existing columns. This function is often used to perform calculations or transformations on the data. The <code>transmute()</code> function is similar to <code>mutate()</code>, but it only keeps the newly created or modified columns in the output, discarding the original columns; <code>transmute()</code> would be similar to using <code>mutate()</code> to create a new column and then using <code>select()</code> to drop all the old columns.</p>
+<p>Let’s take our <code>personajeLite</code> and fix some information there. There are too many zeroes in columns <code>nacimiento</code>, <code>muerto</code>, and <code>edad</code>, which are clearly used as fillers (i.e., they do not actually mean <code>0</code>). To ensure that our analyses are done correctly, we need to replace them with <code>NA</code>, which would mean that data is not available and it should not be used in calculations.</p>
+<p><strong>Note on the importance of <code>NA</code>:</strong> Let’s dwell a little bit on why we need to have <code>NA</code>s where appropriate. Say, we want to calculate the average age. In a vector <code>ages1</code> we have <code>0</code> instead of <code>NA</code>, so if we try to calculate average mean, zeroes will be considered as numbers and that will give us the average age of 25.2. Meanwhile, when we have <code>NA</code>, as in vector <code>ages2</code>, we can exclude them from the calculation of the average mean and get the value of 75.67, which would be much more appropriate for the existing ages of 67, 70, and 90.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-manipulation-i.html#cb36-1" aria-hidden="true" tabindex="-1"></a>ages1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">67</span>,<span class="dv">70</span>,<span class="dv">90</span>)</span>
+<span id="cb36-2"><a href="data-manipulation-i.html#cb36-2" aria-hidden="true" tabindex="-1"></a>ages2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="dv">67</span>,<span class="dv">70</span>,<span class="dv">90</span>)</span>
+<span id="cb36-3"><a href="data-manipulation-i.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="data-manipulation-i.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ages1) <span class="co"># 25.22222</span></span>
+<span id="cb36-5"><a href="data-manipulation-i.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ages2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># 75.66667</span></span></code></pre></div>
+<p>Let’s update our <code>personajeLite</code> accordingly. There are two ways we can write it out—in a more explicit manner, or a more packed manner.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-manipulation-i.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># more explicit</span></span>
+<span id="cb37-2"><a href="data-manipulation-i.html#cb37-2" aria-hidden="true" tabindex="-1"></a>personajeLite <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="data-manipulation-i.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idPersonaje, idFamilia, nombreA,</span>
+<span id="cb37-4"><a href="data-manipulation-i.html#cb37-4" aria-hidden="true" tabindex="-1"></a>         nacimiento, muerte, edad) <span class="sc">%&gt;%</span></span>
+<span id="cb37-5"><a href="data-manipulation-i.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nacimiento =</span> <span class="fu">na_if</span>(nacimiento, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-6"><a href="data-manipulation-i.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">muerte =</span> <span class="fu">na_if</span>(muerte, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="data-manipulation-i.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">edad =</span> <span class="fu">na_if</span>(edad, <span class="dv">0</span>))</span>
+<span id="cb37-8"><a href="data-manipulation-i.html#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="data-manipulation-i.html#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># more packed</span></span>
+<span id="cb37-10"><a href="data-manipulation-i.html#cb37-10" aria-hidden="true" tabindex="-1"></a>personajeLite <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje <span class="sc">%&gt;%</span></span>
+<span id="cb37-11"><a href="data-manipulation-i.html#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idPersonaje, idFamilia, nombreA,</span>
+<span id="cb37-12"><a href="data-manipulation-i.html#cb37-12" aria-hidden="true" tabindex="-1"></a>         nacimiento, muerte, edad) <span class="sc">%&gt;%</span></span>
+<span id="cb37-13"><a href="data-manipulation-i.html#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nacimiento =</span> <span class="fu">na_if</span>(nacimiento, <span class="dv">0</span>),</span>
+<span id="cb37-14"><a href="data-manipulation-i.html#cb37-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">muerte =</span> <span class="fu">na_if</span>(muerte, <span class="dv">0</span>),</span>
+<span id="cb37-15"><a href="data-manipulation-i.html#cb37-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">edad =</span> <span class="fu">na_if</span>(edad, <span class="dv">0</span>))</span></code></pre></div>
+<p>We can use <code>mutate()</code> to reproduce some of the columns that we dropped in our light version. For example, we have dropped the dates in common era. We can recalculate them, using the function that you used in the previous lesson.</p>
+<p>First, here is our conversion function:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-manipulation-i.html#cb38-1" aria-hidden="true" tabindex="-1"></a>AH2CE <span class="ot">&lt;-</span> <span class="cf">function</span>(AH){</span>
+<span id="cb38-2"><a href="data-manipulation-i.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  CE <span class="ot">&lt;-</span> <span class="fu">round</span>(AH <span class="sc">-</span> AH<span class="sc">/</span><span class="dv">33</span> <span class="sc">+</span> <span class="dv">622</span>)</span>
+<span id="cb38-3"><a href="data-manipulation-i.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  AH <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(AH <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">1</span>, AH)</span>
+<span id="cb38-4"><a href="data-manipulation-i.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  final <span class="ot">&lt;-</span> <span class="fu">paste0</span>(AH, <span class="st">&quot;AH/&quot;</span>, CE, <span class="st">&quot;CE&quot;</span>)</span>
+<span id="cb38-5"><a href="data-manipulation-i.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(final)</span>
+<span id="cb38-6"><a href="data-manipulation-i.html#cb38-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now, let’s update our <code>personajeLite</code>. Note that I have added <code>ifelse()</code> function in order to keep <code>NA</code>:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-manipulation-i.html#cb39-1" aria-hidden="true" tabindex="-1"></a>personajeLite <span class="ot">&lt;-</span> personajeLite <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="data-manipulation-i.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">muerteCE =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(muerte), <span class="cn">NA</span>, <span class="fu">AH2CE</span>(muerte)))</span></code></pre></div>
+</div>
+<div id="rename" class="section level3 hasAnchor" number="4.10.4">
+<h3><span class="header-section-number">4.10.4</span> <code>rename()</code><a href="data-manipulation-i.html#rename" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This function simply renames columns in a dataset, making it easier to work with datasets with non-descriptive or unclear column names.</p>
+<p>For example, we may want to have English names for the columns:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-manipulation-i.html#cb40-1" aria-hidden="true" tabindex="-1"></a>personajeLiteEN <span class="ot">&lt;-</span> personajeLite <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="data-manipulation-i.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">idPerson =</span> idPersonaje,</span>
+<span id="cb40-3"><a href="data-manipulation-i.html#cb40-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">idFamily =</span> idFamilia,</span>
+<span id="cb40-4"><a href="data-manipulation-i.html#cb40-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">nameA =</span> nombreA,</span>
+<span id="cb40-5"><a href="data-manipulation-i.html#cb40-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">born =</span> nacimiento,</span>
+<span id="cb40-6"><a href="data-manipulation-i.html#cb40-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">died =</span> muerte,</span>
+<span id="cb40-7"><a href="data-manipulation-i.html#cb40-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">diedCE =</span> muerteCE,</span>
+<span id="cb40-8"><a href="data-manipulation-i.html#cb40-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">age =</span> edad)</span></code></pre></div>
+</div>
+<div id="arrange" class="section level3 hasAnchor" number="4.10.5">
+<h3><span class="header-section-number">4.10.5</span> <code>arrange()</code><a href="data-manipulation-i.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This function orders the rows in a dataset based on one or more columns. By default, it sorts the data in ascending order, but you can use the <code>desc()</code> function to sort in descending order. When you use multiple columns as arguments (connected with commas), the data will be sorted by the first mentioned column, and then, inside, by the second column, and so on.</p>
+<p>Thus, the following code will arrange the data first by <code>idFamilia</code>, and then, within each family (just keep in mind that <code>0</code> means <code>no family</code>, so we best filter them out), individuals will be arranges from the oldest to the youngest. Run the code and take a look for yourself.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-manipulation-i.html#cb41-1" aria-hidden="true" tabindex="-1"></a>oldestInFamilies <span class="ot">&lt;-</span> personajeLite <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="data-manipulation-i.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(idFamilia <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="data-manipulation-i.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(edad)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="data-manipulation-i.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(idFamilia, <span class="fu">desc</span>(edad))</span></code></pre></div>
+<p>The results should look something like this:</p>
+<p><img src="images/PUAR/PUAR_OldestInFamilies.png" /></p>
+</div>
+<div id="group_by-ungroup" class="section level3 hasAnchor" number="4.10.6">
+<h3><span class="header-section-number">4.10.6</span> <code>group_by()</code> / <code>ungroup()</code><a href="data-manipulation-i.html#group_by-ungroup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With <code>group_by()</code> we are switching to really cool functions that will allow us to do lots of interesting thing with our dataset. The <code>group_by()</code> function groups data by one or more columns. Its results are not quite visible. Take a look at the screenshot below of the same tibble: in the first case (top) it is the original tibble, in the second case (bottom) the data is grouped by <code>idFamilia</code> (note the underlined <code># Groups: idFamilia [815]</code>):</p>
+<p><img src="images/PUAR/PUAR_groupped_data.png" /></p>
+<p>Usually, when you are done working with groups and you do not need them anymore, you would use function <code>ungroup()</code> to remove them.</p>
+<p>Typically, <code>group_by()</code> is used in combination with aggregation or window functions to perform grouped calculations or manipulations. We will skip on windows functions for now, but we will look into some most useful aggregation functions. In fact, the results of <code>group_by()</code> are not very useful until you apply some aggregation function.</p>
+</div>
+<div id="summarise-or-summarize" class="section level3 hasAnchor" number="4.10.7">
+<h3><span class="header-section-number">4.10.7</span> <code>summarise()</code> or <code>summarize()</code><a href="data-manipulation-i.html#summarise-or-summarize" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The most common function that is used right after <code>group_by()</code> is <code>summarize()</code> or <code>summarise()</code>, if you prefer British spelling :). This function calculates summary statistics for each group after using <code>group_by()</code>. Common summary statistics include <code>mean()</code>, <code>median()</code>, <code>sum()</code>, <code>n()</code>, <code>min()</code>, and <code>max()</code>. You can also select top items from each group with<code>top_n()</code>.</p>
+<p>Let’s give it a try.</p>
+<p>For example, we can count how many members each family has:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-manipulation-i.html#cb42-1" aria-hidden="true" tabindex="-1"></a>miembrosDeFamilias <span class="ot">&lt;-</span> personajeLite <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="data-manipulation-i.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(idFamilia <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="data-manipulation-i.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(idFamilia) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="data-manipulation-i.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">miembros =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="data-manipulation-i.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(miembros))</span></code></pre></div>
+<p>And if we print, we can see the most prominent families, in terms of the numbers of their members who made it into historical records of al-Andalus:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-manipulation-i.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> familias</span>
+<span id="cb43-2"><a href="data-manipulation-i.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 813 × 2</span></span>
+<span id="cb43-3"><a href="data-manipulation-i.html#cb43-3" aria-hidden="true" tabindex="-1"></a>   idFamilia miembros</span>
+<span id="cb43-4"><a href="data-manipulation-i.html#cb43-4" aria-hidden="true" tabindex="-1"></a>       <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
+<span id="cb43-5"><a href="data-manipulation-i.html#cb43-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>        <span class="dv">89</span>       <span class="dv">23</span></span>
+<span id="cb43-6"><a href="data-manipulation-i.html#cb43-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>       <span class="dv">255</span>       <span class="dv">23</span></span>
+<span id="cb43-7"><a href="data-manipulation-i.html#cb43-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>       <span class="dv">459</span>       <span class="dv">20</span></span>
+<span id="cb43-8"><a href="data-manipulation-i.html#cb43-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>        <span class="dv">20</span>       <span class="dv">18</span></span>
+<span id="cb43-9"><a href="data-manipulation-i.html#cb43-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>        <span class="dv">44</span>       <span class="dv">18</span></span>
+<span id="cb43-10"><a href="data-manipulation-i.html#cb43-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>        <span class="dv">21</span>       <span class="dv">16</span></span>
+<span id="cb43-11"><a href="data-manipulation-i.html#cb43-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>       <span class="dv">700</span>       <span class="dv">16</span></span>
+<span id="cb43-12"><a href="data-manipulation-i.html#cb43-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>         <span class="dv">2</span>       <span class="dv">15</span></span>
+<span id="cb43-13"><a href="data-manipulation-i.html#cb43-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>         <span class="dv">9</span>       <span class="dv">15</span></span>
+<span id="cb43-14"><a href="data-manipulation-i.html#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>        <span class="dv">17</span>       <span class="dv">15</span></span>
+<span id="cb43-15"><a href="data-manipulation-i.html#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ 803 more rows</span></span>
+<span id="cb43-16"><a href="data-manipulation-i.html#cb43-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>In a similar manner we can calculate the average age of members of each family:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-manipulation-i.html#cb44-1" aria-hidden="true" tabindex="-1"></a>familiasEdadPromedio <span class="ot">&lt;-</span> personajeLite <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="data-manipulation-i.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(idFamilia <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="data-manipulation-i.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(idFamilia) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="data-manipulation-i.html#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">edadPromedio =</span> <span class="fu">mean</span>(edad, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb44-5"><a href="data-manipulation-i.html#cb44-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">miembros =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb44-6"><a href="data-manipulation-i.html#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(edadPromedio))</span></code></pre></div>
+<p>Some results from the top (note, that we now included two operations into the <code>summarize()</code> function; it is important to keep in mind that all summarization steps must be put into the same summarization function!):</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-manipulation-i.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> familiasEdadPromedio</span>
+<span id="cb45-2"><a href="data-manipulation-i.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 813 × 3</span></span>
+<span id="cb45-3"><a href="data-manipulation-i.html#cb45-3" aria-hidden="true" tabindex="-1"></a>   idFamilia edadPromedio miembros</span>
+<span id="cb45-4"><a href="data-manipulation-i.html#cb45-4" aria-hidden="true" tabindex="-1"></a>       <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>        <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
+<span id="cb45-5"><a href="data-manipulation-i.html#cb45-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>       <span class="dv">724</span>          <span class="dv">100</span>        <span class="dv">2</span></span>
+<span id="cb45-6"><a href="data-manipulation-i.html#cb45-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>       <span class="dv">290</span>           <span class="dv">99</span>        <span class="dv">2</span></span>
+<span id="cb45-7"><a href="data-manipulation-i.html#cb45-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>       <span class="dv">224</span>           <span class="dv">98</span>        <span class="dv">4</span></span>
+<span id="cb45-8"><a href="data-manipulation-i.html#cb45-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>       <span class="dv">207</span>           <span class="dv">95</span>        <span class="dv">3</span></span>
+<span id="cb45-9"><a href="data-manipulation-i.html#cb45-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>       <span class="dv">453</span>           <span class="dv">95</span>        <span class="dv">2</span></span>
+<span id="cb45-10"><a href="data-manipulation-i.html#cb45-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>       <span class="dv">551</span>           <span class="dv">95</span>        <span class="dv">2</span></span>
+<span id="cb45-11"><a href="data-manipulation-i.html#cb45-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>       <span class="dv">561</span>           <span class="dv">95</span>        <span class="dv">6</span></span>
+<span id="cb45-12"><a href="data-manipulation-i.html#cb45-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>       <span class="dv">158</span>           <span class="dv">94</span>        <span class="dv">2</span></span>
+<span id="cb45-13"><a href="data-manipulation-i.html#cb45-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>       <span class="dv">484</span>           <span class="dv">94</span>        <span class="dv">2</span></span>
+<span id="cb45-14"><a href="data-manipulation-i.html#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>        <span class="dv">77</span>           <span class="dv">93</span>        <span class="dv">2</span></span>
+<span id="cb45-15"><a href="data-manipulation-i.html#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ 803 more rows</span></span>
+<span id="cb45-16"><a href="data-manipulation-i.html#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>We an also select the longest living member from each family (<code>top_n(1, wt = edad)</code>—1 can be replaced with the desired number).</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-manipulation-i.html#cb46-1" aria-hidden="true" tabindex="-1"></a>familiasMasAntiguo <span class="ot">&lt;-</span> personajeLite <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="data-manipulation-i.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(idFamilia <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="data-manipulation-i.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(idFamilia) <span class="sc">%&gt;%</span></span>
+<span id="cb46-4"><a href="data-manipulation-i.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">1</span>, <span class="at">wt =</span> edad) <span class="sc">%&gt;%</span></span>
+<span id="cb46-5"><a href="data-manipulation-i.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(edad)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-6"><a href="data-manipulation-i.html#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>nombreA)</span></code></pre></div>
+<p>Results (I have dropped the column with the name, so that the results are more readable here):</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-manipulation-i.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> familiasMasAntiguo</span>
+<span id="cb47-2"><a href="data-manipulation-i.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 502 × 6</span></span>
+<span id="cb47-3"><a href="data-manipulation-i.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   idFamilia [487]</span></span>
+<span id="cb47-4"><a href="data-manipulation-i.html#cb47-4" aria-hidden="true" tabindex="-1"></a>   idPersonaje idFamilia nacimiento muerte  edad muerteCE    </span>
+<span id="cb47-5"><a href="data-manipulation-i.html#cb47-5" aria-hidden="true" tabindex="-1"></a>         <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>      <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>       </span>
+<span id="cb47-6"><a href="data-manipulation-i.html#cb47-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>        <span class="dv">2455</span>        <span class="dv">44</span>        <span class="dv">190</span>    <span class="dv">295</span>   <span class="dv">118</span> 295AH<span class="sc">/</span>908CE </span>
+<span id="cb47-7"><a href="data-manipulation-i.html#cb47-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>        <span class="dv">1307</span>       <span class="dv">277</span>         <span class="cn">NA</span>    <span class="dv">577</span>   <span class="dv">100</span> 577AH<span class="sc">/</span>1182CE</span>
+<span id="cb47-8"><a href="data-manipulation-i.html#cb47-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>        <span class="dv">9407</span>       <span class="dv">724</span>        <span class="dv">514</span>    <span class="dv">614</span>   <span class="dv">100</span> 614AH<span class="sc">/</span>1217CE</span>
+<span id="cb47-9"><a href="data-manipulation-i.html#cb47-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>        <span class="dv">5540</span>       <span class="dv">290</span>        <span class="dv">603</span>    <span class="dv">702</span>    <span class="dv">99</span> 702AH<span class="sc">/</span>1303CE</span>
+<span id="cb47-10"><a href="data-manipulation-i.html#cb47-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>        <span class="dv">4257</span>       <span class="dv">449</span>        <span class="dv">447</span>    <span class="dv">545</span>    <span class="dv">98</span> 545AH<span class="sc">/</span>1150CE</span>
+<span id="cb47-11"><a href="data-manipulation-i.html#cb47-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>        <span class="dv">6705</span>       <span class="dv">224</span>        <span class="dv">483</span>    <span class="dv">581</span>    <span class="dv">98</span> 581AH<span class="sc">/</span>1185CE</span>
+<span id="cb47-12"><a href="data-manipulation-i.html#cb47-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>        <span class="dv">6070</span>       <span class="dv">212</span>        <span class="dv">201</span>    <span class="dv">297</span>    <span class="dv">96</span> 297AH<span class="sc">/</span>910CE </span>
+<span id="cb47-13"><a href="data-manipulation-i.html#cb47-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>        <span class="dv">9875</span>       <span class="dv">605</span>        <span class="dv">272</span>    <span class="dv">368</span>    <span class="dv">96</span> 368AH<span class="sc">/</span>979CE </span>
+<span id="cb47-14"><a href="data-manipulation-i.html#cb47-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>       <span class="dv">10700</span>       <span class="dv">537</span>        <span class="dv">299</span>    <span class="dv">394</span>    <span class="dv">96</span> 394AH<span class="sc">/</span>1004CE</span>
+<span id="cb47-15"><a href="data-manipulation-i.html#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>        <span class="dv">2420</span>       <span class="dv">453</span>        <span class="dv">326</span>    <span class="dv">421</span>    <span class="dv">95</span> 421AH<span class="sc">/</span>1030CE</span>
+<span id="cb47-16"><a href="data-manipulation-i.html#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ 492 more rows</span></span>
+<span id="cb47-17"><a href="data-manipulation-i.html#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+</div>
+<div id="join_-functions" class="section level3 hasAnchor" number="4.10.8">
+<h3><span class="header-section-number">4.10.8</span> <code>join_*</code> functions<a href="data-manipulation-i.html#join_-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You might have noticed already that working with numeric IDs can be rather unhelpful: in the examples above we could only see the numeric IDs of families, but we also had no idea what those families actually are. The family of <code>join_*</code> functions is very helpful here, since they allow us to join additional information from other tables.</p>
+<p>This is a family of functions for combining datasets based on common columns. Some common join functions are <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, and <code>full_join()</code>. These are incredibly useful functions since they allow you to take advantage of the functionality which is available in relational databases or through the linked-open-data (LOD) approach.</p>
+<p>The main principle of rDB (and LOD, at least to a certain extent) is as follows: if you duplicate some data in your table, you should move it to a separate one. Such division into separate tables has lots of advantages that contribute to efficient data management and retrieval.</p>
+<p>For example, in our <code>personajeLite</code> data we have many members of the same families. In order not to repeat all the relevant information on each family in the <code>personaje</code> table, this information is moved to a separate table. Such an approach makes it much easier to manage, update, and expand your data. The data on families is stored in <code>PUA$familia</code>. Both tables are interconnected by the field <code>idFamilia</code>. We can use one of the <code>join_*</code> functions to connect both tables.</p>
+<p>First, let’s get a light version of family data — essentially, just the English name of each family (<code>idFamilia</code> is the <strong>key</strong> column and must always be preserved).</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-manipulation-i.html#cb48-1" aria-hidden="true" tabindex="-1"></a>familiaDataLite <span class="ot">&lt;-</span> PUA<span class="sc">$</span>familia <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="data-manipulation-i.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idFamilia, nombreE)</span></code></pre></div>
+<p>Now, we can take all the results that we generated above and have much more readable results:</p>
+<ol style="list-style-type: decimal">
+<li>Families with the highest numbers of members:</li>
+</ol>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-manipulation-i.html#cb49-1" aria-hidden="true" tabindex="-1"></a>miembrosDeFamilias <span class="ot">&lt;-</span> miembrosDeFamilias <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="data-manipulation-i.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(familiaDataLite, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;idFamilia&quot;</span> <span class="ot">=</span> <span class="st">&quot;idFamilia&quot;</span>))</span>
+<span id="cb49-3"><a href="data-manipulation-i.html#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="data-manipulation-i.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> miembrosDeFamilias</span>
+<span id="cb49-5"><a href="data-manipulation-i.html#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 813 × 3</span></span>
+<span id="cb49-6"><a href="data-manipulation-i.html#cb49-6" aria-hidden="true" tabindex="-1"></a>   idFamilia miembros nombreE             </span>
+<span id="cb49-7"><a href="data-manipulation-i.html#cb49-7" aria-hidden="true" tabindex="-1"></a>       <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>               </span>
+<span id="cb49-8"><a href="data-manipulation-i.html#cb49-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>        <span class="dv">89</span>       <span class="dv">23</span> Banū l<span class="sc">-</span>Bağī <span class="dv">1</span>       </span>
+<span id="cb49-9"><a href="data-manipulation-i.html#cb49-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>       <span class="dv">255</span>       <span class="dv">23</span> Banū Saʿīd al<span class="sc">-</span>ʿAnsī </span>
+<span id="cb49-10"><a href="data-manipulation-i.html#cb49-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>       <span class="dv">459</span>       <span class="dv">20</span> Banū Ḥağğağ al<span class="sc">-</span>Laḫmī</span>
+<span id="cb49-11"><a href="data-manipulation-i.html#cb49-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>        <span class="dv">20</span>       <span class="dv">18</span> Banū Abī Ğamra      </span>
+<span id="cb49-12"><a href="data-manipulation-i.html#cb49-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>        <span class="dv">44</span>       <span class="dv">18</span> Banū ʿAmīra         </span>
+<span id="cb49-13"><a href="data-manipulation-i.html#cb49-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>        <span class="dv">21</span>       <span class="dv">16</span> Banū Ḫalīl al<span class="sc">-</span>Sakūnī</span>
+<span id="cb49-14"><a href="data-manipulation-i.html#cb49-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>       <span class="dv">700</span>       <span class="dv">16</span> Banū Hāniʾ          </span>
+<span id="cb49-15"><a href="data-manipulation-i.html#cb49-15" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>         <span class="dv">2</span>       <span class="dv">15</span> Banū Dīnār          </span>
+<span id="cb49-16"><a href="data-manipulation-i.html#cb49-16" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>         <span class="dv">9</span>       <span class="dv">15</span> Banū Qāsim b. Hilāl </span>
+<span id="cb49-17"><a href="data-manipulation-i.html#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>        <span class="dv">17</span>       <span class="dv">15</span> Banū Wāğib          </span>
+<span id="cb49-18"><a href="data-manipulation-i.html#cb49-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ 803 more rows</span></span>
+<span id="cb49-19"><a href="data-manipulation-i.html#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Families with the highest average age.</li>
+</ol>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-manipulation-i.html#cb50-1" aria-hidden="true" tabindex="-1"></a>familiasEdadPromedio <span class="ot">&lt;-</span> familiasEdadPromedio <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="data-manipulation-i.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(familiaDataLite, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;idFamilia&quot;</span> <span class="ot">=</span> <span class="st">&quot;idFamilia&quot;</span>))</span>
+<span id="cb50-3"><a href="data-manipulation-i.html#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="data-manipulation-i.html#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> familiasEdadPromedio</span>
+<span id="cb50-5"><a href="data-manipulation-i.html#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 813 × 4</span></span>
+<span id="cb50-6"><a href="data-manipulation-i.html#cb50-6" aria-hidden="true" tabindex="-1"></a>   idFamilia edadPromedio miembros nombreE                    </span>
+<span id="cb50-7"><a href="data-manipulation-i.html#cb50-7" aria-hidden="true" tabindex="-1"></a>       <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>        <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                      </span>
+<span id="cb50-8"><a href="data-manipulation-i.html#cb50-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>       <span class="dv">724</span>          <span class="dv">100</span>        <span class="dv">2</span> Banū Saʿāda al<span class="sc">-</span>Nafzī       </span>
+<span id="cb50-9"><a href="data-manipulation-i.html#cb50-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>       <span class="dv">290</span>           <span class="dv">99</span>        <span class="dv">2</span> Banū Hārūn <span class="dv">2</span>               </span>
+<span id="cb50-10"><a href="data-manipulation-i.html#cb50-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>       <span class="dv">224</span>           <span class="dv">98</span>        <span class="dv">4</span> Banū l<span class="sc">-</span>Ḥallāʾ <span class="sc">/</span> Banū Ṯaʿbān</span>
+<span id="cb50-11"><a href="data-manipulation-i.html#cb50-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>       <span class="dv">207</span>           <span class="dv">95</span>        <span class="dv">3</span> Banū l<span class="sc">-</span>Gaššāʾ              </span>
+<span id="cb50-12"><a href="data-manipulation-i.html#cb50-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>       <span class="dv">453</span>           <span class="dv">95</span>        <span class="dv">2</span> Banū l<span class="sc">-</span>Bağğānī             </span>
+<span id="cb50-13"><a href="data-manipulation-i.html#cb50-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>       <span class="dv">551</span>           <span class="dv">95</span>        <span class="dv">2</span> Banū Ğarīr                 </span>
+<span id="cb50-14"><a href="data-manipulation-i.html#cb50-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>       <span class="dv">561</span>           <span class="dv">95</span>        <span class="dv">6</span> Banū Sulaymān al<span class="sc">-</span>Gāfiqī    </span>
+<span id="cb50-15"><a href="data-manipulation-i.html#cb50-15" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>       <span class="dv">158</span>           <span class="dv">94</span>        <span class="dv">2</span> Banū Kawzān                </span>
+<span id="cb50-16"><a href="data-manipulation-i.html#cb50-16" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>       <span class="dv">484</span>           <span class="dv">94</span>        <span class="dv">2</span> Banū l<span class="sc">-</span>Šabulārī            </span>
+<span id="cb50-17"><a href="data-manipulation-i.html#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>        <span class="dv">77</span>           <span class="dv">93</span>        <span class="dv">2</span> Banū Ḥunayn                </span>
+<span id="cb50-18"><a href="data-manipulation-i.html#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ 803 more rows</span></span>
+<span id="cb50-19"><a href="data-manipulation-i.html#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Families with the longest living members:</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-manipulation-i.html#cb51-1" aria-hidden="true" tabindex="-1"></a>familiasMasAntiguo <span class="ot">&lt;-</span> familiasMasAntiguo <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="data-manipulation-i.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(familiaDataLite, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;idFamilia&quot;</span> <span class="ot">=</span> <span class="st">&quot;idFamilia&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="data-manipulation-i.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>nacimiento, <span class="sc">-</span>muerte)</span>
+<span id="cb51-4"><a href="data-manipulation-i.html#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="data-manipulation-i.html#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> familiasMasAntiguo</span>
+<span id="cb51-6"><a href="data-manipulation-i.html#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 502 × 5</span></span>
+<span id="cb51-7"><a href="data-manipulation-i.html#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   idFamilia [487]</span></span>
+<span id="cb51-8"><a href="data-manipulation-i.html#cb51-8" aria-hidden="true" tabindex="-1"></a>   idPersonaje idFamilia  edad muerteCE     nombreE                    </span>
+<span id="cb51-9"><a href="data-manipulation-i.html#cb51-9" aria-hidden="true" tabindex="-1"></a>         <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>        <span class="er">&lt;</span>chr<span class="sc">&gt;</span>                      </span>
+<span id="cb51-10"><a href="data-manipulation-i.html#cb51-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>        <span class="dv">2455</span>        <span class="dv">44</span>   <span class="dv">118</span> 295AH<span class="sc">/</span>908CE  Banū ʿAmīra                </span>
+<span id="cb51-11"><a href="data-manipulation-i.html#cb51-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>        <span class="dv">1307</span>       <span class="dv">277</span>   <span class="dv">100</span> 577AH<span class="sc">/</span>1182CE Banū ʿAmīra                </span>
+<span id="cb51-12"><a href="data-manipulation-i.html#cb51-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>        <span class="dv">9407</span>       <span class="dv">724</span>   <span class="dv">100</span> 614AH<span class="sc">/</span>1217CE Banū Saʿāda al<span class="sc">-</span>Nafzī       </span>
+<span id="cb51-13"><a href="data-manipulation-i.html#cb51-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>        <span class="dv">5540</span>       <span class="dv">290</span>    <span class="dv">99</span> 702AH<span class="sc">/</span>1303CE Banū Hārūn <span class="dv">2</span>               </span>
+<span id="cb51-14"><a href="data-manipulation-i.html#cb51-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>        <span class="dv">4257</span>       <span class="dv">449</span>    <span class="dv">98</span> 545AH<span class="sc">/</span>1150CE Banū Abī l<span class="sc">-</span>Rağāʾ           </span>
+<span id="cb51-15"><a href="data-manipulation-i.html#cb51-15" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>        <span class="dv">6705</span>       <span class="dv">224</span>    <span class="dv">98</span> 581AH<span class="sc">/</span>1185CE Banū l<span class="sc">-</span>Ḥallāʾ <span class="sc">/</span> Banū Ṯaʿbān</span>
+<span id="cb51-16"><a href="data-manipulation-i.html#cb51-16" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>        <span class="dv">6070</span>       <span class="dv">212</span>    <span class="dv">96</span> 297AH<span class="sc">/</span>910CE  Banū Našr                  </span>
+<span id="cb51-17"><a href="data-manipulation-i.html#cb51-17" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>        <span class="dv">9875</span>       <span class="dv">605</span>    <span class="dv">96</span> 368AH<span class="sc">/</span>979CE  Banū Fahd                  </span>
+<span id="cb51-18"><a href="data-manipulation-i.html#cb51-18" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>       <span class="dv">10700</span>       <span class="dv">537</span>    <span class="dv">96</span> 394AH<span class="sc">/</span>1004CE Banū Barṭāl                </span>
+<span id="cb51-19"><a href="data-manipulation-i.html#cb51-19" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>        <span class="dv">2420</span>       <span class="dv">453</span>    <span class="dv">95</span> 421AH<span class="sc">/</span>1030CE Banū l<span class="sc">-</span>Bağğānī             </span>
+<span id="cb51-20"><a href="data-manipulation-i.html#cb51-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ 492 more rows</span></span>
+<span id="cb51-21"><a href="data-manipulation-i.html#cb51-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>If the <strong>key</strong> columns have the same name in both tables, the <code>by = c("colNameA" = "colNameB")</code> can be omitted: the function can figure it on its own. Personally, I prefer to be explicit in my code and strongly recommend that you stick to this practice as well, at least in the beginning. This will help you to avoid possible issues when R runs off doing something irrelevant—and that may happen.</p>
+</div>
+<div id="pivot_-functions" class="section level3 hasAnchor" number="4.10.9">
+<h3><span class="header-section-number">4.10.9</span> <code>pivot_*()</code> functions<a href="data-manipulation-i.html#pivot_-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two pivot functions, <code>pivot_long()</code> and <code>pivot_wide()</code>, which are extremely helpful when your data comes in some sub-optimal format, or when sometimes you need to transform your data to be used with some other tool that require a different format.</p>
+<p>Let’s first calculate how many individuals we have for each place and each century. We will then pick the top 10 places with the highest number of individuals.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-manipulation-i.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get readable names of places</span></span>
+<span id="cb52-2"><a href="data-manipulation-i.html#cb52-2" aria-hidden="true" tabindex="-1"></a>lugarNombres <span class="ot">&lt;-</span> PUA<span class="sc">$</span>lugar <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href="data-manipulation-i.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idLugar, nombre_castellano)</span>
+<span id="cb52-4"><a href="data-manipulation-i.html#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="data-manipulation-i.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># count people in places</span></span>
+<span id="cb52-6"><a href="data-manipulation-i.html#cb52-6" aria-hidden="true" tabindex="-1"></a>lugar <span class="ot">&lt;-</span> PUA<span class="sc">$</span>personaje_lugar <span class="sc">%&gt;%</span></span>
+<span id="cb52-7"><a href="data-manipulation-i.html#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idLugar, idPersonaje, idRelacion) <span class="sc">%&gt;%</span></span>
+<span id="cb52-8"><a href="data-manipulation-i.html#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(personajeLite, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;idPersonaje&quot;</span> <span class="ot">=</span> <span class="st">&quot;idPersonaje&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-9"><a href="data-manipulation-i.html#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>nombreA, <span class="sc">-</span>nacimiento, <span class="sc">-</span>edad, <span class="sc">-</span>muerteCE) <span class="sc">%&gt;%</span></span>
+<span id="cb52-10"><a href="data-manipulation-i.html#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">century =</span> plyr<span class="sc">::</span><span class="fu">round_any</span>(muerte, <span class="dv">100</span>, <span class="at">f =</span> ceiling)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-11"><a href="data-manipulation-i.html#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(century))</span>
+<span id="cb52-12"><a href="data-manipulation-i.html#cb52-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-13"><a href="data-manipulation-i.html#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="co"># sleect the top 10 paces</span></span>
+<span id="cb52-14"><a href="data-manipulation-i.html#cb52-14" aria-hidden="true" tabindex="-1"></a>lugarTop10 <span class="ot">&lt;-</span> lugar <span class="sc">%&gt;%</span></span>
+<span id="cb52-15"><a href="data-manipulation-i.html#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(idLugar) <span class="sc">%&gt;%</span></span>
+<span id="cb52-16"><a href="data-manipulation-i.html#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb52-17"><a href="data-manipulation-i.html#cb52-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-18"><a href="data-manipulation-i.html#cb52-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, <span class="at">wt =</span> total)</span>
+<span id="cb52-19"><a href="data-manipulation-i.html#cb52-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-20"><a href="data-manipulation-i.html#cb52-20" aria-hidden="true" tabindex="-1"></a><span class="co"># creating the summary</span></span>
+<span id="cb52-21"><a href="data-manipulation-i.html#cb52-21" aria-hidden="true" tabindex="-1"></a>lugarSummary <span class="ot">&lt;-</span> lugar <span class="sc">%&gt;%</span></span>
+<span id="cb52-22"><a href="data-manipulation-i.html#cb52-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(idLugar, century) <span class="sc">%&gt;%</span></span>
+<span id="cb52-23"><a href="data-manipulation-i.html#cb52-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">individuals =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb52-24"><a href="data-manipulation-i.html#cb52-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(idLugar <span class="sc">%in%</span> lugarTop10<span class="sc">$</span>idLugar) <span class="sc">%&gt;%</span></span>
+<span id="cb52-25"><a href="data-manipulation-i.html#cb52-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lugarNombres)</span></code></pre></div>
+<p>Ok, our summary looks like this:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="data-manipulation-i.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lugarSummary</span>
+<span id="cb53-2"><a href="data-manipulation-i.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 78 × 4</span></span>
+<span id="cb53-3"><a href="data-manipulation-i.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Groups:   idLugar [10]</span></span>
+<span id="cb53-4"><a href="data-manipulation-i.html#cb53-4" aria-hidden="true" tabindex="-1"></a>   idLugar century individuals nombre_castellano</span>
+<span id="cb53-5"><a href="data-manipulation-i.html#cb53-5" aria-hidden="true" tabindex="-1"></a>     <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>       <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>            </span>
+<span id="cb53-6"><a href="data-manipulation-i.html#cb53-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>      <span class="dv">24</span>     <span class="dv">300</span>           <span class="dv">1</span> Almería          </span>
+<span id="cb53-7"><a href="data-manipulation-i.html#cb53-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>      <span class="dv">24</span>     <span class="dv">400</span>           <span class="dv">6</span> Almería          </span>
+<span id="cb53-8"><a href="data-manipulation-i.html#cb53-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>      <span class="dv">24</span>     <span class="dv">500</span>         <span class="dv">116</span> Almería          </span>
+<span id="cb53-9"><a href="data-manipulation-i.html#cb53-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>      <span class="dv">24</span>     <span class="dv">600</span>         <span class="dv">194</span> Almería          </span>
+<span id="cb53-10"><a href="data-manipulation-i.html#cb53-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>      <span class="dv">24</span>     <span class="dv">700</span>          <span class="dv">52</span> Almería          </span>
+<span id="cb53-11"><a href="data-manipulation-i.html#cb53-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>      <span class="dv">24</span>     <span class="dv">800</span>          <span class="dv">60</span> Almería          </span>
+<span id="cb53-12"><a href="data-manipulation-i.html#cb53-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>      <span class="dv">24</span>     <span class="dv">900</span>           <span class="dv">1</span> Almería          </span>
+<span id="cb53-13"><a href="data-manipulation-i.html#cb53-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>       <span class="dv">4</span>     <span class="dv">100</span>           <span class="dv">2</span> Córdoba          </span>
+<span id="cb53-14"><a href="data-manipulation-i.html#cb53-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>       <span class="dv">4</span>     <span class="dv">200</span>          <span class="dv">33</span> Córdoba          </span>
+<span id="cb53-15"><a href="data-manipulation-i.html#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>       <span class="dv">4</span>     <span class="dv">300</span>         <span class="dv">220</span> Córdoba          </span>
+<span id="cb53-16"><a href="data-manipulation-i.html#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ 68 more rows</span></span>
+<span id="cb53-17"><a href="data-manipulation-i.html#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p>We can actually <em>pivot</em> this summary table to make it more friendly for including into a publication:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-manipulation-i.html#cb54-1" aria-hidden="true" tabindex="-1"></a>lugarSummaryWide <span class="ot">&lt;-</span> lugarSummary <span class="sc">%&gt;%</span></span>
+<span id="cb54-2"><a href="data-manipulation-i.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="data-manipulation-i.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(century, individuals, nombre_castellano) <span class="sc">%&gt;%</span></span>
+<span id="cb54-4"><a href="data-manipulation-i.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> nombre_castellano, <span class="at">values_from =</span> individuals)</span></code></pre></div>
+<p>The results look much better:</p>
+<p><img src="images/PUAR/PUAR_wideTibble.png" /></p>
+<p>We can also return it back into its original long state in the following manner:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="data-manipulation-i.html#cb55-1" aria-hidden="true" tabindex="-1"></a>lugarSummaryLong <span class="ot">&lt;-</span> lugarSummaryWide <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="data-manipulation-i.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>century, <span class="at">names_to =</span> <span class="st">&quot;places&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;individuals&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="data-manipulation-i.html#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(places)</span></code></pre></div>
+<p>Results will look like:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="data-manipulation-i.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lugarSummaryLong</span>
+<span id="cb56-2"><a href="data-manipulation-i.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 100 × 3</span></span>
+<span id="cb56-3"><a href="data-manipulation-i.html#cb56-3" aria-hidden="true" tabindex="-1"></a>   century places  individuals</span>
+<span id="cb56-4"><a href="data-manipulation-i.html#cb56-4" aria-hidden="true" tabindex="-1"></a>     <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>         <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
+<span id="cb56-5"><a href="data-manipulation-i.html#cb56-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>     <span class="dv">100</span> Almería          <span class="cn">NA</span></span>
+<span id="cb56-6"><a href="data-manipulation-i.html#cb56-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>     <span class="dv">200</span> Almería          <span class="cn">NA</span></span>
+<span id="cb56-7"><a href="data-manipulation-i.html#cb56-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>     <span class="dv">300</span> Almería           <span class="dv">1</span></span>
+<span id="cb56-8"><a href="data-manipulation-i.html#cb56-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>     <span class="dv">400</span> Almería           <span class="dv">6</span></span>
+<span id="cb56-9"><a href="data-manipulation-i.html#cb56-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>     <span class="dv">500</span> Almería         <span class="dv">116</span></span>
+<span id="cb56-10"><a href="data-manipulation-i.html#cb56-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>     <span class="dv">600</span> Almería         <span class="dv">194</span></span>
+<span id="cb56-11"><a href="data-manipulation-i.html#cb56-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>     <span class="dv">700</span> Almería          <span class="dv">52</span></span>
+<span id="cb56-12"><a href="data-manipulation-i.html#cb56-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>     <span class="dv">800</span> Almería          <span class="dv">60</span></span>
+<span id="cb56-13"><a href="data-manipulation-i.html#cb56-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>     <span class="dv">900</span> Almería           <span class="dv">1</span></span>
+<span id="cb56-14"><a href="data-manipulation-i.html#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>    <span class="dv">1000</span> Almería          <span class="cn">NA</span></span>
+<span id="cb56-15"><a href="data-manipulation-i.html#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ 90 more rows</span></span>
+<span id="cb56-16"><a href="data-manipulation-i.html#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<p><strong>Note:</strong> most commonly this <code>pivot</code> operation is performed to convert long tables into wide and the other way around. However, <em>pivoting</em> also has an additional valuable function—as you can see in the example above, we now have <code>NA</code> for those centuries that did not have any values in the original data. Having such “blindspots” may lead to faulty visualizations and analyses; <em>pivoting</em> can help to ensure that the data is <em>complete</em> and all necessary values are accounted for.</p>
+</div>
+</div>
+<div id="homework-tasks" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Homework Tasks<a href="data-manipulation-i.html#homework-tasks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Essentially, this will be your first research assignment: you will actually learn some things — probably, quite a lot — which are not a common knowledge in the field. Simultaneously, you will practice all the data manipulation skills that we have covered in the lesson.</p>
+<p>Your homework task is to create a notebook for this lesson. For part I, rerun all the code from this lesson in your notebook to make sure it works and you are gaining some understanding of how it works; for the second part, give solutions to all the problems that are given below. Your code chunks should print the answer that comes from your calculations and manipulations. After your code chunk provide a human-readable answer — one or two sentences is sufficient.</p>
+<ol style="list-style-type: decimal">
+<li>Who is the oldest individual we have in the PUA data?</li>
+<li>Which places did this individual visit?</li>
+<li>What kind of activities was that individual involved in?</li>
+<li>Who is the oldest jurist (<em>faqīh</em>) in the PUA data?</li>
+<li>Can you find a person who traveled the most?</li>
+<li>Can you find a century in which Andalusians traveled the most?</li>
+<li>What are the 10 most common activities Andalusians were involved into?</li>
+<li>What are the most common activities in the 5th AH century?</li>
+<li>What are the main locations of the 5 largest families?</li>
+<li>What are the most visited locations among the members of those families? <!-- this one is practically the same as the one above --></li>
+<li>In which century do we have the largest number of families?</li>
+<li>What is the peak century in the history of al-Andalus? (This can be measured by the highest number of people.)</li>
+<li>What is the most prominent location in al-Andalus in general? What about by centuries? (Prominent means that it has the highest number of people associated with it.)</li>
+<li>What is the most prominent location outside of al-Andalus? What about by centuries?</li>
+<li>Do the same task, but for common era centuries. <strong>Hint:</strong> you will also need to use a function from the previous lesson that converts AH dates to CE dates. Think carefully where you need to plug it in, i.e. between what steps.</li>
+</ol>
+</div>
+<div id="appendix-window-function-in-tidyverse" class="section level2 hasAnchor" number="4.12">
+<h2><span class="header-section-number">4.12</span> Appendix: “Window” function in <code>tidyverse</code><a href="data-manipulation-i.html#appendix-window-function-in-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Just in case, I am including some information on window functions. In the context of the <code>tidyverse</code> (package <code>dplyr</code>), there is a concept of window functions that allow you to perform calculations across a set of rows related to the current row. These functions are particularly useful when working with time series data or data that has a natural ordering. Some common window functions include:</p>
+<ol style="list-style-type: decimal">
+<li><code>lag()</code>: Accesses previous rows in a dataset. By default, it retrieves the value from the row immediately preceding the current row, but you can specify the number of rows to go back.</li>
+<li><code>lead()</code>: Accesses following rows in a dataset. By default, it retrieves the value from the row immediately after the current row, but you can specify the number of rows to go forward.</li>
+<li><code>cumsum()</code>, <code>cumprod()</code>, <code>cummin()</code>, and <code>cummax()</code>: Calculate the cumulative sum, product, minimum, and maximum, respectively, up to the current row.</li>
+<li><code>row_number()</code>: Generates row numbers, often used for ranking.</li>
+<li><code>dense_rank()</code>, <code>min_rank()</code>, and <code>percent_rank()</code>: Generate ranking scores based on different ranking methods.</li>
+<li><code>ntile()</code>: Divides the dataset into a specified number of groups (tiles) based on the order of the data.</li>
+</ol>
+<p>To use these window functions, you generally need to use <code>group_by()</code> first to define the grouping structure, and then you can apply the window functions using <code>mutate()</code> or <code>summarise()</code>. Additionally, you can use the <code>arrange()</code> function to ensure the data is ordered correctly before applying the window functions.</p>
+<p>For example, here’s a simple code snippet that demonstrates the use of <code>lag()</code>:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="data-manipulation-i.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb57-2"><a href="data-manipulation-i.html#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="data-manipulation-i.html#cb57-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb57-4"><a href="data-manipulation-i.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">&quot;2021-01-01&quot;</span>), <span class="fu">as.Date</span>(<span class="st">&quot;2021-01-10&quot;</span>), <span class="at">by =</span> <span class="st">&quot;day&quot;</span>),</span>
+<span id="cb57-5"><a href="data-manipulation-i.html#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">runif</span>(<span class="dv">10</span>)</span>
+<span id="cb57-6"><a href="data-manipulation-i.html#cb57-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-7"><a href="data-manipulation-i.html#cb57-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-8"><a href="data-manipulation-i.html#cb57-8" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb57-9"><a href="data-manipulation-i.html#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb57-10"><a href="data-manipulation-i.html#cb57-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">previous_value =</span> <span class="fu">lag</span>(value))</span></code></pre></div>
+<p>In this example, the <code>previous_value</code> column is created using the <code>lag()</code> function, which contains the value from the row immediately preceding the current row.</p>
+<!--
+
+## Appendix: PUA Database Description
+
+> ![[PUA_R - Appendix - PUA Data Tables - Detailed]]
+
+-->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-markdown-and-r-notebooks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-manipulation-ii.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "github"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/040-Class04.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/040-Class04.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>

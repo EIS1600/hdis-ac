@@ -1,4 +1,4 @@
-# Class 01. Setting Everything Up
+# Setting Everything Up
 
 [*subject to updates and corrections*]
 
@@ -81,5 +81,3 @@ So, how to create a project?
 	- **Command Line** is the most foundational tool for anyone interested in doing anything remotely interesting with computers. Unlike graphical-user-interfaces (GIU), here you give commands to the computer by typing them in directly. You will need one of the following two tutorials, depending on whether you use Mac or Windows. You should try to repeat at least some of the commands given in tutorials. These tutorials are a little bit more detailed than what you will need for now; the most important thing for you to understand is how to navigate your computer (i.s., move from one folder to another), copy and move files, create folders, etc.
 		- **Mac**. Ian Milligan and James Baker, "Introduction to the Bash Command Line," *Programming Historian 3* (2014), https://doi.org/10.46430/phen0037
 		- **Windows**. Ted Dawson, "Introduction to the Windows Command Line with PowerShell," *Programming Historian 5* (2016), https://doi.org/10.46430/phen0054
-
-

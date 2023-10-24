@@ -1,6 +1,741 @@
-# Class 06
+# Control Flow; Regular Expressions
 
-[*subject to updates and corrections*]
+## This Chapter
+
+we will discuss and learn about control flow in R, which includes:
+
+- conditional statements;
+- loops;
+- functions;
+
+and also:
+
+- regular expressions;
+
+## Control Flow
+
+Control flow refers to the order in which code is executed in a programming language. It is used to create logical structures and conditionally execute code based on specific conditions, enabling you to build more advanced and powerful programs. In R, there are several constructs that allow you to control the flow of your code, such as conditional statements, loops, and functions.
+
+### Conditional statements
+
+####  `if`, `else` and `else if` statements
+
+In R, `if`, `else`, and `else if` are used to create conditional statements that control the flow of your code based on specific conditions. These constructs allow you to execute different blocks of code depending on whether certain conditions are met. Here's a brief explanation of each:
+
+1.  `if`: The `if` statement is used to test a condition. If the condition is true, the code within the curly braces `{}` following the `if` statement is executed. If the condition is false, the code is skipped.
+
+```R
+x <- 5
+
+if (x > 0) {
+  print("x is positive")
+}
+```
+
+In this example, since `x > 0` is true, the message "x is positive" will be printed.
+
+2.  `else`: The `else` statement is used in conjunction with an `if` statement. If the condition in the `if` statement is false, the code within the curly braces `{}` following the `else` statement is executed.
+
+```R
+x <- -5
+
+if (x > 0) {
+  print("x is positive")
+} else {
+  print("x is non-positive")
+}
+```
+
+In this example, since `x > 0` is false, the message "x is non-positive" will be printed.
+
+3.  `else if`: The `else if` statement is used to test additional conditions when the previous `if` or `else if` conditions are false. If the condition in the `else if` statement is true, the code within the curly braces `{}` following the `else if` statement is executed. If the condition is false, the code is skipped, and the next `else if` or `else` statement (if any) is evaluated.
+
+```R
+x <- 0
+
+if (x > 0) {
+  print("x is positive")
+} else if (x < 0) {
+  print("x is negative")
+} else {
+  print("x is zero")
+}
+```
+
+Keep in mind that only the first condition which is evaluated to `True` will be executed - the other cases are ignored afterwards. Therefore consider the order in which conditions are tested.
+
+```R
+x <- 15
+if (x > 0) {
+  print("x is greater than zero")
+} else if (x > 10) {
+  print("x is greater than ten")
+}
+```
+
+```R
+[1] "x is greater than zero"
+```
+
+The output is greater than zero because the first condition is already `True`, so the second case is ignored even though that condition would be `True` as well.
+
+#### `ifelse()` function
+
+`ifelse()` is a vectorized function in R that takes three arguments: a test condition, a value to return if the condition is `True`, and a value to return if the condition is `False`. It can be used to create a new vector by applying a condition to an existing vector. 
+
+Here’s an example of how to use `ifelse()`:
+
+```R
+# Create a vector of numbers
+numbers <- c(1, -2, 3, -4, 5)
+
+# Create a new vector using ifelse()
+number_signs <- ifelse(numbers >= 0, "positive", "negative")
+
+# Print the resulting vector
+print(number_signs)
+```
+
+In this example, we create a numeric vector called `numbers` containing both positive and negative values. We then use `ifelse()` to create a new character vector called `number_signs`. For each element in `numbers`, `ifelse()` checks if the number is greater than or equal to 0 (i.e., positive). If the condition is TRUE, the corresponding element in `number_signs` will be "positive". If the condition is FALSE, the corresponding element in `number_signs` will be "negative". The resulting `number_signs` vector will look like this:
+
+```R
+[1] "positive" "negative" "positive" "negative" "positive"
+```
+
+#### Tasks
+
+- modify this code that would check whether the date (year in Common Era) is pre-Islamic or not; try both approaches.
+
+```R
+dates <- c(748, 600, 1500, 902, 571, 314, 3)
+```
+
+### Loops
+
+Loops are a fundamental programming concept used to execute a block of code repeatedly until a certain condition is met. In R, there are two primary types of loops: `for` loops and `while` loops.
+
+-   `for`: This loop is used to iterate over a sequence (e.g., a vector, list, or range) and execute a block of code for each element in the sequence.
+-   `while`: This loop is used to execute a block of code as long as a specified condition is true.
+
+```R
+# for loop
+for (i in 1:5) {
+  print(i)
+}
+
+# while loop
+counter <- 1
+while (counter <= 5) {
+  print(counter)
+  counter <- counter + 1
+}
+```
+
+####  `for` loops:
+
+A `for` loop iterates over a sequence (e.g., a vector, list, or range) and executes the code block for each element in the sequence. The syntax for a `for` loop in R is:
+
+```R
+for (variable in sequence) {
+  # Code to execute for each element in the sequence
+  # The current element is stored in variable and is accessible inside the loop
+}
+```
+
+For example, to iterate over a vector of numbers and print each number:
+
+```R
+numbers <- c(1, 2, 3, 4, 5)
+
+for (number in numbers) {
+  print(number)
+}
+```
+
+#### `while` loops:
+
+A `while` loop executes a block of code as long as a specified condition is true. The syntax for a `while` loop in R is:
+
+```R
+while (condition) {
+  # Code to execute while the condition is true
+}
+```
+
+For example, to print the numbers from 1 to 5 using a `while` loop:
+
+```R
+counter <- 1
+
+while (counter <= 5) {
+  print(counter)
+  counter <- counter + 1
+}
+```
+
+While loops can be powerful, but they can also lead to infinite loops if the specified condition never becomes false. Make sure to include logic inside the loop that eventually makes the condition false to avoid infinite loops.
+
+In addition to `while` loops, R provides the `repeat` loop. 
+
+```R
+repeat  {
+  # Do something
+  if (condition) {
+    # If true exit the loop
+    break
+  }
+  # Do something else only if the condition was evaluated as False
+}
+```
+
+The repeat loop is executed until the command to exit it is called: `break`. Compared to the `while` loop, the `repeat` loop test the condition at the point you instruct to test the condition (i.e. somewhere in the middle or at the end of the statements **inside** the loop). The `while` loop always tests **before** executing the next cycle of the loop statements.
+
+```R
+counter <- 5
+
+while (counter <= 5) {
+  print('while-loop')
+  print(counter)
+  counter <- counter + 1
+}
+```
+
+The output looks as follows:
+
+```R
+[1] "while-loop"
+[1] 5
+```
+
+```R
+counter <- 5
+
+repeat  {
+  print('repeat-loop')
+  print(counter)
+  if (counter > 5) {
+    break
+  }
+  print('Increment counter')
+  counter <- counter + 1
+}
+```
+
+The output looks as follows:
+
+```R
+[1] "repeat-loop"
+[1] 5
+[1] "Increment counter"
+[1] "repeat-loop"
+[1] 6
+```
+
+Since everything in R revolves around vectors, there are other efficient ways for doing loop-like operation and we will not need to use loops in most cases. However, there are cases when loops are still the only way to go. We will come back to them in the next lessons.
+
+#### `break` and `next`
+
+-   `break`: This statement is used to exit a loop prematurely. Hardly necessary in `while` loops as the condition should take care of exiting the loop.
+-   `next`: This statement is used to skip the current iteration of a loop and continue with the next iteration.
+
+```R
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  print('The current fruit is:')
+  if (x == "banana") {
+    next
+  }
+  print(x)
+}
+```
+
+The output looks as follows:
+
+```R
+[1] "The current fruit is:"
+[1] "apple"
+[1] "The current fruit is:"
+[1] "The current fruit is:"
+[1] "cherry"
+```
+
+#### Tasks
+
+- sort the dates (year in Common Era) into two vectors: one should hold pre-Islamic dates and the other dates after the Hijra. Use a `for` loop. Add elements to a vector with `append(vector, new_element)`
+
+```R
+dates <- c(748, 600, 1500, 902, 571, 314, 3)
+preislamic <- c()
+postislamic <- c()
+
+```
+
+- sort the dates (year in Common Era) into two vectors: one should hold pre-Islamic dates and the other dates after the Hijra. Use a `while` loop.
+
+### Functions
+
+Functions are reusable blocks of code that can be defined and called by name. They can take input arguments, perform a specific task, and return a result. We have already seen some build-in functions as well as functions that we load from different packages. What is important to stress now is that we can also build our own functions.
+
+```R
+# Define a function that adds two numbers
+add_numbers <- function(a, b) {
+  x <- a + b
+  return(x)
+}
+
+# Call the function
+result <- add_numbers(3, 4)
+print(result)
+```
+
+```R
+# Define a function that prints 'hello world!'
+print_hello_world <- function() {
+  print('~^^~')
+  print('hello world!')
+  print('~^^~')
+}
+
+for (i in 1:10) {
+  print('=====')
+  if (i == 2) {
+    # Print those statements from the function
+    print_hello_world()
+  }
+}
+print_hello_world()
+```
+
+The output will look as follows:
+
+```R
+[1] "====="
+[1] "====="
+[1] "~^^~"
+[1] "hello world!"
+[1] "~^^~"
+[1] "====="
+[1] "====="
+[1] "====="
+[1] "====="
+[1] "====="
+[1] "====="
+[1] "====="
+[1] "====="
+[1] "~^^~"
+[1] "hello world!"
+[1] "~^^~"
+```
+
+We want to group certain statements into a separate function whenever we execute the same block of statements multiple times in our code. Grouping those statements into a function ensures the statements are called in the exact same way in each of the occurrences without having to type the same code again (which is usually prone to errors).
+
+#### Tasks
+
+- write a function that converts AH dates (just years) to CE dates;
+	- think of additional convenient features, like converting a year to a nice date statement. For example, we take `750` and it gets converted into 750AH/1349CE, or something like that.
+- write a function that converts CE dates to AH dates;
+- write a function that converts period statements like `132-656` and converts it to 132-656AH/750-1258CE, and the other way around.
+
+Useful functions for these tasks:
+- `paste()` and `paste0()` — they allow to “paste” things together. For example, `paste0(750, "CE")` will give `750CE`.
+	- `paste()` --- automatically inserts a single space between pasted elements; 
+	- `paste0()` --- pastes elements together, creating a single string of characters;
+	
+```R
+print(paste(750, "CE"))
+[1] "750 CE"
+print(paste0(750, "CE"))
+[1] "750CE"
+print(paste(750, "CE", sep=";"))
+[1] "750;CE"
+print(paste(fruits, collapse=", "))
+[1] "apple, banana, cherry"
+```
+	
+Try to apply the final function to a vector of dates: all values in the vector should be converted.
+
+**Solution (partial):**
+
+```R
+AH2CEa <- function(AH) {
+  CE <- round(AH - AH/33 + 622)
+  return(CE)
+}
+
+AH2CEb <- function(AH) {
+  CE <- round(AH - AH/33 + 622)
+  AH <- ifelse(AH == 0, 1, AH)
+  final <- paste0(AH, " AH / ", CE, " CE")
+  return(final)
+}
+
+periodsAH <- seq(0, 1400, 50)
+periodsCEa <- AH2CEa(periodsAH)
+periodsCEb <- AH2CEb(periodsAH)
+```
+
+```R
+> periodsCEa
+ [1]  622  670  719  767  816  864  913  961 1010 1058 1107 1155 1204 1252 1301 1349 1398 1446 1495 1543 1592 1640 1689
+[24] 1737 1786 1834 1883 1931 1980
+```
+
+```R
+> periodsCEb
+ [1] "1 AH / 622 CE"     "50 AH / 670 CE"    "100 AH / 719 CE"   "150 AH / 767 CE"   "200 AH / 816 CE"  
+ [6] "250 AH / 864 CE"   "300 AH / 913 CE"   "350 AH / 961 CE"   "400 AH / 1010 CE"  "450 AH / 1058 CE" 
+[11] "500 AH / 1107 CE"  "550 AH / 1155 CE"  "600 AH / 1204 CE"  "650 AH / 1252 CE"  "700 AH / 1301 CE" 
+[16] "750 AH / 1349 CE"  "800 AH / 1398 CE"  "850 AH / 1446 CE"  "900 AH / 1495 CE"  "950 AH / 1543 CE" 
+[21] "1000 AH / 1592 CE" "1050 AH / 1640 CE" "1100 AH / 1689 CE" "1150 AH / 1737 CE" "1200 AH / 1786 CE"
+[26] "1250 AH / 1834 CE" "1300 AH / 1883 CE" "1350 AH / 1931 CE" "1400 AH / 1980 CE"
+```
+
+## Regular Expressions in R
+
+Regular expressions (often abbreviated as regex or regexp) are a powerful pattern-matching tool used in text processing and searching. They are essentially a sequence of characters that define a search pattern, which can then be used to find, replace, or manipulate text based on that pattern. Regular expressions are widely used in programming languages, text editors, search engines, and other tools that deal with text data.
+
+Like most other programming languages, R has support for regular expressions and in this tutorial will guide you through their usage in R.
+
+### Basics of Regular Expressions
+
+Here are some examples for the first part of the tutorial, focusing on the basics of regular expressions:
+
+1.  Literals:
+    -   Literal characters match themselves exactly.
+    - Example:
+	    -   Pattern: `cat`
+	    -   Matches: `'cat'` in the string `'The cat is on the mat.'`
+1.  Metacharacters:
+    -   Metacharacters have special meanings in regex and are used to build more complex patterns.
+    -   Example metacharacters: `.` (matches any single character), `*` (matches zero or more repetitions of the preceding character), `+` (matches one or more repetitions of the preceding character)
+    - Example:
+	    -   Pattern: `c.t`
+	    -   Matches: `'cat'`, `'cot'`, `'c1t'`, etc.
+1.  Character classes:
+    -   Character classes are used to match specific types of characters.
+    -   Examples: `\d` (matches digits), `\w` (matches word characters), `\s` (matches whitespace characters)
+    - Example:
+	    -   Pattern: `\d{4}-\d{2}-\d{2}`
+	    -   Matches: `'2021-09-30'` in the string `'The event will take place on 2021-09-30.'`
+1.  Custom character classes:
+    -   You can create custom character classes using square brackets `[...]`.
+    -   Example: `[aeiou]` (matches any vowel), `[A-Za-z0-9]` (matches any alphanumeric character)
+    - Example:
+	    -   Pattern: `b[aeiou]t`
+	    -   Matches: `'bat'`, `'bet'`, `'bit'`, `'bot'`, `'but'`
+1.  Quantifiers:
+    -   Quantifiers specify how many times a character or a group of characters should be repeated.
+    -   Examples: `*` (zero or more), `+` (one or more), `?` (zero or one), `{n}` (exactly n times), `{n,}` (at least n times), `{n,m}` (at least n, but not more than m times)
+    - Example:
+	    -   Pattern: `ca{2,4}t`
+	    -   Matches: `'caat'`, `'caaat'`, `'caaaat'`
+1.  Grouping with parentheses:
+    -   Parentheses are used to group characters and apply quantifiers to the entire group.
+    - Example:
+	    -   Pattern: `(ab)+`
+	    -   Matches: `'ab'`, `'abab'`, `'ababab'`, etc.
+1.  Alternation with the pipe symbol:
+    -   The pipe symbol `|` is used to represent alternation (i.e., a choice between multiple patterns).
+    - Example:
+	    -   Pattern: `apple|banana`
+	    -   Matches: `'apple'` or `'banana'`
+1. Anchors: Anchors are used to specify the position of the match in the input string, which can be extremely helpful in a great number of research scenarios:
+	- `^` and `$` match the beginning and the end of a string respectively.
+	- Example:
+		- `^this` will only match the first instance of “this” in `'this is ridiculous and this is ridiculous'`, while `ridiculous$` will only match the last instance of “ridiculous”.
+	- `\b` matches word boundary.
+	- Example:
+		- `cat` will get two matches in `'This cat is a catastrophe waiting to happen!'`: the first match will be `cat` in “cat” , while the second match will be `cat` in “catastrophe”.
+		- `\bcat\b` will only match `cat` in “cat”.
+ 
+These examples should help you demonstrate the basics of regular expressions and how they can be used to create patterns for matching text. Remember to provide explanations and context for each example, so readers can understand the concepts being introduced.
+
+### Regular Expressions in R
+
+There is a number of regular expression functions in R, but we will stick to what we have in `tidyverse`. (You can learn about others on your own.) In the `tidyverse`, regular expressions are often used in conjunction with string manipulation functions from the `stringr` package. The `stringr` package provides a consistent, simple, and efficient set of functions for working with strings, and it is part of the `tidyverse`. Here are some examples of using regular expressions with `stringr` functions (Run these lines in R to check the results!):
+
+1.  `str_detect()`: Test if a pattern is present in a string.
+
+```R
+library(tidyverse)
+
+words <- c("apple", "banana", "cherry", "date")
+pattern <- "a."
+
+words_with_a <- str_detect(words, pattern)
+print(words_with_a)
+```
+2.  `str_replace()`: Replace the **first** occurrence of a pattern with a specified string.
+
+```R
+text <- "The quick brown fox jumps over the lazy dog."
+pattern <- "o\\w+"
+replacement <- "XXXX"
+
+new_text <- str_replace(text, pattern, replacement)
+print(new_text)
+```
+3.  `str_replace_all()`: Replace **all** occurrences of a pattern with a specified string.
+
+```R
+text <- "The quick brown fox jumps over the lazy dog."
+pattern <- "o\\w+"
+replacement <- "XXXX"
+
+new_text <- str_replace_all(text, pattern, replacement)
+print(new_text)
+```
+4.  `str_extract()`: Extract the **first** occurrence of a pattern from a string.
+
+```R
+text <- "The price is $25.99, and the discount is $5."
+pattern <- "\\$\\d+\\.\\d{2}"
+
+price <- str_extract(text, pattern)
+print(price)
+```
+5.  `str_extract_all()`: Extract **all** occurrences of a pattern from a string.
+
+```R
+text <- "The price is $25.99, and the discount is $5."
+pattern <- "\\$\\d+(\\.\\d{2})?"
+
+prices <- str_extract_all(text, pattern)
+print(prices)
+```
+
+6.  `str_split()`: Split a string based on a pattern.
+
+```R
+text <- "apple,banana;cherry|date"
+pattern <- ","
+
+split_text <- str_split(text, pattern)
+print(split_text)
+```
+
+```R
+text <- "apple,banana;cherry|date"
+pattern <- "[,;|]"
+
+split_text <- str_split(text, pattern)
+print(split_text)
+```
+
+In each example, the `pattern` argument is a regular expression, and the functions from the `stringr` package are used to manipulate the strings based on the pattern. The `tidyverse` ecosystem makes it easy to integrate regular expressions with data manipulation tasks, such as filtering, transforming, or summarizing data in data frames or tibbles.
+
+Regular expressions can be used in `if` statements, loops, functions, as well as, generally, in the processing of all main data structures.
+
+### Tips for Regular Expressions in R
+
+1.  Start simple and build complexity gradually. Regular expressions is not an exact science, so to speak, but rather an art. It takes some time to get used to them.
+2. Regular expressions are greedy, i.e. they tend to catch more than you really need. Usually, it is relatively easy to write a regular expression that catches what you need, but it is much more difficult to write a regular expression in such a way that it does not what you do not need. This takes practice. 
+3.  Test your regex patterns using online tools like <https://regex101.com/> (although it does not seem to support R). It also helps to use text editors (*Sublime Text*, *Kate*, etc.) that support regular expressions: paste a sample of a text you are working with and test your regular expression—in such text editors matches are usually automatically highlighted.  
+4. Use comments and whitespace to make complex regex patterns more readable. In R, you can use comments and whitespace to make complex regular expressions more readable by employing the `(?#...)` syntax for inline comments and the `(?x)` modifier to enable free-spacing mode. In free-spacing mode, whitespace between regex tokens is ignored, allowing you to format the pattern for readability. Here's an example:
+```R
+library(stringr)
+
+# Sample text
+text <- "Phone numbers: (123) 456-7890, 321-654-0987, +1 (987) 654-3210"
+
+# Complex regex pattern to match phone numbers
+pattern <- regex("
+  (?x)                 (?# Enable free-spacing mode)
+  (\\+\\d\\s)?         (?# Optional international prefix with a space)
+  (\\(?\\d{3}\\)?\\s?) (?# Optional area code with optional parentheses and space)
+  \\d{3}               (?# First three digits of the phone number)
+  [-]                  (?# Separator: hyphen)
+  \\d{4}               (?# Last four digits of the phone number)
+", comments = TRUE)
+
+# Extract phone numbers from the text using the pattern
+phone_numbers <- unlist(str_extract_all(text, pattern))
+print(phone_numbers)
+```
+In this example, we create a complex regex pattern to match different phone number formats. We use inline comments with `(?#...)` and free-spacing mode with `(?x)` to make the pattern more readable. The `str_extract_all()` function from the `stringr` package is then used to extract the phone numbers from the sample text.
+
+5. Be aware of R's string escaping rules when using regex patterns (e.g., using double backslashes `\\` instead of single ones `\`).
+6. You can find the most detailed description of all the possible options in for regular expressions `stringr` at <https://stringr.tidyverse.org/articles/regular-expressions.html>.
+
+### In-Class Practice
+
+- get some long-ish text variable;
+- assign a series of tasks to find something very specific in that text;
+- perhaps, the “old” practice file can be used in `Sublime Text` (it is best to use the same editor for this exercise).
+
+### The Practice Regex File
+
+```
+======================================================
+===Regular Expression Practical Session===============
+======================================================
+	[Regex Interactive Tutorial: http://regexone.com/]
+	Best works in text editors:
+		EditPad Lite/Pro on Windows (decent support of Arabic)
+		Sublime Text or TextMate on Mac (limited support of Arabic)
+	Alternatively, either of web RE testers:
+		http://regexpal.com/, http://regexr.com/, http://regex101.com/:
+		copy-paste the text into the lower window;
+		test your regular expressions in the upper one.
+		
+	Regex Cheat Sheets:
+		http://www.rexegg.com/regex-quickstart.html
+		
+INTRO
+1. Try the following regex: [ch]at
+	that	at
+	chat	cat
+	fat	phat
+	
+3. Try the following regex: [10][23]
+	02	03	12	13
+
+4. Try the following regex: \d\d\d[- ]\d\d\d\d
+	501-1234	234 1252
+	652.2648	713-342-7452
+	PE6-5000	653-6464x256
+
+5. Try the following regex: runs?
+	runs	run
+	
+6. Try the following regex: 1\d*
+	12345	122345	111111
+	113456	098097	109493
+	510349	673452	005645
+	
+7. Try the following regexes:
+	ar?t, a[fr]?t, ar*t, ar+t, a.*t
+	
+	1: “at”		2: “art”
+	3: “arrrrt”	4: “aft”
+
+PART I
+1. What regular expression matches each of the following?
+	“eat”, “eats”, “ate”, “eaten”, “eating”, “eater”,
+	“eatery”
+
+2. Find all Qadhdhafis...
+	... the name of the country's head of state [is]
+	Colonel Gaddafi. Wait, no, that's Kaddafi. Or maybe it's
+	Qadhafi. Tell you what, we'll just call him by his first
+	name, which is, er ... hoo boy.
+		(SRC: http://tinyurl.com/4839sks)
+	The LOC lists 72 alternate spellings
+		(SRC: http://tinyurl.com/3nnftpt)
+	Maummar Gaddafi, Moamar AI Kadafi, Moamar al-Gaddafi,
+	Moamar el Gaddafi, Moamar El Kadhafi, Moamar Gaddafi,
+	Moamar Gadhafi, Moamer El Kazzafi, Moamer Gaddafi,
+	Moamer Kadhafi, Moamma Gaddafi, Moammar el Gadhafi,
+	Moammar El Kadhafi, Mo'ammar el-Gadhafi, Moammar Gaddafi,
+	Moammar Gadhafi, Mo'ammar Gadhafi, Moammar Ghadafi,
+	Moammar Kadhafi, Moammar Khadaffy, Moammar Khadafy,
+	Moammar Khaddafi, Moammar Qudhafi, Moammer Gaddafi,
+	Mouammer al Gaddafi, Mouammer Al Gaddafi, Mu`amar al-Kad'afi,
+	Mu`ammar al-Qadhdhāfī, Mu'amar al-Kadafi, Muamar Al-Kaddafi,
+	Muamar Gaddafi, Muamar Kaddafi, Muamer Gadafi, Muammar al Gaddafi,
+	Muammar Al Ghaddafi, Muammar Al Qaddafi, Muammar Al Qathafi
+
+3. Find all variations of Iṣbahān
+	(construct the shortest possible regular expression):
+	
+	EASY:
+	Iṣbahān, Iṣfahān, Isbahan,
+	Isfahan, Esfāhān‎, Esfahān,
+	Espahan, Ispahan, Sepahan,
+	Esfahan, Hispahan, Nesf-e Jahān,
+	iṣbahān, iṣfahān, isbahan,
+	isfahan, esfāhān‎, esfahān,
+	espahan, ispahan, sepahan,
+	esfahan, hispahan, nesf-e jahān
+	
+	TRICKY:
+	اصفهان، أصفهان، اسپهان، أصفهــان،
+	أصبهان، آصفهان، إصفهان، آسپهان،
+	ٱصفهــان، اصبهان، إصبهان، آصبهان
 
 
+PART II (more practice)
+
+1. Conversion: Convert “Qaddafi, Muammar” > “Muammar Qaddafi”
+	Qaddafi, Muammar
+	Al-Gathafi, Muammar
+	al-Qadhafi, Muammar
+	Al Qathafi, Muammar
+	Al Qathafi, Muammar
+	El Gaddafi, Moamar
+	El Kadhafi, Moammar
+	El Kazzafi, Moamer
+	El Qathafi, MuAmmar
+	Vader, Darth
+
+2. Find all nisbas:
+
+	EASY:
+	Al-Iṣbahānī, al-Isfahani, Iskandarii,
+	al-Baghdadiya, al-Baġdādīya, al-Kūfī,
+	al-Dhahabi, Jawziyya, aṭ-Ṭabarī
+	
+	TRICKY:
+	الاصبهاني، الاصفهانى، إسكندري،
+	البغدادية، بغدادي، الكوفي،
+	الذهبي، جوزية، الطبري
+	
+3. Find all words of the mafʿūl pattern:
+
+	EASY:
+	al-maqtūl, al-mafʿūl, al-maktūb,
+	al-masʾūlaŧ, al-manṣūraŧ, al-maksūraŧ,
+	maqtūl, mafʿūl, maktūb,
+	masʾūlaŧ, manṣūraŧ, maksūraŧ
+	
+	TRICKY:
+	المقتول، ٱلمفعول، المكتوب،
+	المسؤولة، المنصورة، المكسورة،
+	مقتول، مفعول، مكتوب،
+	مسؤولة، منصورة، مكسورة
+	
+4. Find all given variations of the strong root:
+	EASY:
+	ḫabaza al-ḫabbāzu aḫbazan wa-maḫbūzātin fī maḫbazīhi
+	
+	TRICKY:
+	خبز الخباز أخبازا ومخبوزات في مخبزه
+
+5. Construct regular expressions that find references to the regions of
+	al-Kūfa, al-Baṣra, Wāsiṭ, Baġdād and Ḥulwān. For convenience, toponyms
+	are separated with commas.
+	(Excerpt from al-Muqaddasī):
+	# فاما الكوفة فمن مدنها حمام ابن عمر ، الجامعين ،
+	  سورا ، النيل ، القادسية ، عين التمر .
+	# واما البصرة فمن مدنها الأبلة ، شق عثمان ،
+	  زبان ، بدران ، بيان ، نهر الملك ، دبا ، نهر الأمير ،
+	  ابو الخصيب ، سليمانان ، عبادان ، المطوعة ، والقندل ،
+	  المفتح ، الجعفرية .
+	# واما واسط فمن مدنها فم الصلح ، درمكان ، قراقبة ،
+	  سيادة ، باذبين ، السكر ، الطيب ، قرقوب ، قرية الرمل ،
+	   نهر تيري ، لهبان ، بسامية ، اودسة .
+	# واما بغداد فمن مدنها النهروان ، بردان ، كارة ،
+	  الدسكرة ، طراستان ، هارونية ، جلولا ، باجسرى ، باقبة ،
+	  إسكاف ، بوهرز ، كلواذى ، درزيجان ، المدائن ، كيل ، سيب ،
+	  دير العاقول ، النعمانية ، جرجرايا ، جبل ، نهر سابس ،
+	  عبرتا ، بابل ، عبدس ، قصر ابن هبيرة .
+	# واما حلوان فمن مدنها خانقين ، زبوجان ، شلاشان ، الجامد ،
+	  الحر ، السيروان ، بندنيجان .
+
+6. [In pseudocode] Construct a regular expression that
+	finds dates in Arabic (limit to years)
+  	مات في سنة اثنتين واستقر بعده محمد بن غرلو.
+  	ولد البهاء في سنة ثمان وسبعين وخمسمائة، وسمع من فلان.
+  	ولد بالقاهرة في سنة أربع عشرة تقريبا وأمه أم ولد.
+  	مات بالطاعون في سنة ثلاث وثلاثين.
+  	ولد سنة تسع وتسعين بدمشق.
+  	وقد حج صاحب الترجمة في سنة تسع وثمانين.
+  	توفي في ذي الحجة سنة تسع عشرة.
+  	توفي سنة تسع وثلاثين.
+  	ولد سنة ثلاث عشرة وست مائة وتوفي سنة عشر وسبع مائة.
+  	حدث بشيراز سنة نيف وأربعين عن يعقوب بن سفيان.
+
+
+```
 

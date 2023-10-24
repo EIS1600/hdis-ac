@@ -62,10 +62,15 @@ Final project will be discussed later. You will have an option to build on what 
 
 ### Additional Study Materials{-}
 
-* Arnold, Taylor, and Lauren Tilton. *Humanities Data in R*. New York, NY: Springer Science+Business Media, 2015 (shared via Slack)
-* Healy, Kieran. *Data Visualization: A Practical Guide.* Princeton University Press, 2018. ISBN: 978-0691181622. <http://socviz.co/>
-* Hadley Wickham & Garrett Grolemund, *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data.* O’Reilly, 2017. ISBN: 978-1491910399. <https://r4ds.had.co.nz/>
-* Wickham, Hadley. *Advanced R*, Second Edition. 2 edition. Boca Raton: Chapman and Hall/CRC, 2019. <http://adv-r.had.co.nz/>
+You can also find recommended literature in the Bibliography below and in the section References.
+
+[**#todo**: add references to the `references.bib` file]
+
+* [@ArnoldHumanities2015] Arnold, Taylor, and Lauren Tilton. *Humanities Data in R*. New York, NY: Springer Science+Business Media, 2015 (shared via Slack)
+* [@HealyData2018] Healy, Kieran. *Data Visualization: A Practical Guide.* Princeton University Press, 2018. ISBN: 978-0691181622. <http://socviz.co/>
+* [@HadleyGgplot22016] Hadley, Wickham. *Ggplot2: Elegant Graphics for Data Analysis.* New York, NY: Springer, 2016.
+* [@HadleyRfoDataScience2017] Hadley Wickham & Garrett Grolemund, *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data.* O’Reilly, 2017. ISBN: 978-1491910399. <https://r4ds.had.co.nz/>
+* [@HadleyAdvanced2014] Wickham, Hadley. *Advanced R*, Second Edition. 2 edition. Boca Raton: Chapman and Hall/CRC, 2019. <http://adv-r.had.co.nz/>
 * Also check <https://bookdown.org/> for more books on R
 * *Coding Club R Tutorials* (focus on Ecology and Environmental Sciences), <https://ourcodingclub.github.io/tutorials.html>
 

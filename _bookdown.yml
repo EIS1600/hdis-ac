@@ -12,7 +12,7 @@ language:
     tab: "TABLE "
   ui:
     edit: "Edit"
-    chapter_name: "CHAPTER "
+    chapter_name: ""
 site: "bookdown::bookdown_site"
 output:
   bookdown::gitbook:
