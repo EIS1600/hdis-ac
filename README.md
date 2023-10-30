@@ -1,4 +1,4 @@
-# hdis-as
+# hdis-ac
 
 Course materials for the audition certificates analysis
 
