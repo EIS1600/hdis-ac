@@ -1,6 +1,6 @@
-# hdis-audition-statements
+# hdis-as
 
-Course materials for the audition statements analysis
+Course materials for the audition certificates analysis
 
 ...
 
