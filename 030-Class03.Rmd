@@ -1,10 +1,6 @@
 # R Markdown and R Notebooks
 
-## Previous lesson
-
-- ...
-
-## This lesson
+## This Chapter
 
 - we will start with R notebooks which will become our main format for the class;
 - you will be creating them for each class, completing assignments, and generating final document which you will be sending to me as your homework;
@@ -12,10 +8,10 @@
 	- `rmarkdown`;
 	- `knitr`;
 - and some files to get us started:
-	- place these three files into the main folder of your project:
-		- `bibliography.bib` 
-		-  `chicago-author-date.csl`
-		-  `chicago-fullnote-bibliography.csl`
+	- place these three files into **the main folder of your project**:
+		- `bibliography.bib` :: [a file with bibliographical records](./bibliography.bib); 
+		- `chicago-author-date.csl` :: [Chicago Manual of Style 17th edition (author-date)](https://www.zotero.org/styles/chicago-author-date) (2022-12-12 04:02:09)
+		- `chicago-fullnote-bibliography.csl` :: [Chicago Manual of Style 17th edition (full note)](https://www.zotero.org/styles/chicago-fullnote-bibliography) (2023-03-31 12:44:56)
 
 ## R Notebook/Markdown
 
@@ -104,7 +100,8 @@ Use the following contents for the `bibliography.bib` file:
   date = {2015},
   publisher = {{Springer Science+Business Media}},
   location = {{New York, NY}},
-  isbn = {978-3-319-20701-8}
+  isbn = {978-3-319-20701-8},
+  langid = {english}
 }
 
 @book{HadleyAdvanced2014,
@@ -122,9 +119,33 @@ Use the following contents for the `bibliography.bib` file:
   title = {Ggplot2: {{Elegant Graphics}} for {{Data Analysis}}},
   author = {Hadley, Wickham},
   date = {2016},
+  langid = {english},
   publisher = {{Springer Science+Business Media, LLC}},
   location = {{New York, NY}},
   isbn = {978-3-319-24275-0}
+}
+
+@book{HadleyRfoDataScience2017,
+  title = {{R} for Data Science: Import, Tidy, Transform, Visualize, and Model Data},
+  author = {Hadley, Wickham and Grolemund, Garrett},
+  date = {2016},
+  langid = {english},
+  publisher = {{O’Reilly}},
+  location = {{Boston}},
+  isbn = {978-1491910399}
+}
+
+
+@book{HealyData2018,
+  title = {Data {{Visualization}}: {{A Practical Introduction}}},
+  shorttitle = {Data {{Visualization}}},
+  author = {Healy, Kieran},
+  date = {2018-12-18},
+  publisher = {{Princeton University Press}},
+  location = {{Princeton, NJ}},
+  isbn = {978-0-691-18161-5},
+  langid = {english},
+  pagetotal = {272}
 }
 ```
 

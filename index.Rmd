@@ -1,10 +1,10 @@
 --- 
-title: "HDIS: Computational Analysis of Data from Audition Statements--with R"
+title: "HDIS: Computational Analysis of Data from Audition Certificates--with R"
 author: ["Maxim G. Romanov"]
 date: "`r Sys.Date()`"
 description: "This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses."
-url: 'https\://eis1600.github.io/hdis-audition-statements/'
-github-repo: "EIS1600/hdis-audition-statements"
+url: 'https\://eis1600.github.io/hdis-ac/'
+github-repo: "EIS1600/hdis-ac"
 apple-touch-icon: "touch-icon.png"
 apple-touch-icon-size: 120
 favicon: "favicon.ico"
@@ -18,4 +18,4 @@ biblio-style: apalike
 
 # Preface{-}
 
-This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses. The current course, “Computational Analysis of Data from Audition Statements--with R”, aims to introduce students to the main methods of data analysis that would be suitable for historical data. Students will learn the basics of the programming language R, which is one of the top choices in the field of Digital Humanities and Digital History. By the end of the course, students will understand how to work with data and how to extract the most valuable insights from it (exploratory data analysis). Students will practice on a dataset created from audition statements from medieval Damascus, thus also gaining original insights into the social history of medieval Islamic learning. There are no prerequisites for this course, except the basic knowledge of Arabic, since the data from audition statements is in Arabic. The course is complimentary to 57-521, where students will be learning how to read the original handwritten audition statements.
+This is a Handbook for Digital Islamicate Studies. Work in progress, based on courses tought. The current course, “Computational Analysis of Data from Audition Certificates--with R”, aims to introduce students to the main methods of data analysis that would be suitable for historical data. Students will learn the basics of the programming language R, which is one of the top choices in the field of Digital Humanities and Digital History. By the end of the course, students will understand how to work with data and how to extract the most valuable insights from it (exploratory data analysis). Students will practice on a dataset created from audition statements from medieval Damascus, thus also gaining original insights into the social history of medieval Islamic learning. There are no prerequisites for this course, except the basic knowledge of Arabic, since the data from audition statements is in Arabic. The course is complimentary to 57-521, where students will be learning how to read the original handwritten audition statements.
