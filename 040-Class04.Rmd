@@ -8,9 +8,9 @@
 	- loading data;
 	- manipulating data;
 	- generating and extracting observations from data;
-- we will start analyzing some data from the PUA database; you will need the following file, which will be shared via Slack. Make sure to put it in the correct folder as shown below (create missing subfolders if they are missing):
-	- `Data/PUA_Processed/PUA_allDataTables_asList.rds` :: this file contains all the data from the original relational database (MySQL) of the PUA project. Like any relational database, this one consists of a series of interconnected tables, which are all described in the appendix to this lesson.
-	- `Data/Pua_Processed/PUA_personaje.tsv` :: this is the main table from the PUA database; in fact, this one is included in the RDS file given above; we will use this file only for practicing loading data into RStudio from TSV, since this is one of the most common operations for loading data.
+- we will start analyzing some data from the PUA database (“Prosopografía de ulemas de al-Andalus”, <https://www.eea.csic.es/pua/>); you will need the following files. Make sure to put it in the correct folder as shown below (create subfolders if they are missing):
+	- `Data/PUA_Processed/PUA_allDataTables_asList.rds`  ([PUA_allDataTables_asList.rds](./data/PUA_allDataTables_asList.rds)):: this file contains all the data from the original relational database (MySQL) of the PUA project. Like any relational database, this one consists of a series of interconnected tables, which are all described in the appendix to this lesson.
+	- `Data/Pua_Processed/PUA_personaje.tsv` ([PUA_personaje.tsv](./data/PUA_allDataTables_asList.rds)) :: this is the main table from the PUA database; in fact, this one is included in the RDS file given above; we will use this file only for practicing loading data into RStudio from TSV, since this is one of the most common operations for loading data.
 	- *questions*:
 		- what format is this data stored in and how can we load it in R?
 		- what is the internal structure of the data?

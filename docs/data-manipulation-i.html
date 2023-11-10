@@ -23,7 +23,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2023-10-31" />
+<meta name="date" content="2023-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -424,10 +424,10 @@ div.csl-indent {
 <li>manipulating data;</li>
 <li>generating and extracting observations from data;</li>
 </ul></li>
-<li>we will start analyzing some data from the PUA database; you will need the following file, which will be shared via Slack. Make sure to put it in the correct folder as shown below (create missing subfolders if they are missing):
+<li>we will start analyzing some data from the PUA database (“Prosopografía de ulemas de al-Andalus”, <a href="https://www.eea.csic.es/pua/" class="uri">https://www.eea.csic.es/pua/</a>); you will need the following files. Make sure to put it in the correct folder as shown below (create subfolders if they are missing):
 <ul>
-<li><code>Data/PUA_Processed/PUA_allDataTables_asList.rds</code> :: this file contains all the data from the original relational database (MySQL) of the PUA project. Like any relational database, this one consists of a series of interconnected tables, which are all described in the appendix to this lesson.</li>
-<li><code>Data/Pua_Processed/PUA_personaje.tsv</code> :: this is the main table from the PUA database; in fact, this one is included in the RDS file given above; we will use this file only for practicing loading data into RStudio from TSV, since this is one of the most common operations for loading data.</li>
+<li><code>Data/PUA_Processed/PUA_allDataTables_asList.rds</code> (<a href="./data/PUA_allDataTables_asList.rds">PUA_allDataTables_asList.rds</a>):: this file contains all the data from the original relational database (MySQL) of the PUA project. Like any relational database, this one consists of a series of interconnected tables, which are all described in the appendix to this lesson.</li>
+<li><code>Data/Pua_Processed/PUA_personaje.tsv</code> (<a href="./data/PUA_allDataTables_asList.rds">PUA_personaje.tsv</a>) :: this is the main table from the PUA database; in fact, this one is included in the RDS file given above; we will use this file only for practicing loading data into RStudio from TSV, since this is one of the most common operations for loading data.</li>
 <li><em>questions</em>:
 <ul>
 <li>what format is this data stored in and how can we load it in R?</li>
