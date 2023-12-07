@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 RStudio, Basic R Commands, Swirl Tutorials | HDIS: Computational Analysis of Data from Audition Certificates–with R</title>
+  <title>9 An Introduction to Git, Github and RStudio’s Git Integration | HDIS: Computational Analysis of Data from Audition Certificates–with R</title>
   <meta name="description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 RStudio, Basic R Commands, Swirl Tutorials | HDIS: Computational Analysis of Data from Audition Certificates–with R" />
+  <meta property="og:title" content="9 An Introduction to Git, Github and RStudio’s Git Integration | HDIS: Computational Analysis of Data from Audition Certificates–with R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   <meta name="github-repo" content="EIS1600/hdis-ac" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 RStudio, Basic R Commands, Swirl Tutorials | HDIS: Computational Analysis of Data from Audition Certificates–with R" />
+  <meta name="twitter:title" content="9 An Introduction to Git, Github and RStudio’s Git Integration | HDIS: Computational Analysis of Data from Audition Certificates–with R" />
   
   <meta name="twitter:description" content="This is a Handbook for Digital Islamicate Studies. Work in progress, based on tought courses." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="touch-icon.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="setting-everything-up.html"/>
-<link rel="next" href="r-markdown-and-r-notebooks.html"/>
+<link rel="prev" href="visualizations-plot-and-ggplot.html"/>
+<link rel="next" href="class-10.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -424,484 +424,222 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rstudio-basic-r-commands-swirl-tutorials" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> RStudio, Basic R Commands, Swirl Tutorials<a href="rstudio-basic-r-commands-swirl-tutorials.html#rstudio-basic-r-commands-swirl-tutorials" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="this-chapter" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> This Chapter<a href="rstudio-basic-r-commands-swirl-tutorials.html#this-chapter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="an-introduction-to-git-github-and-rstudios-git-integration" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> An Introduction to Git, Github and RStudio’s Git Integration<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#an-introduction-to-git-github-and-rstudios-git-integration" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Objectives:</strong></p>
+<p>By the end of the session, students will be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Understand the concept of version control and the benefits of using Git.</li>
+<li>Set up a GitHub account and install Git.</li>
+<li>Initialize and manage a local Git repository.</li>
+<li>Connect a local repository to a remote GitHub repository.</li>
+<li>Use RStudio’s Git integration.</li>
+</ol>
+<hr />
+<p><strong>Why bother?</strong></p>
+<p>Digital humanists use technologies and computational methods to conduct research and project work in the humanities. Git and GitHub are two truly essential tools for any DH project. Here is the list of main reasons to consider:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Version Control:</strong> Digital humanists often work on complex projects that evolve over time. With Git, they can maintain different versions of their work and easily revert to previous versions if necessary. If anything is committed (i.e., saved), it practically cannot be lost and one can always go back to one of the saved states of the project. Project members can also start a new branch to experiment with ideas without affecting the main project.</p></li>
+<li><p><strong>Collaboration:</strong> Git facilitates collaborative work on a project. It provides a tool with which team members can work on the same project without overriding each other’s work, thanks to its version control system.</p></li>
+<li><p><strong>Transparency and Reproducibility:</strong> By hosting their work on GitHub, digital humanists can make their methods and data transparent, which is crucial in academic research. Other researchers can reproduce their work, validate their findings, or build upon their projects. In case you want to keep your project to yourself, GitHub also offers “private” repositories which will be accessible only to you and those you explicitly share it with.</p></li>
+<li><p><strong>Publishing and Dissemination:</strong> GitHub Pages offers a way for digital humanists to easily publish their projects online, which is particularly useful for creating project websites or online portfolios.</p>
+<ol style="list-style-type: decimal">
+<li>Every GitHub user automatically gets an address like <code>username.github.io</code> to host their website. For example, Maxim Romanov’s old website is <a href="https://maximromanov.github.io/" class="uri">https://maximromanov.github.io/</a>; think carefully when you select your username. It makes a lot of sense to use firstNameLastName pattern.</li>
+<li>GitHub also offers integration with Zenodo, <a href="https://zenodo.org/" class="uri">https://zenodo.org/</a>, the official EU open science platform for publishing research projects and research data. Publishing your research data on Zenodo will create a citable version of your data (with DOI number) which will be preserved and made accessible by perhaps the most reliable academic agency.</li>
+</ol></li>
+<li><p><strong>Integration with other Tools:</strong> Git can integrate with many other tools digital humanists might use, such as text editors, data visualization tools, digital exhibit software, and more.</p></li>
+<li><p><strong>Preservation and Sustainability:</strong> GitHub provides a durable and sustainable platform for preserving digital projects. By hosting their projects on GitHub, digital humanists ensure that their work remains accessible and usable for the long term.</p>
+<ol style="list-style-type: decimal">
+<li>See the point on the integration with Zenodo above.</li>
+</ol></li>
+<li><p><strong>Issue Tracking and Task Management:</strong> GitHub’s issue tracking feature provides a way to organize tasks and track progress, making it useful for project management.</p></li>
+<li><p><strong>Community and Learning:</strong> Published source code on GitHub means that digital humanists can learn from others’ projects and also contribute to projects outside their immediate team. This shared knowledge is a vital resource for skills development and innovation.</p></li>
+</ol>
+<p>In sum, Git and GitHub offer digital humanists a set of tools to improve their workflows, make their work more accessible and transparent, and foster collaboration and learning.</p>
+<hr />
+<p><strong>Materials Needed:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Computers with internet access.</li>
+<li>RStudio installed.</li>
+<li>GitHub account (students should sign up before the lesson).</li>
+<li>Git installed.</li>
+<li>On iOS: SSH key (but recommended for all systems).</li>
+</ol>
+<hr />
+<div id="perks-of-using-git" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Perks of Using Git<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#perks-of-using-git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Git comes as a command line interface (CLI).
+As a regular user of your system, you probably use graphical user interfaces (GUI) exclusively.
+That means, most of your interactions with the system happen through navigation with your mouse cursor, you point the system to what you want it to do (visually/graphically).
+An alternative to this type of navigating is to describe verbally to the system what you want to do through commands.
+So after installing Git on your computer, you will not get a new application on your system - there is no icon you can use to point your system to that program.
+Instead, you need to use your system’s console to work with Git.
+A console is a program whose type is <em>command line interpreter</em> - it takes written commands and executes these.
+Depending on your system, your console is called:</p>
 <ul>
-<li>Overview of R</li>
-<li>RStudio and its interface;
-<ul>
-<li>Describe the RStudio interface and its main components (Console, Script Editor, Environment, and Plots/Packages/Help);</li>
-<li>Explain the benefits of using RStudio for R programming;</li>
-</ul></li>
-<li>File types and projects;</li>
-<li>Basic operators and commands;</li>
-<li>Built-in functions and libraries;</li>
-<li>Basic data structures and when they are used;</li>
-<li><code>swirl()</code> tutorials as homework assignments;</li>
+<li><strong>iOS:</strong> Terminal</li>
+<li><strong>Windows:</strong> Bash, PowerShell, cmd</li>
+<li><strong>Linux:</strong> Bash, Shell</li>
 </ul>
+<p>For example, when you want to open the folder containing your project, with the GUI (your file browser, called <em>Explorer</em> for Windows and <em>Finder</em> for iOS), you just click on the folder and then the files inside that folder will be shown to you.
+Say your folder is called <code>project</code> and inside that folder you have a text file called <code>abc.txt</code>.
+You would click on the folder <code>project</code> and then you can see that it contains the file <code>abc.txt</code>.
+The equivalent for that step in the console is typing:</p>
+<pre><code>cd project</code></pre>
+<p>which opens the folder <code>project</code>.
+And then typing:</p>
+<pre><code>ls</code></pre>
+<p>which will list the files in that folder.</p>
+<p>If you are not used to navigating in the console, there is a trick to avoid this step.
+Open the folder of your project and do a right click.
+Somewhere in the pop-up menu, there is an item called something like: ‘Open Terminal’ (Linux) or ‘Git Bash here’ (Windows).</p>
+<p><strong>For iOS</strong>, activate the <em>path bar</em> (in Finder go to options: <em>View</em> &gt; <em>Show Path Bar</em>).
+It will be shown at the bottom of your Finder window.
+Right click in this <em>path bar</em> on your project folder and select ‘Open in Terminal’.</p>
 </div>
-<div id="overview-of-r" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Overview of R<a href="rstudio-basic-r-commands-swirl-tutorials.html#overview-of-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>R, its features, and its relevance to historians;</li>
-<li>R as an open-source programming language and its community;</li>
-<li>Comprehensive R Archive Network (CRAN);</li>
-</ul>
+<div id="ssh-key" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> SSH Key<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#ssh-key" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>SSH key is an alternative authentication method to giving your user name and password.
+As an iOS user this method is mandatory to connect with your Github account due to security reasons.
+But it can be used by everyone who does not want to type in their user name and password all the time.</p>
+<p>SSH key is a pair of two files which have the exact same name but one of the files has the ending <code>.pub</code>.
+You never give the content without the <code>.pub</code> ending to any service, this file is only your computer and should kept secret - it is very sensible data because everyone who has that can authenticate as you.
+Think about this file as the key to your home.
+You do not want to share that with anybody unless you really want them in your home at any time.
+For the other file, the ending <code>.pub</code> indicates that you can share it <strong>pub</strong>licly.
+This is the part you will give to the service.</p>
+<p>So first step is the creation of such a SSH key pair.
+Github’s documentation will guide you through that process - it differs depending on your system.
+Do not forget to edit the SSH config file!
+<a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</a></p>
+<p>You are strongly advised to put the SSH key in the hidden folder <code>.ssh</code> and NOT in your project folder.
+Try to stick to Github’s guide as tight as possible - again, this key is something you need to take care of very well.</p>
+<p>After you finished the process of setting up your SSH key, we need to add a SSH config file.
+For Windows, use PowerShell to navigate into your <code>.ssh</code> folder, on Linux or Mac use your bash (the command is the same for all three systems):</p>
+<pre><code>cd $HOME/.ssh/</code></pre>
+<p>Make sure you are in the correct place by typing <code>ls</code> which should list you your SSH key pair.
+Now, let’s create the <code>config</code> file.
+In PowerShell:</p>
+<pre><code>New-Item config -ItemType File</code></pre>
+<p>On Linux or Mac:</p>
+<pre><code>touch config</code></pre>
+<p>Open that <code>config</code> file in an editor of your choice and add the following lines, just replace <code>&lt;username&gt;</code> with your actual Github username (and maybe change the <code>IdentityFile</code> path to your private key).</p>
+<pre><code>Host github.com
+    HostName github.com
+    User &lt;username&gt;
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes</code></pre>
+<p>Final step, test your setup! In Linux and Mac, just type the following command. On Windows, change back to cmd and enter the following command.</p>
+<pre><code>ssh -T git@github.com</code></pre>
+<hr />
 </div>
-<div id="rstudio-interface" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> RStudio Interface<a href="rstudio-basic-r-commands-swirl-tutorials.html#rstudio-interface" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>RStudio interface and its main components (Console, Script Editor, Environment, and Plots/Packages/Help)</li>
-<li>The benefits of using RStudio for R programming</li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><img src="images/r_instructions/RStudio.png" /></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">Rstudio Interface</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>top-left:
-<ul>
-<li><strong>Open Scripts and Files</strong>: this is where you will be working with your R scripts;</li>
-</ul></li>
-<li>bottom-left:
-<ul>
-<li><strong>R console</strong>: this is where you can run R code (without committing it to a script; very handy for quickly testing something);</li>
-<li><strong>Terminal</strong>: skipping for now</li>
-</ul></li>
-<li>top-right:
-<ul>
-<li><strong>Environment</strong>: all active variables are listed here; you can also load data through the “Import Dataset” dialog from here; this tab is useful to keep track of what is loaded into your current state of R;</li>
-<li><strong>History</strong>: here you will find the complete list of commands that you have run already;</li>
-<li>plus, some other tabs which are not too relevant for now;</li>
-</ul></li>
-<li>bottom-right:
-<ul>
-<li><strong>Files</strong>: this is your file browser, which is useful when you work with <em>projects</em>;</li>
-<li><strong>Plots</strong>: all your temporary plots will be appearing here;</li>
-<li><strong>Packages</strong>: this is the list of all installed and loaded packages (not the most important tab);</li>
-<li><strong>Help</strong>: whenever you invoke help, details will be shown here;</li>
-<li><strong>Viewer</strong>: this tab will be showing the results of HTML output; most useful for working with notebooks (next class);</li>
-<li>plus, some other tabs which are not too relevant for now;</li>
-</ul></li>
-</ul>
-<blockquote>
-<p>for a video explanation: <a href="https://www.youtube.com/watch?v=XdgfhqNtje4" class="uri">https://www.youtube.com/watch?v=XdgfhqNtje4</a></p>
-</blockquote>
-</div>
-<div id="main-file-types" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Main File Types<a href="rstudio-basic-r-commands-swirl-tutorials.html#main-file-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>main file types: R script, R notebook, and R markdown;
-<ul>
-<li>R script: contains only R code and comments; most useful for “silent” processing of data and time-consuming analyses that are best run from command line;</li>
-<li>R notebook (R markdown): allows one to combine executable R code and academic prose; with this format one can create documents that can be regenerated when data is updated
-<ul>
-<li><em>scenario</em>: you describe some statistical data—on population, for example; in a year or two you get an updated file; your old descriptions may still be true—overall population, distribution of population over years, etc., but the data changed; you can simply regenerate your notebook with new data and all the numbers and graphs will be updated.<br />
-</li>
-</ul></li>
-</ul></li>
-<li>you can create them from: <code>File &gt; New File</code> or the icon with green plus (top left corner);
-<ul>
-<li>for now, we will try an R script;</li>
-<li>next class we will start with R notebooks;</li>
-</ul></li>
-</ul>
-</div>
-<div id="projects" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Projects<a href="rstudio-basic-r-commands-swirl-tutorials.html#projects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>RStudio projects make it straightforward to divide your work into multiple contexts, each with their own working directory, workspace, history, and source documents.</li>
-<li>Creating our project:
-<ul>
-<li><code>File</code> &gt; <code>New Project</code></li>
-<li><code>Existing Directory</code></li>
-<li>choose the directory for the course that we created last time: <code>CADAS-R</code> (we agreed that you create it in your “Documents” folder—both Mac ands Windows have such a folder)</li>
-<li>click <code>Create Project</code></li>
-</ul></li>
-<li>Using your Project:
-<ul>
-<li>you now can open RStudio by clicking on the <code>CADAS-R.Rproj</code> file in your course folder; this will automatically adjust RStudio settings to that folder</li>
-<li>in <strong>Files</strong> (bottom-right corner) you will automatically see the folder of your project;</li>
-<li>you can now use paths relative to your project’s folder:
-<ul>
-<li>review: what are relative and absolute paths?</li>
-</ul></li>
-</ul></li>
-<li>Closing your Project:
-<ul>
-<li>If you did any work with your project and then want to close it, RStudio will ask you if you want to <code>Save workspace image to ...</code>, click <code>Do not save</code>; while saving may be useful occasionally, in most cases that creates a large temporary file which makes your Rstudio slower.</li>
-</ul></li>
-</ul>
-</div>
-<div id="basic-commands" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Basic Commands<a href="rstudio-basic-r-commands-swirl-tutorials.html#basic-commands" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>let’s create an R script file in <code>classes/class_02/</code> and call it <code>class_02.R</code>
-<ul>
-<li>here is some little filler for our script. Simply copy-paste it into the new script.</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-1" tabindex="-1"></a><span class="co"># arithmetic operations</span></span>
-<span id="cb2-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-2" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-3" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
-<span id="cb2-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-4" tabindex="-1"></a><span class="dv">3</span> <span class="sc">-</span> <span class="dv">5</span></span>
-<span id="cb2-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-5" tabindex="-1"></a><span class="dv">3</span> <span class="sc">/</span> <span class="dv">5</span></span>
-<span id="cb2-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-6" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span>
-<span id="cb2-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-7" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-8" tabindex="-1"></a><span class="co"># assignment: `&lt;-` or `=`; </span></span>
-<span id="cb2-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
-<span id="cb2-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-10" tabindex="-1"></a>x</span>
-<span id="cb2-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-11" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-12" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">5</span></span>
-<span id="cb2-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-13" tabindex="-1"></a>x <span class="sc">-</span> <span class="dv">5</span></span>
-<span id="cb2-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-14" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-15" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span>
-<span id="cb2-16"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-16" tabindex="-1"></a>y <span class="sc">+</span> x</span>
-<span id="cb2-17"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-17" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-18" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">+</span> x</span>
-<span id="cb2-19"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-19" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-20" tabindex="-1"></a><span class="co"># = Vs ==</span></span>
-<span id="cb2-21"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-21" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-22" tabindex="-1"></a>x <span class="sc">==</span> y</span>
-<span id="cb2-23"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-23" tabindex="-1"></a>x <span class="ot">=</span> y</span>
-<span id="cb2-24"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-24" tabindex="-1"></a>x <span class="sc">==</span> y</span></code></pre></div>
-<ul>
-<li>now we can try basic R operations:
-<ul>
-<li>we can write them in our R script (top-left part of RStudio interface);</li>
-<li>we can also run them directly in <strong>Console</strong> (bottom-left part of RStudio interface);</li>
-<li>the main differences are:
-<ul>
-<li>we can save all our commands in R script, but we cannot do that in console;</li>
-<li>console, however, is very useful for running commands that we do not want to save (for example, using help commands)</li>
-<li>R script is most useful when we want to do something complex and we need a series of commands that must run in a specific order; this will be the main use of R scripts (as well as R notebooks);</li>
-<li>In R script you can execute all commands one after another (as they appear in the script); in console you can execute only one command at a time;</li>
-</ul></li>
-</ul></li>
-<li><strong>basic arithmetic operations</strong>: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>;
-<ul>
-<li>let’s try some examples from what we pasted into our script;</li>
-</ul></li>
-<li><strong>values and variables</strong>:
-<ul>
-<li><strong>values</strong>:
-<ul>
-<li>when we simply typed our commands as we just did we use values, but they are gone as soon as we type the next one; variables allow us to preserve results for later reuse;</li>
-</ul></li>
-<li><strong>variables</strong>:
-<ul>
-<li>assignment operator (<code>&lt;-</code> or <code>=</code>) and variable assignment;</li>
-<li>difference between <code>=</code> and <code>==</code>;</li>
-</ul></li>
-</ul></li>
-<li><strong>comments</strong>: we can use <code>#</code> in front of any line to turn it into a comment; comment means that R will not try to execute it.</li>
-</ul>
-</div>
-<div id="built-in-functions" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> Built-in Functions<a href="rstudio-basic-r-commands-swirl-tutorials.html#built-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s add the following few lines to the end of our R script:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-1" tabindex="-1"></a><span class="co"># built-in functions</span></span>
-<span id="cb3-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-3" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
-<span id="cb3-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-4" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-5" tabindex="-1"></a><span class="fu">max</span>(numbers)</span>
-<span id="cb3-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-6" tabindex="-1"></a><span class="fu">min</span>(numbers)</span>
-<span id="cb3-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-7" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span>
-<span id="cb3-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-8" tabindex="-1"></a><span class="fu">sum</span>(numbers)</span></code></pre></div>
-<ul>
-<li>R comes with some built-in functions, which have this format: <code>function(arguments)</code>
-<ul>
-<li>functions usually pack a few steps that transform and manipulate supplied data (<code>argument</code>) and return the result of those manipulations;</li>
-</ul></li>
-<li>in the code we created a vector (I will explain in a moment what vector is) names <code>numbers</code></li>
-<li>we can try some of the built-in functions and use this variable as an argument. What do you think the following functions will do?
-<ul>
-<li><code>max()</code> :: ?</li>
-<li><code>min()</code> :: ?</li>
-<li><code>mean()</code> :: ?</li>
-<li><code>sum()</code> :: ?</li>
-</ul></li>
-<li>functions may take/require a different number of arguments; arguments may be data that you supply and/or some parameters that trigger a specific behavior of a function;</li>
-<li>in order to find out how a specific function works—and what arguments it takes, you can use help function or operator. For example, if we want to get help for the function <code>mean()</code>, we can do the following (type and execute):
-<ul>
-<li><code>?mean</code> (or <code>??mean</code> — this will give broader results);</li>
-<li><code>help(mean)</code>;</li>
-</ul></li>
-<li>Thus, help tells us that <code>mean()</code> can take the following arguments:
-<ul>
-<li><code>mean(x, trim = 0, na.rm = FALSE, ...)</code></li>
-</ul></li>
-<li>Alternatively, you can always google how to do a certain thing in R…</li>
-</ul>
-</div>
-<div id="librariespackages" class="section level2 hasAnchor" number="2.8">
-<h2><span class="header-section-number">2.8</span> Libraries/Packages<a href="rstudio-basic-r-commands-swirl-tutorials.html#librariespackages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>The concept of R packages and their role in extending R’s functionality;
-<ul>
-<li>you can think of packages as additional programs for R (like MS Word on your computers that gives you a useful tool for writing your papers);</li>
-<li>packages give you access to more functions;</li>
-</ul></li>
-<li>Packages can be installed:
-<ul>
-<li>using the <code>install.packages()</code> function (the name of the library should be in quotation marks);
-<ul>
-<li>let’s install <code>ggplot2</code> with this command;</li>
-<li>let’s also install <code>stringi</code> with this command;</li>
-</ul></li>
-<li>using interface: <strong>Tools &gt; Install Packages</strong>
-<ul>
-<li>let’s install <code>tidyverse</code> via the interface;</li>
-</ul></li>
-<li>let’s also install library <code>swirl</code> :: you will need it for your homework;</li>
-</ul></li>
-<li>Packages can be loaded using function <code>library()</code> (or <code>require()</code>);
-<ul>
-<li><code>library(ggplot2)</code></li>
-<li><code>library(tidyverse)</code></li>
-<li><code>library(stringi)</code></li>
-</ul></li>
-<li>Alternatively, you can call specific functions directly from specific libraries:
-<ul>
-<li><code>stringi::stri_rand_lipsum(2)</code> :: try this example;</li>
-<li>this way is sometimes necessary when there are functions with the same name in different loaded packages;</li>
-<li>you can try to run the following line of code to generate a graph:
-<ul>
-<li><code>ggplot2::ggplot(mtcars) + ggplot2::geom_point(ggplot2::aes(x = mpg, y = hp))</code></li>
-</ul></li>
-<li>this code becomes simple, if you have loaded the library <code>ggplot2</code> in advance:
-<ul>
-<li><code>ggplot(mtcars) + geom_point(aes(x = mpg, y = hp))</code></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-<div id="values-and-their-types" class="section level2 hasAnchor" number="2.9">
-<h2><span class="header-section-number">2.9</span> Values and their types<a href="rstudio-basic-r-commands-swirl-tutorials.html#values-and-their-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are several main types of values in R (these are the most important ones):</p>
-<ul>
-<li><em>numeric</em>: <code>3</code> or <code>3,14</code></li>
-<li><em>character</em>: <code>character</code> or <code>"3.14"</code></li>
-<li><em>logical</em>: <code>TRUE</code> or <code>FALSE</code></li>
-</ul>
-<p>You can check the type of value by using <code>class()</code> function, suppling the value or the variable as an argument.</p>
-<p>You can convert between types:</p>
-<ul>
-<li><code>as.numeric()</code> to convert to numeric; you will not be able to convert to numeric a vector that contains letter characters;</li>
-<li><code>as.character()</code> to convert to character; any vector can be converted to character;</li>
-</ul>
-<p>There are some other types, which we will cover when they become relevant.</p>
-</div>
-<div id="basic-data-structures-and-their-practical-usage" class="section level2 hasAnchor" number="2.10">
-<h2><span class="header-section-number">2.10</span> Basic Data Structures and Their Practical Usage<a href="rstudio-basic-r-commands-swirl-tutorials.html#basic-data-structures-and-their-practical-usage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>One can say that everything in R revolves around vectors and vector algebra. This is not as scary as it may sound, but it has an extremely profound effect on how everything is done in R.</p>
-<p>A vector is a fundamental data structure that represents a one-dimensional array containing elements of the same data type. Vectors are used to store and manipulate collections of values, such as numbers, characters, or logical values. They are the basic building blocks for more complex data structures like matrices, data frames, and lists.</p>
-<p>Unless there is evidence to the opposite, you can assume that a variable/value is a vector. All operations in R work like vector operations, which makes R effective, efficient, and quite elegant.</p>
-<p>Vectors in R are versatile and can be used to perform various operations, such as element-wise arithmetic, comparisons, and aggregations. R has a rich set of built-in functions for working with vectors, which makes it a powerful language for data manipulation and analysis.</p>
-<p>Keep in mind that the elements of a vector must be of the same type. If you try to combine different types of elements in a vector, R will attempt to coerce the elements to a common type, following a hierarchy of types (logical &lt; integer &lt; double &lt; character). For example, if you combine numeric and character values in a vector, R will convert the numeric values to character values. If you need to store elements of different types, you can use a list, which is a more flexible data structure in R.</p>
-<div id="basic-data-structures" class="section level3 hasAnchor" number="2.10.1">
-<h3><span class="header-section-number">2.10.1</span> Basic data structures<a href="rstudio-basic-r-commands-swirl-tutorials.html#basic-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>vectors;</li>
-<li>matrices;</li>
-<li>dataframes/tibbles;</li>
-<li>lists;</li>
-</ul>
-</div>
-<div id="main-properties-of-basic-data-structures" class="section level3 hasAnchor" number="2.10.2">
-<h3><span class="header-section-number">2.10.2</span> Main properties of basic data structures<a href="rstudio-basic-r-commands-swirl-tutorials.html#main-properties-of-basic-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><em>single dimension</em> (x axis):
-<ul>
-<li>vectors: each vector is a vector</li>
-<li>a vector can hold data of only one type!</li>
-</ul></li>
-<li><em>two-dimensions</em> (x-axis: rows, y-axis: columns):
-<ul>
-<li>matrices:
-<ul>
-<li>a vector folded into two dimensions; (each element can be accessed as if it were a vector - 1dim coordinates, or as if it were a matrix – 2dim coordinates;)</li>
-<li>like a vector, a matrix can only hold data of one type!</li>
-</ul></li>
-<li>dataframes / tibbles;
-<ul>
-<li>columns and rows, where each column is a vector (i.e., must be the same type);</li>
-</ul></li>
-</ul></li>
-<li><em>heterogeneous</em>:
-<ul>
-<li>lists:
-<ul>
-<li>anything can be an item in a list;</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-<div id="most-common-usage-of-basic-data-structures" class="section level3 hasAnchor" number="2.10.3">
-<h3><span class="header-section-number">2.10.3</span> Most Common Usage of Basic Data Structures:<a href="rstudio-basic-r-commands-swirl-tutorials.html#most-common-usage-of-basic-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><strong>storing data</strong>: most commonly, data frames / tibbles are used for storing data;
-<ul>
-<li>you will load data into R in a form of a data frame and then you will start your analyses;</li>
-</ul></li>
-<li><strong>calculations (modifications, alterations, updates, etc.)</strong>: these are most commonly performed on vectors, or, most commonly, columns of data frames or, in case of matrices, on complete matrices or their columns or rows. Matrices are used almost exclusively for complex calculations (for example, we can use them for identifying groups of individuals with similar characteristics).</li>
-<li><strong>export of data from complex functions</strong>: list are very convenient to return results of complex functions, since they can hold any types of data structures in a single object; we are not going to use them much (if at all); they become useful after you reach a certain level of complexity in your work with R;</li>
-</ul>
-</div>
-<div id="basic-data-structures-examples" class="section level3 hasAnchor" number="2.10.4">
-<h3><span class="header-section-number">2.10.4</span> Basic Data Structures Examples<a href="rstudio-basic-r-commands-swirl-tutorials.html#basic-data-structures-examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="vectors" class="section level4 hasAnchor" number="2.10.4.1">
-<h4><span class="header-section-number">2.10.4.1</span> Vectors<a href="rstudio-basic-r-commands-swirl-tutorials.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In R, a vector is a one-dimensional array that can store a collection of values of the same type. You can create a vector using the <code>c()</code> function, which combines multiple values into a single vector. Here’s an example of vectors. (Check what happens with <code>mixed_vector</code>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-1" tabindex="-1"></a>numeric_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
-<span id="cb4-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-2" tabindex="-1"></a>character_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cherry&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="st">&quot;fig&quot;</span>)</span>
-<span id="cb4-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-3" tabindex="-1"></a>mixed_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="st">&quot;banana&quot;</span>)</span></code></pre></div>
-<p>Print out:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-1" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span> <span class="dv">20</span> <span class="dv">30</span> <span class="dv">40</span> <span class="dv">50</span></span>
-<span id="cb5-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;apple&quot;</span>  <span class="st">&quot;banana&quot;</span> <span class="st">&quot;cherry&quot;</span> <span class="st">&quot;date&quot;</span>   <span class="st">&quot;fig&quot;</span> </span>
-<span id="cb5-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10&quot;</span>     <span class="st">&quot;20&quot;</span>     <span class="st">&quot;30&quot;</span>     <span class="st">&quot;40&quot;</span>     <span class="st">&quot;50&quot;</span>     <span class="st">&quot;banana&quot;</span></span></code></pre></div>
-</div>
-<div id="matrices" class="section level4 hasAnchor" number="2.10.4.2">
-<h4><span class="header-section-number">2.10.4.2</span> Matrices<a href="rstudio-basic-r-commands-swirl-tutorials.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In R, a matrix is a two-dimensional array that can store a collection of values of the same type, organized in rows and columns. You can create a matrix using the <code>matrix()</code> function. Here’s an example of a numeric matrix:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb6-1" tabindex="-1"></a>numeric_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p>Print out:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-1" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
-<span id="cb7-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-2" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">5</span></span>
-<span id="cb7-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-3" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span></span></code></pre></div>
-</div>
-<div id="data.framestibbles" class="section level4 hasAnchor" number="2.10.4.3">
-<h4><span class="header-section-number">2.10.4.3</span> Data.frames/tibbles<a href="rstudio-basic-r-commands-swirl-tutorials.html#data.framestibbles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>A data frame is a table-like data structure in R, where each column can contain different types of data, and rows represent observations. A <code>tibble</code> (short for “tidy data frame”) is a modern version of a data frame, introduced by the <code>tidyverse</code> package collection, which offers some improvements over the traditional data frame, such as better printing and subsetting.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
-<span id="cb8-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb8-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb8-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-4" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-5" tabindex="-1"></a><span class="co"># Define the data</span></span>
-<span id="cb8-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-6" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>)</span>
-<span id="cb8-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-7" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>)</span>
-<span id="cb8-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-8" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>)</span>
-<span id="cb8-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-9" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-10" tabindex="-1"></a><span class="co"># Create the data frame</span></span>
-<span id="cb8-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-11" tabindex="-1"></a>my_dataframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> names, <span class="at">Age =</span> ages, <span class="at">Gender =</span> gender)</span>
-<span id="cb8-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-12" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-13" tabindex="-1"></a><span class="co"># Create the tibble</span></span>
-<span id="cb8-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-14" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Name =</span> names, <span class="at">Age =</span> ages, <span class="at">Gender =</span> gender)</span></code></pre></div>
-<p>Print out for data.frame:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-1" tabindex="-1"></a>     Name Age Gender</span>
-<span id="cb9-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-2" tabindex="-1"></a><span class="dv">1</span>   Alice  <span class="dv">25</span>      F</span>
-<span id="cb9-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-3" tabindex="-1"></a><span class="dv">2</span>     Bob  <span class="dv">30</span>      M</span>
-<span id="cb9-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-4" tabindex="-1"></a><span class="dv">3</span> Charlie  <span class="dv">22</span>      M</span></code></pre></div>
-<p>Print out for tibble:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-1" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
-<span id="cb10-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-2" tabindex="-1"></a>  Name     Age Gender</span>
-<span id="cb10-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-3" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> </span>
-<span id="cb10-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-4" tabindex="-1"></a><span class="dv">1</span> Alice     <span class="dv">25</span> F     </span>
-<span id="cb10-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-5" tabindex="-1"></a><span class="dv">2</span> Bob       <span class="dv">30</span> M     </span>
-<span id="cb10-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-6" tabindex="-1"></a><span class="dv">3</span> Charlie   <span class="dv">22</span> M     </span></code></pre></div>
-</div>
-<div id="lists" class="section level4 hasAnchor" number="2.10.4.4">
-<h4><span class="header-section-number">2.10.4.4</span> Lists<a href="rstudio-basic-r-commands-swirl-tutorials.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In R, a list is a versatile data structure that can store a collection of values, where each element can be of a different type or even another data structure like a vector, matrix, or another list. You can create a list using the <code>list()</code> function. Here’s an example of a list:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-1" tabindex="-1"></a><span class="co"># Define the data</span></span>
-<span id="cb11-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-2" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>)</span>
-<span id="cb11-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-3" tabindex="-1"></a>matrix_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb11-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-4" tabindex="-1"></a>sublist <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">temperature =</span> <span class="dv">72</span>, <span class="at">weather =</span> <span class="st">&quot;sunny&quot;</span>)</span>
-<span id="cb11-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-5" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-6" tabindex="-1"></a><span class="co"># Create the list</span></span>
-<span id="cb11-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-7" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Names =</span> names, <span class="at">Data =</span> matrix_data, <span class="at">Sublist =</span> sublist)</span></code></pre></div>
-<p>Print out:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-1" tabindex="-1"></a><span class="sc">$</span>Names</span>
-<span id="cb12-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Alice&quot;</span>   <span class="st">&quot;Bob&quot;</span>     <span class="st">&quot;Charlie&quot;</span></span>
-<span id="cb12-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-3" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-4" tabindex="-1"></a><span class="sc">$</span>Data</span>
-<span id="cb12-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-5" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
-<span id="cb12-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-6" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">5</span></span>
-<span id="cb12-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-7" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span></span>
-<span id="cb12-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-8" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-9" tabindex="-1"></a><span class="sc">$</span>Sublist</span>
-<span id="cb12-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-10" tabindex="-1"></a><span class="sc">$</span>Sublist<span class="sc">$</span>temperature</span>
-<span id="cb12-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-11" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">72</span></span>
-<span id="cb12-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-12" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-13" tabindex="-1"></a><span class="sc">$</span>Sublist<span class="sc">$</span>weather</span>
-<span id="cb12-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-14" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;sunny&quot;</span></span></code></pre></div>
-</div>
-<div id="rds-files" class="section level4 hasAnchor" number="2.10.4.5">
-<h4><span class="header-section-number">2.10.4.5</span> RDS Files<a href="rstudio-basic-r-commands-swirl-tutorials.html#rds-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>They provide a convenient and efficient way to save and load R objects such as vectors, matrices, data frames, lists, and models. RDS files use a compact representation, which makes them smaller in size and faster to read and write compared to text-based file formats like CSV or TSV.</p>
-<p>You can save an R object to an RDS file using the <code>saveRDS()</code> function and load an R object from an RDS file using the <code>readRDS()</code> function.</p>
-<p>RDS files are particularly useful when working with large datasets or complex objects, as they allow for fast and efficient storage and retrieval. However, keep in mind that RDS files are specific to R and may not be compatible with other programming languages or software without additional conversion.</p>
-<p>Summary:</p>
-<ul>
-<li>quick and small, because they are binary;</li>
-<li>very handy, because one can use the same command to save/load any data structure;</li>
-</ul>
+<div id="local-and-remote-repositories" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Local and Remote Repositories<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#local-and-remote-repositories" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Create a new remote repository and connect it with a local repository.
+The local repository can be a new, empty repository or a folder where you have your data already but which was not set-up (i.e. initialized) as a git repository yet.
+Start from creating the remote repository on Github since it will give you all the necessary instructions on how to set-up your local repository with git.</p>
+<div id="create-new-remote-repository-on-github" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Create new remote repository on Github<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#create-new-remote-repository-on-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Go to GitHub and start a new repository there. In the top right corner on your start-page, there is a <code>+</code> button. Click it and the pop-up will show you multiple options. Select <strong>New repository</strong>.<br />
+<img src="images/git_instructions/Screenshot_start_new_repo.png" alt="Github: Start new Remote Repository." /></p>
+<p>Start with giving your repository a meaningful name.
+This name should be representative for your project as it will be used to search for your project, as well as for the URL of the project.
+The URL for the repository will have the following pattern, where <user_name> is your user name and <project_name> is the name you are about to give the repository:
+<code>https://github.com/&lt;user_name&gt;/&lt;project_name&gt;</code>
+Is your work public or private?
+Public means everyone can have a look at your files which you put on Github, private means you have to grant access to your repository before someone else can see it.
+You can make a repository public at any time with just a few clicks but once your repository is out there, it is not as easy to make it private again.<br />
+<img src="images/git_instructions/Screenshot_new_repo_private_public.png" alt="Github: Private or Public Repository?" /></p>
+<p>After successfully creating the repository, the next screen will give you instructions on how to push your local files to the new remote repository.<br />
+<img src="images/git_instructions/Screenshot_github_instructions.png" alt="Github: Instructions after new Repo has been Created." /></p>
+<p>Change to your files now and go to your local folder which you want to push to the remote repository.
+Right-click there and select <code>Open Terminal</code> or <code>Git Bash here</code> or whatever your system provides.
+Your console will open with the working directory set to your current folder.
+Now you can execute the instructions from Github.
+Please copy the commands from your Github and not from this tutorial.
+They will differ a bit for you since this again depends on the system your on.
+So please refer to the steps provided by Github.</p>
+<p>First create the <code>README.md</code> file by:</p>
+<pre><code>echo &quot;#&lt;project_name&gt;&quot; &gt;&gt; README.md</code></pre>
+<p>The magical transformation from plain folder to repository happens with:</p>
+<pre><code>git init</code></pre>
+<p>This command tells the folder to become a Git repository.
+Next, create a <code>README.md</code> file (capitalizations is important) and add a short introduction/description to your project there. This will be shown to everyone who takes a look at your project.
+Use</p>
+<pre><code>git add .</code></pre>
+<p>or</p>
+<pre><code>git add *</code></pre>
+<p>to add all the files from the folder to the git repository.
+After this, you commit the files with:</p>
+<pre><code>git commit -m &quot;first commit&quot;</code></pre>
+<p>Now that you have a local repository, you need to connect it with the remote equivalent by executing:</p>
+<pre><code>git remote add origin &lt;project_url&gt;</code></pre>
+<p>Finally, bring your local repository to the remote Github repository by pushing it with
+<code>git push -u origin main</code>
+If you go back to Github, you can see the pushed files there.<br />
+<img src="images/git_instructions/Screenshot_pushed_repo.png" alt="Github: Repository with Pushed Files." /></p>
+<p>Do not worry if this does not work with the first try.
+You can repeat the steps, but before you do so make sure that you remove the <strong>hidden</strong> folder <code>.git</code>.
+Since it is hidden, you probably need to activate the option to show hidden files and folders in your file browser (Finder, Explorer or whatever your system provides).</p>
+<hr />
 </div>
 </div>
+<div id="basic-git-commands" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Basic Git Commands<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#basic-git-commands" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that you have you repository set-up, you can work with it.
+Just work with your files as you have always done.
+When you finished a step in your work, you not only save the file but now you will also do a commit.
+A commit commemorates the current state of the repository, so others can use that state as well and you can return to it any time.
+If you mess up any step which follows the commit, you can simply return to the state of the commit.
+Furthermore, you make that state accessible to all your collaborators and everyone who has access to the remote repository.
+To do so, go back to your console.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Git status:</strong> Check which files have been modified by typing <code>git status</code>. This command will list you all the files which have been changed since the last commit. Red files are not marked for the current commit, green files will be commited.</p></li>
+<li><p><strong>Git add:</strong> <code>git status</code> probably shows you all the files as red. You can now add the files to your commit by <code>git add .</code> or <code>git add *</code>. This will add all changed files. If you only want to add an individual file, do <code>git add &lt;file&gt;</code> where <file> is the file name. If you run <code>git status</code> again, all files affected by <code>git add</code> are now listed in green.</p></li>
+<li><p><strong>Git commit:</strong> Now we tell Git to memorize the repository with all the changed files by <code>git commit -m "&lt;commit_message&gt;"</code>. Use the commit message to describe the changes or the current state in a few words.</p></li>
+<li><p><strong>Git push:</strong> Push the local commit to the remote repository, so this state is accessible to everyone by <code>git push</code>.</p></li>
+<li><p><strong>Git pull:</strong> Everyone who wants to continue working with the new state and the latest changes will use <code>git pull</code> and the commit is pulled from the remote repository to their local one.</p></li>
+</ol>
+<hr />
 </div>
-<div id="homework-with-swirl" class="section level2 hasAnchor" number="2.11">
-<h2><span class="header-section-number">2.11</span> Homework with <code>swirl()</code><a href="rstudio-basic-r-commands-swirl-tutorials.html#homework-with-swirl" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="git-and-collaboration" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Git and Collaboration<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#git-and-collaboration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before anyone else than you can make changes to your project, you need to invite this person as a collaborator to your project.
+On Github, navigate to our projects settings.
+The first item in the settings menu is <code>Collaborators</code>.
+Click on it and in the next step you have to enter the user name of the person you want to add as a collaborator to your project.<br />
+<img src="images/git_instructions/Screenshot_collaborators.png" alt="Github Collaborators" /><br />
+This person will then receive an email with an invitation they have to accept.
+After accepting the invitation, this person can push to your project.
+You can grand different types of access.
+If your project is private, you can add persons to the project with only read and pull rights.
+That means the person can see the project, but is not allowed to make changes to your project with push.</p>
+<hr />
+</div>
+<div id="git-and-rstudio" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Git and RStudio<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#git-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>RStudio has an integration for Git.
+To activate the integration, go to: <code>Tools &gt; Global Options</code>.
+Select <code>Git/SVN</code>.<br />
+<img src="images/git_instructions/Screenshot_RStudio_git_svn.png" alt="RStudio and Git" /></p>
+<p>When you start a new project, you can now select <code>Version Controll</code> and check out the repository directly into RStudio.<br />
+<img src="images/git_instructions/Screenshot_RStudio_new_project.png" alt="RStudio: New Project from Version Controll" /></p>
+<p>To clone the repository, give the necessary information.
+You can also define the path as to where that repository is cloned to on your computer.<br />
+<img src="images/git_instructions/Screenshot_RStudio_clone.png" alt="RStudio: Clone Git Repository" /></p>
+<p>You can now do the status, add, commit, push and pull commands with RStudio.
+Go to <code>Tools &gt; Version Controll &gt; Commit...</code>.
+Select the files you want to commit as <code>Staged</code> by ticking the check-box.
+RStudio will also highlight the changes made in that file. I edited the <code>README.md</code> and all the changes I have done are now listed at the bottom.
+Do not forget to give a commit message!<br />
+<img src="images/git_instructions/Screenshot_RStudio_commit.png" alt="RStudio: Commit" /></p>
+<hr />
+</div>
+<div id="additional-materials" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Additional Materials<a href="an-introduction-to-git-github-and-rstudios-git-integration.html#additional-materials" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Homework assignment: <strong>Swirl Course Tutorials</strong>;</li>
-<li>Swirl Course: <code>R Programing</code>(you will be asked to install it in the beginning);
-<ul>
-<li>other course can be installed with <code>install_course("name of the course")</code> (perhaps, the only relevant to us course will be “Exploratory Data Analysis”);</li>
-</ul></li>
-<li>Swirl: start the <code>R Programming</code> course;</li>
-<li>Swirl tutorials to complete:
-<ul>
-<li>for Lesson 02:
-<ul>
-<li>Basic Building Blocks;</li>
-<li>Workspace and Files;</li>
-<li>Sequences of Numbers;</li>
-<li>Vectors;</li>
-</ul></li>
-<li>for Lesson 03:
-<ul>
-<li>Missing Values;</li>
-<li>Subsetting Vectors;</li>
-<li>Matrices and Dataframes;</li>
-<li>Logic;</li>
-</ul></li>
-</ul></li>
-<li>Swirl commands:
-<ul>
-<li><code>library(swirl)</code> to load the library;</li>
-<li>then type <code>swirl()</code> to start it;</li>
-<li>your main course is <code>R Programming</code></li>
-<li>start it and complete the assigned modules;</li>
-<li>in the middle of the lesson, you can use <code>play()</code> to go into a free mode, if you need to check something in R;</li>
-<li>type <code>nxt()</code> to return to the lesson;</li>
-</ul></li>
-<li>Swirl Additional Courses:
-<ul>
-<li><a href="http://swirlstats.com/scn/title.html" class="uri">http://swirlstats.com/scn/title.html</a></li>
-<li>there are some more courses, with quite a few in German and Spanish;</li>
-<li>recommend you to try for practice;</li>
-</ul></li>
-<li><strong>Swirl assignment submission</strong>:
-<ul>
-<li>when you reach the end of the course, choose yes if you want to receive credit;</li>
-<li>type in your email;</li>
-<li>type in XXXXX for your Corsera.org token;</li>
-<li>then, you will get an error; do not worry, I want you to take a screenshot of this screen and email it to me as your confirmation; (take a screenshot of either your entire screen, or of the entire RStudio screen).</li>
-<li>in the topic of our email, use the format described in the syllabus;
-<ul>
-<li>please, send one email per module, that is to say, you will need to send me 4 emails by the next class;</li>
-<li>I recommend you to do these whenever you have time; it is best to do them not in one go, but rather take breaks between them;</li>
-</ul></li>
-</ul></li>
+<li>Paul Vierthaler, “A quick Git and Github Tutorial”, a video tutorial <a href="https://www.youtube.com/watch?v=YetC-gxgIVY&amp;list=PL6kqrM2i6BPIpEF5yHPNkYhjHm-FYWh17&amp;index=22" class="uri">https://www.youtube.com/watch?v=YetC-gxgIVY&amp;list=PL6kqrM2i6BPIpEF5yHPNkYhjHm-FYWh17&amp;index=22</a>; Watch this tutorial. It will help you to go over the new material and pick up a few more useful <code>git</code> <em>&amp;</em> <code>gitHub</code> tricks.</li>
+<li>A recommended detailed tutorial: <a href="https://swcarpentry.github.io/git-novice/" class="uri">https://swcarpentry.github.io/git-novice/</a></li>
 </ul>
 
 </div>
@@ -911,8 +649,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="setting-everything-up.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-markdown-and-r-notebooks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="visualizations-plot-and-ggplot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="class-10.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -943,7 +681,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/020-Class02.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/edit/main/090-Class09.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -951,7 +689,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/020-Class02.Rmd",
+"link": "https://github.com/eis1600/hdis-audition-statements/blob/main/090-Class09.Rmd",
 "text": null
 },
 "download": null,
