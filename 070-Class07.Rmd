@@ -6,7 +6,7 @@
 	- how to extract data from printed sources;
 	- how to “tidy” your data, that is to say to how prepare it for the use with the tidyverse approach; how to normalize your data, which is also a part of tidying your data;
 	- how to model your data, which is about getting more from your data during analyses;
-	- then, we will look into the PUA dataset and our main task will be to create an improved version of it that is most suitable for different forms of analyses with the tidyverse approach.
+	- then, we will look into the audition certificates data in its original format and the format that we will be using in this class.
 
 ## 1. Getting your own data
 
@@ -209,7 +209,7 @@ The overall process is rather simple in terms of technological implementation, b
 * Such categorizations can be created in two different ways, with each having its advantages:
 	* first, one can create them as additional columns. This approach will allow to always have the original—or alternative—classifications at hand, which is helpful for re-thinking classifications and creating alternative ones where items will be reclassified differently, based on a  different set of assumptions about your subject.
 	* second, these can be created in separate files, which might be easier as one does not have to stare at existing classifications and therefore will be less influenced by them in making classification decisions.
-* Additionally, one can use some pre-existing classifications that have already been created in academic literature. These most likely need to be digitized and converted into properly formatted data, as we discussed in the previous lesson.
+* Additionally, one can use some pre-existing classifications that have already been created in academic literature. These most likely need to be digitized and converted into properly formatted data, as we discussed above.
 
 ### Normalization
 
@@ -233,124 +233,87 @@ While *proxies* are selected from what is available—usually not much, especial
 
 Most commonly (and automatically) abstractions are used with texts in natural languages. For example, in *stylometry* texts are reduced to frequency lists of most frequent *features*, which are expected to represent an *authorial fingerprint*. Using these frequency lists we can—with accuracy up to 99%—identify authors of particular texts. The complexity of texts can be reduced in a number of ways: into a list of lemmas (e.g., for topic modeling analysis), frequency lists (e.g., for document distance comparison, such as, for example, stylometry), keyword values (e.g., for identifying texts on a similar topic, using, for example, the TF-IDF method), syntactic structures, ngrams, etc. As you get to practice and experiment more, you will start coming up with your own ways of creating abstractions depending on your current research questions.
 
-## 4. Deep Look into the PUA Dataset
 
-The models of the PUA database essentially looks like the graph below.
+## Conceptual Structure for Your Data
 
-```mermaid
-graph LR;
+... Let's first take a look at the original AC data ...
 
 
-personaje-->personaje_lugar<-->lugar
-personaje-->personaje_actividad<-->actividad
-personaje-->personaje_disciplina<-->disciplina
-personaje<-->personaje_caracteristica<-->caracteristica
-personaje<-->personaje_cargo<-->cargo
-personaje<-->personaje_nisba<-->nisba
-personaje<-->personaje_obra<-->obra
-personaje<-->personaje_relacion<-->personaje
-personaje<-->personaje_fuente<-->fuente<-->author
-personaje<-->personaje_referencia<-->bibliografia
-personaje<-->familia
+### Reorganization: Conceptual Model For Your Data
 
-personaje_relacion<-->tiporelacion
+The model that you should choose depends significantly on what exactly you are doing. When the data is already collected and you are just reorganizing it for more efficiency, a much wider variety of approaches can be used. This is the case when the use of a relational database will be fully justified and very easy to implement, since the data is already collected—the most difficult and time-consuming part is already done.
 
-personaje_lugar<-->tiporelacionlugar
+It is a completely different case when you are only beginning to collect your data. In cases when your objects have a very clear set of attributes and information on all or most of those attributes is available or relatively easily acquirable, the reliance on relational databases could be quite efficient. The cases of such objects include actual physical objects and the set of their attributes include descriptions of their physical properties. For example, editions, manuscripts, etc.
 
-```
+In cases, when the set of attributed is not clear, relational databases will be significantly less efficient. Biographical/prosopographical data is one of such cases, mainly for the following reason. It is practically impossible to know beforehand what attributes will be of actual relevance; even though one may think that there is a clear set of attributes, the actual data from the sources may be skewed in a variety of ways not providing one with relevant data on most attributes. On the other hand, working with a particular source one inevitably discovers attributes that were not included in the initial thinking about a given problem, but happened to be important for thinking about specific groups of people. Relational databases are rather inflexible for modifications and would require significant re-design to be realigned with new realities of research.
 
-In other words, we have::
+![](./images/PUAR/SPO-STAR.svg)
 
-- the **main table** `personaje` that contains data on individuals, limited to: their names, dates, and familial affiliations (other columns are either variants of these, or not relevant to the overall analysis);
-- **connection tables** that connect individuals to different characteristics as places, disciplines, professions, etc. This is done in *one-to-many* format, i.e. one person may have visited multiple cities, may have specialized in multiple disciplines, etc. The main part of these tables is the two columns with ids of individuals from `personaje` and ids of entities from auxiliary tables. These connection tables is what allows us to register multiple instances of the same type of data, which we simply cannot do in the main table. (One connection table, `personaje_relacion`, actually connects `personaje` to itself.)
-- **auxiliary tables** describe specific characteristics: places, disciplines, professions. These are the tables that provide additional information on those characteristics. For example, `lugar` tells us where a place is in al-Andalus or not, what are the coordinates of each place, and so on. This is also where most modeling endeavors will be taking place.
-- lastly, we have **metadata tables**, which provide metadata on sources used in the creation of the database.
+In the previous lesson, I have mentioned the `subject-predicate-object` model, with which you can describe pretty much everything that you can describe with a subject-predicate-object sentence. The traditional `SPO` model, however, is not exactly perfect for our purposes, especially if we want to record conflicting information from different sources. For this purpose a somewhat different model has been proposed by Tara Andrews, the Professor of Digital Humanities at the University of Vienna. since she is also a historian, working on the medieval Armenian history, she is interested in recording both the provenance, i.e. where the information is taken from, and the authority, i.e. who is making this assertion—since even the same information in the same source may be read differently by two different scholars. To solve this issue, she proposed the structured assertion model (`STAR`), that you see on the right. Thus, with this model, we would have a five column table, instead of a three-column one.
 
-### Updated PUA Dataset
+Let's take a look at how STAR method is used in the OpenITI project. We can use the following piece of information as an example of how biographical data can be encoded using STAR method in plain text format:
 
-We may consider converting PUA dataset into a somewhat different format, where we merge the main and auxiliary tables into one table that would have a structure like this: 
+>  al-Ḏahabī was a teacher (*tafaqqaha ʿalay-hi*) of al-Subkī in Damascus from 699 till 715 AH. (Source: a made-up example with the reference code `220607114503`)
 
-```
-============================================
-idPersonaje, type, value
-============================================
-000006, d_died_in, 163
-000006, has_gender, male
-000006, t_born, toponymID
-000006, t_visited, toponymID
-000006, has_name_AR, arabic_name
-000006, has_name_CA, castellano_name
-000006, has_profession, professionID
-000006, has_profession, professionID
-============================================
-```
+Now, in order to do the actual encoding we use an ordered structure, URIs, and patterned statements. The ordered structure means that the category of data is defines by its location in our encoding statement (for example, the first element is always the subject, the second—always the predicate, etc.). The patterned statement means that we encode certain types of data with a sequence of characters that can be described with generalized patterns (`regular expressions`), which can later be used to both extract and interpret encoded data. The end result may look like the following statement, where five elements are connected with `@`, and details on all the coded information being available/collected in additional files (*linked local data*):
 
-Essentially, we can describe each person using this triple structure, which is interpreted as `subject-predicate-object`.  There are standardized approaches to implement this kind of structure, like OWL RDF, but they become truly relevant only after one has finished preparing their data and is willing to share it with the world. Using OWL RDF standard will mean that you are implementing a Linked Open Data (LOD) approach. The problem of the LOD approach in our case is that we do not have anything out there to link into. For this reason, we will focus on a Linked Local Data approach, where we will link only into our own data.
-
-Having data in this kind of format will make it easier to analyze our data, since we will not need to do too many connection (`left_join`) operations, which at times get too complicated. We will still need the *auxiliary* tables, which we will treat more as *interpretative schemes*, since we will be using them more for the purposes of modeling our historical data.
-
-> *On the use of this structure, see*: Romanov, M. (2017). Algorithmic Analysis of Medieval Arabic Biographical Collections. _Speculum_. https://doi.org/10.1086/693970 (The article is available at: <https://www.journals.uchicago.edu/doi/full/10.1086/693970>)
-
-The structure of the new dataset will be:
-
-```mermaid
-graph LR;
+> `[0748Dhahabi@]teacherOf_tafaqqahaCalayhi@0771Subki;DIMASHQ_363E335N_S;699_XXX_XX-715_XXX_XX@MGR@MacrufDahabi1976s_1_345`
 
 
-personaje<-->lugar
-personaje<-->actividad
-personaje<-->disciplina
-personaje<-->caracteristica
-personaje<-->cargo
-personaje<-->nisba
-personaje<-->obra
-personaje<-->personaje
-personaje<-->fuente<-->author
-personaje<-->bibliografia
-personaje<-->familia
+- The first element is the *subject*, which is recorded using the Author URI—`0748Dhahabi`; in order to simplify things, we most commonly omit the subject, since it is implied by the name of the file in which metadata is collected (more on this in the discussion of YML files with metadata);
+- The second element is our *predicate*—`teacherOf_tafaqqahaCalayhi`. We use unrestricted vocabulary, since we are still at the research stage and this appears to be more productive to explore possibilities; the normalization of predicates will take place periodically during the revisions of metadata. As you may have noticed, there is a pattern in the predicate—there are two parts connected with the “underscore”, which allows us to record the predicate with the reference to its original form in Arabic (although, one can also use simply `teacherOf`, if no Arabic equivalent is available). This kind of encoding is particularly important for developing classification schemes, where one has to keep track of the original vocabulary (for example, relationships among books—different types of abridgments, continuations, commentaries, etc.). <!--Add a visualization?--> 
+- The third element is our objects, of which we have three: 1) the “direct object”, which is a person also encoded with the Author URI (`771Subki`)—all individuals are to be encoded using such URIs;[^2206100431] 2) the “object of place”, which is encoded with the URI from an affiliated project al-Ṯurayyā (<https://althurayya.github.io/>)—all geographical entities are to be encoded with such URIs; 3) the “object of time”, which is encoded following a specific pattern `YYYY_MMM_DD` where sub-elements are also divided with an underscore. From this pattern we know that the first sub-element is the year, the second—the month, and the third—the day. In case, any of sub-elements are unknown, they are encoded with `X`s. For the encoding of a period of time, two date statements are connected with “-” (hyphen).
+- The fourth element is authority, encoded with the pattern `AUTH_ContributorURI`, with `ContributorURIs` recorded in a separate file that contains additional information on all contributors to the project.
+- The last, fifth element contains references, which can be encoded in a variety of ways. Here, we use `MacrufDahabi1976s_1_345`, which consists of three elements separated with `_`.   The first element is the `bibTeX` code of a publication (with the detailed information on the edition stored in a bibTex file with all the used bibliography), while the other two are the volume and page number. (**Note**: this reference is not real.)
 
-```
+**Note**: even if some elements seem complicated for you at the moment because you do not have enough skills to process them and convert them into something more useful, you should always strive for consistency in how you encode your data—if you want to be able to analyze that data computationally. For example, the reference `MacrufDahabi1976s_1_345` may seem weird, but it is structurally solid: there are three elements, separated with `_` and it is very easy to break this coded piece of information into distinct elements. You already know how to do that with R, where, using `tidyverse` approach (more specifically, functions from the family of `stringr`) you can break such references into three separate columns: reference, volume, page(s). Even if you do not know now how to do that, it is always important to plan ahead and focus on encoding your data in a consistent manner.
 
-### Normalized and Improved PUA Dataset
+[^2206100431]: We are primarily interested in the relationships within the OpenITI projects, i.e., among works and among authors, but the coverage can be easily expanded to include non-authors.
 
-Another thing that we need to do with the PUA dataset is to normalize it. We have already dealt with the issue of birth and death dates, where we find zeroes to be used when no date is available. Another issue that we also encountered was the information on gender which is “buried” in professions and characteristics. Additionally, professions (`actividad`) can be normalized: we have seen at least three different ways, in which jurists are described (*faqīh*, *faqīh šāfiʿī*, *faqīh ẓāhirī*, *faqīh mālikī*).
+Now, let’s talk a bit about how to practically implement these models. The STAR model is meant to fit into existing standards, like CIDOC-CRM or/and FRBR-OO (see, <https://cidoc-crm.org/collaborations>), and implement Linked Open Data (LOD) approach, i.e. linking into existing online datasets. Since we are focusing more on Linked Local Data (LLD) approach, we also want a more pragmatic—i.e., simple—implementation of the STAR model (CIDOC-CRM is a rather complicated standard, see below for an example).
 
-One other thing that we can do to improve the dataset is to automatically transcribe unstranscribed Arabic names—we, actually, have more than half of all the Arabic names untranscribed. This is a rather tricky procedure, which I will explain later.
+|![](./images/PUAR/cidoc_crm_example.png)|
+|:-:|
+|CIDOC-CRM Encoding Example in RDF XML (`*.xml`). This examplecaptures a historical event, relevant for the history of art: Johann-Joachim Winkelmann (a German Scholar) has seen the so-called Laocoön Group in 1755 in the Vatican in Rome (at display in the Cortile del Belvedere). He described his impressions in 1764 in his “History of the Art of Antiquity”, (being the first to articulate the difference between Greek, Greco-Roman and Roman art, characterizing Greek art with the famous words “...noble simplicity, silent grandeur”). The sculpture, in Hellenistic "Pergamene baroque" style, is widely assumed to be a copy, made between 27 BC and 68 AD (following a Roman commission) from a Greek (no more extent) original. Johann-Joachim Winkelmann was born 1717 as child of Martin Winkelmann and Anna-Maria Meyer and died in 1768 in Trieste. <br>**Sources**: <https://www.cidoc-crm.org/sites/default/files/Winkelmann_time_label_1.xml>; <https://cidoc-crm.org/sites/default/files/CIDOC%20CRM_v.7.0_%2020-6-2020.pdf>|
 
-### Modeling PUA Dataset
+In fact, depending on your sources and your final goals, you can opt for one of the following three variations.
 
-The main modeling approach that we can use with the PUA dataset is categorization. As described above, we can create larger categories for professions (`actividad`), positions (`cargo`), and characteristics (`caracteristica`) in order to identify larger social, professional, and religious groups.
+1. As we discussed the simplest variation will be the `S-P-O` model, with `SUBJECT`, `PREDICATE`, and `OBJECT`. (As you can see, the `SUBJECT` is repeated many times, so, technically, one can simplify the data encoding even further, by keeping separate files for each person, and then having only `PREDICATE` and `OBJECT` columns—the `SUBJECT` will be encoded in the name of the file.):
 
-Additionally, we can add different classifications to geographical places (`lugar`). At the moment, places are divided into `andalusian` and `non-andalusian`. Such division allows us to trace travels outside of al-Andalus, but we can do so much more than that.
+![](./images/PUAR/encoding_model_01.png)
 
-For example, it would make a lot of sense to split Andalusian places into subregions, which will allow us to aggregate individuals into larger geographical groups and, for example, measure how our individuals were moving within al-Andalus. this task is a bit tricky though (Cova?!).  Classifying  `non-andalusian` places into provinces will also be helpful as we can study into more general directions in which Andalusians were traveling. For example, base on my previous research using *Taʾrīḫ al-islām* of al-Ḏahabī (d. 748/1347), the general direction of travels was changing over time—essentially shifting between Ifrīqiyyaŧ (North Africa, centering on modern Tunisia) and Egypt-and-Syria region; or course, the Arabian peninsula with the Sacred cities of Islām was also very important, as was Baġdād during its heydays.
+2. If your assertions are simple (i.e., they have single objects), you can use a “simple” STAR model, where we add `PROVENANCE` and `AUTHORITY`:
 
-### Conceptual Models for Your Data
+![](./images/PUAR/encoding_model_02.png)
+
+3. If your assertions have multiple objects, then we would need a “robust”  STAR model with an additional column for `AssertionID`. The complex event has id `17`, where we describe that “al-Ḏahabī was a teacher (*tafaqqaha ʿalay-hi*) of al-Subkī in Damascus from 699 till 715 AH. (Source: a made-up example with the reference code `220607114503`)”:
+
+![](./images/PUAR/encoding_model_03.png)
+
+**Note:** Please, watch Tara Andrews’ presentation “How Might We Make Data Collections More Useful for Historians?”  (<https://www.youtube.com/watch?v=JcBdthObApY>) on the STAR model.
+
+**The advantages of such models:**
+
+- they are *symmetrical*, i.e. you always know which column contains which data. This means you can easily manipulate this data in R.
+	- when you load this kind of data into R, you can recursively query your dataset. For example, if you want to find people who died in, say, Qurṭubaŧ, you can filter `OBJECT` to find all instances of `QURTUBA_047W379N_S`; then limit your results to `PREDICATE` == `place_died`. Then you would get all the unique IDs from `SUBJECT`. Then you will filter  `date_died` (in `PREDICATE`) by the unique IDs that you got in the previous step. And now you have all the death dates of people who died in Qurṭubaŧ (don't forget to pick a single date from `date_died` data!).
+- they are *expandable*, since you can easily encode new types of information by simply introducing new predicates, and without changing the main structure of your data.
+	- Please, note how predicates are named: a broader category is followed by a subcategory, separated with `_`; This will allow you to easily pull out dates, places, etc.
+	- Keep in mind that there is no single correct way of modeling your predicates. this is something that you should periodically revise and improve. It helps to keep a visual scheme of your predicates and playing around with it, until you arrive to some stable scheme that allows you to encode everything you need.
+- they allow to *implement the Linked Data approach locally* (i.e., Linked Local Data):
+	- for example, for places, I used settlement IDs from the al-Ṯurayyā Gazetteer (<https://althurayya.github.io/>); you can download and keep al-Ṯurayyā data in a TSV file and you can get coordinates and settlement classifications from this file easily. If some places are missing, you can expand the original al-Ṯurayyā dataset by adding new places into it (and assigning new IDs following the same pattern, but perhaps adding some suffix that would indicate that this place was not originally in al-Ṯurayyā).
+	- for authorities, if you have many of those, you can also keep a file with all the additional descriptions that would be connected to the IDs used in the main table.
+	- similarly for predicates (`PREDICATE`) and references (`PROVENANCE`), as well as other columns, as need arises.
+	- you will want to keep a master document where you would describe all other conventions that you adopt for your research project (for example, date encoding.)
+
+
+
+
+
 
 ![](./images/PUAR/SPO-STAR.svg)
 
 I have mentioned above the traditional `subject-predicate-object` model, with which you can describe pretty much everything that you can describe with a subject-predicate-object sentence. 
 
-### Implementation
-
-Essentially, we can reformat our data into new tables/tibbles, pack them into a list on a similar manner (let's also call it `PUA` for short). We can then save this new list into an RDS file, which can be loaded with `readRDS()` function. Additionally, we can also preserve the entire original dataset, which we can simply add as another element of the list (`PUA$original`).
-
-### Homework assignment
-
-- categorization of places:
-	- Andalusian locations: Cova / Ensar (based on the shared publication?);
-	- Non-Andalusian locations: Cova / Ensar (al-Thurayya can be used for this: <https://althurayya.github.io/>);
-- professions (`actividad`): Antonia; Sean;
-- positions (`cargo`): Antonia; Sean;
-- characteristics (`caracteristica`): Ali; Rawda;
-- “descriptive names” (`nisba`): Rawda; Ali;
-
-**How to do this assignment**:
-
-- you need to save the table that you are planning to work on into a TSV file;
-- open it in some table editor. Perhaps, Google Spreadsheets will be the best option, since you can share your work with others, and/or work together. (On Mac, I really like “Easy CSV Editor”—it is a paid application that is worth every penny (6.99€).)
-- add a column and create metacategories of your choice; keep in mind, that objectively there is no single correct way to do that. In real research you will go through multiple iterations of your categories. Additionally, as we discussed above, you may want/need to create multiple classifications with each suiting better for a particular research question.
-- when you are done, share your tsv file.
 
 
 ## Reference Materials
@@ -365,55 +328,8 @@ The following book is a great example of modeling data for historical studies:
 * Morris, Ian. 2013. *The Measure of Civilization: How Social Development Decides the Fate of Nations*. Princeton: Princeton University Press.
 	* **Note:** This book is a methodological companion to: Morris, Ian. 2010. *Why the West Rules—for Now: The Patterns of History, and What They Reveal about the Future.* New York: Farrar, Straus and Giroux.
 
-## Appendix 1: PUA Data Tables
 
-### Main Table
-
-- `personaje` :: this is essentially the main and the most important table that contains information on individuals;
-
-### Connection Tables
-
-The following tables are *connection* tables that extend the main table by encoding additional information on individuals by connecting each individual to a specific types of information, which are described in auxiliary tables.
-
-For example, different specializations are described in the auxiliary table `disciplina`.  The *connection* table `personaje_disciplina` connects IDs of individuals from the main `personaje` table with IDs of disciplines in the auxiliary table `disciplina`. Thus, each of these connection tables is connected to the table whose name appears after `_`. In some cases, these connection tables are connected to some other tables. 
-
-- `personaje_actividad` :: activities of individuals;
-- `personaje_alias` :: aliases of individuals;
-- `personaje_caracteristica` :: characteristics of individuals;
-- `personaje_cargo` :: positions and offices of individuals;
-- `personaje_disciplina` :: specializations of individuals;
-- `personaje_fuente` :: sources in which individuals are mentioned; this one is connected to the metadata table `fuente`;
-- `personaje_lugar` :: connections of individuals to specific geographical places; also connected to `tiporelacionlugar`, which specify how exactly an individual is connected to a specific settlement;
-- `personaje_nisba` :: *associative names* (*nisbaŧ*s) of individuals that describe connection between individuals and some kind of entities. Here *nisbaŧ*s include: geographical, tribal, familial, and misc (unclassified).
-- `personaje_obra` :: books written by individuals; this one is not connected to any auxiliary table;
-- `personaje_referencia` :: research publications in which individuals are mentioned; this one is actually connected to the metadata table `bibliografia`;
-- `personaje_relacion` :: this table describes connections between individuals;
-
-### Auxiliary Tables
-
-Auxiliary tables describe categorical entities through which individuals in the prosopographical section are described. In most cases individuals can be associated with multiple categories from each entity type (for example, individuals live in and visit multiple settlements), which requires one-to-many relationships.
-
-- `actividad` :: types of activities;
-- `caracteristica` :: types of personal characteristics;
-- `cargo` :: types of positions and offices;
-- `disciplina` :: types of specializations;
-- `familia` :: families; there is no separate table; family information is encoded in the main `personaje` table, since it is one-to-one relationship;
-- `keywords` :: ???
-- `lugar` :: settlements like villages, cities, islands;
-- `nisba` :: *associative/descriptive names* (*nisbaŧ*s);
-- `tiporelacion` :: this table described types of relationships with individuals;
-- `tiporelacionlugar` :: this table described types of relationships with settlements;
-
-### Metadata Tables
-
-The following two tables do not have any information on individuals; rather they provide metadata on sources used in the creation of the database.
-
-- `autor` :: this table contains information on authors of primary sources used in the project;
-- `fuente` :: this table provides detailed information on each primary source;
-- `bibliografiA` :: this is the main bibliographical data of secondary sources of the project; 
-
-
-## Appendix 2: OCR in R
+## Appendix: OCR in R
 
 As was noted above, we can use R to OCR text in PDFs and images. The following libraries will be necessary.
 
@@ -443,4 +359,4 @@ readr::write_lines(text, str_replace(pathToPDFfile, ".pdf", ".txt"))
 
 More details on how to use Tesseract with R you can find here: <https://cran.r-project.org/web/packages/tesseract/vignettes/intro.html>
 
-
+Tesseract---a separate software---must be installed first. The R library `tesseract` is simply a “wrapper application”, which essentially calls it from R. Using R scripts (or, Python scripts) can be particularly useful when one needs to process lots of different files in a particular manner. Thus, an R script will take care of all the additional steps, while Tesseract will only be called for one specific operation—optical character recognition.

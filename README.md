@@ -2,7 +2,8 @@
 
 Course materials for the audition certificates analysis
 
-...
+- while working in RStudio, the site can be activated with:
+  - `bookdown::serve_book()`
 
 
 ## To render book, run the following command:
