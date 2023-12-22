@@ -23,7 +23,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2023-12-16" />
+<meta name="date" content="2023-12-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -538,30 +538,30 @@ div.csl-indent {
 <li>here is some little filler for our script. Simply copy-paste it into the new script.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetic operations</span></span>
-<span id="cb2-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
-<span id="cb2-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">-</span> <span class="dv">5</span></span>
-<span id="cb2-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">/</span> <span class="dv">5</span></span>
-<span id="cb2-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span>
-<span id="cb2-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># assignment: `&lt;-` or `=`; </span></span>
-<span id="cb2-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
-<span id="cb2-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-10" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb2-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-12" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">5</span></span>
-<span id="cb2-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-13" aria-hidden="true" tabindex="-1"></a>x <span class="sc">-</span> <span class="dv">5</span></span>
-<span id="cb2-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-15" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span>
-<span id="cb2-16"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-16" aria-hidden="true" tabindex="-1"></a>y <span class="sc">+</span> x</span>
-<span id="cb2-17"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-18" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">+</span> x</span>
-<span id="cb2-19"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># = Vs ==</span></span>
-<span id="cb2-21"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-22" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> y</span>
-<span id="cb2-23"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-23" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> y</span>
-<span id="cb2-24"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-24" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> y</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-1" tabindex="-1"></a><span class="co"># arithmetic operations</span></span>
+<span id="cb2-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-3" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb2-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-4" tabindex="-1"></a><span class="dv">3</span> <span class="sc">-</span> <span class="dv">5</span></span>
+<span id="cb2-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-5" tabindex="-1"></a><span class="dv">3</span> <span class="sc">/</span> <span class="dv">5</span></span>
+<span id="cb2-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-6" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb2-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-7" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-8" tabindex="-1"></a><span class="co"># assignment: `&lt;-` or `=`; </span></span>
+<span id="cb2-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-9" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb2-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-10" tabindex="-1"></a>x</span>
+<span id="cb2-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-12" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb2-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-13" tabindex="-1"></a>x <span class="sc">-</span> <span class="dv">5</span></span>
+<span id="cb2-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-14" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-15" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb2-16"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-16" tabindex="-1"></a>y <span class="sc">+</span> x</span>
+<span id="cb2-17"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-17" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-18" tabindex="-1"></a>z <span class="ot">&lt;-</span> y <span class="sc">+</span> x</span>
+<span id="cb2-19"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-19" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-20" tabindex="-1"></a><span class="co"># = Vs ==</span></span>
+<span id="cb2-21"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-21" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-22" tabindex="-1"></a>x <span class="sc">==</span> y</span>
+<span id="cb2-23"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-23" tabindex="-1"></a>x <span class="ot">=</span> y</span>
+<span id="cb2-24"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb2-24" tabindex="-1"></a>x <span class="sc">==</span> y</span></code></pre></div>
 <ul>
 <li>now we can try basic R operations:
 <ul>
@@ -597,14 +597,14 @@ div.csl-indent {
 <div id="built-in-functions" class="section level2 hasAnchor" number="2.7">
 <h2><span class="header-section-number">2.7</span> Built-in Functions<a href="rstudio-basic-r-commands-swirl-tutorials.html#built-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s add the following few lines to the end of our R script:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># built-in functions</span></span>
-<span id="cb3-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-3" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
-<span id="cb3-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(numbers)</span>
-<span id="cb3-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(numbers)</span>
-<span id="cb3-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span>
-<span id="cb3-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-1" tabindex="-1"></a><span class="co"># built-in functions</span></span>
+<span id="cb3-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-3" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
+<span id="cb3-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-5" tabindex="-1"></a><span class="fu">max</span>(numbers)</span>
+<span id="cb3-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-6" tabindex="-1"></a><span class="fu">min</span>(numbers)</span>
+<span id="cb3-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-7" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span>
+<span id="cb3-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb3-8" tabindex="-1"></a><span class="fu">sum</span>(numbers)</span></code></pre></div>
 <ul>
 <li>R comes with some built-in functions, which have this format: <code>function(arguments)</code>
 <ul>
@@ -750,78 +750,78 @@ div.csl-indent {
 <div id="vectors" class="section level4 hasAnchor" number="2.10.4.1">
 <h4><span class="header-section-number">2.10.4.1</span> Vectors<a href="rstudio-basic-r-commands-swirl-tutorials.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In R, a vector is a one-dimensional array that can store a collection of values of the same type. You can create a vector using the <code>c()</code> function, which combines multiple values into a single vector. Here’s an example of vectors. (Check what happens with <code>mixed_vector</code>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-1" aria-hidden="true" tabindex="-1"></a>numeric_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
-<span id="cb4-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-2" aria-hidden="true" tabindex="-1"></a>character_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cherry&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="st">&quot;fig&quot;</span>)</span>
-<span id="cb4-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-3" aria-hidden="true" tabindex="-1"></a>mixed_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="st">&quot;banana&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-1" tabindex="-1"></a>numeric_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb4-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-2" tabindex="-1"></a>character_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cherry&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="st">&quot;fig&quot;</span>)</span>
+<span id="cb4-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb4-3" tabindex="-1"></a>mixed_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="st">&quot;banana&quot;</span>)</span></code></pre></div>
 <p>Print out:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span> <span class="dv">20</span> <span class="dv">30</span> <span class="dv">40</span> <span class="dv">50</span></span>
-<span id="cb5-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;apple&quot;</span>  <span class="st">&quot;banana&quot;</span> <span class="st">&quot;cherry&quot;</span> <span class="st">&quot;date&quot;</span>   <span class="st">&quot;fig&quot;</span> </span>
-<span id="cb5-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10&quot;</span>     <span class="st">&quot;20&quot;</span>     <span class="st">&quot;30&quot;</span>     <span class="st">&quot;40&quot;</span>     <span class="st">&quot;50&quot;</span>     <span class="st">&quot;banana&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-1" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span> <span class="dv">20</span> <span class="dv">30</span> <span class="dv">40</span> <span class="dv">50</span></span>
+<span id="cb5-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;apple&quot;</span>  <span class="st">&quot;banana&quot;</span> <span class="st">&quot;cherry&quot;</span> <span class="st">&quot;date&quot;</span>   <span class="st">&quot;fig&quot;</span> </span>
+<span id="cb5-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb5-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;10&quot;</span>     <span class="st">&quot;20&quot;</span>     <span class="st">&quot;30&quot;</span>     <span class="st">&quot;40&quot;</span>     <span class="st">&quot;50&quot;</span>     <span class="st">&quot;banana&quot;</span></span></code></pre></div>
 </div>
 <div id="matrices" class="section level4 hasAnchor" number="2.10.4.2">
 <h4><span class="header-section-number">2.10.4.2</span> Matrices<a href="rstudio-basic-r-commands-swirl-tutorials.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In R, a matrix is a two-dimensional array that can store a collection of values of the same type, organized in rows and columns. You can create a matrix using the <code>matrix()</code> function. Here’s an example of a numeric matrix:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb6-1" aria-hidden="true" tabindex="-1"></a>numeric_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb6-1" tabindex="-1"></a>numeric_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>Print out:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-1" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
-<span id="cb7-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">5</span></span>
-<span id="cb7-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-1" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb7-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-2" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">5</span></span>
+<span id="cb7-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb7-3" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span></span></code></pre></div>
 </div>
 <div id="data.framestibbles" class="section level4 hasAnchor" number="2.10.4.3">
 <h4><span class="header-section-number">2.10.4.3</span> Data.frames/tibbles<a href="rstudio-basic-r-commands-swirl-tutorials.html#data.framestibbles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A data frame is a table-like data structure in R, where each column can contain different types of data, and rows represent observations. A <code>tibble</code> (short for “tidy data frame”) is a modern version of a data frame, introduced by the <code>tidyverse</code> package collection, which offers some improvements over the traditional data frame, such as better printing and subsetting.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
-<span id="cb8-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb8-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb8-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the data</span></span>
-<span id="cb8-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-6" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>)</span>
-<span id="cb8-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-7" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>)</span>
-<span id="cb8-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-8" aria-hidden="true" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>)</span>
-<span id="cb8-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the data frame</span></span>
-<span id="cb8-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-11" aria-hidden="true" tabindex="-1"></a>my_dataframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> names, <span class="at">Age =</span> ages, <span class="at">Gender =</span> gender)</span>
-<span id="cb8-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the tibble</span></span>
-<span id="cb8-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-14" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Name =</span> names, <span class="at">Age =</span> ages, <span class="at">Gender =</span> gender)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-1" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb8-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb8-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-5" tabindex="-1"></a><span class="co"># Define the data</span></span>
+<span id="cb8-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-6" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>)</span>
+<span id="cb8-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-7" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>)</span>
+<span id="cb8-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-8" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>)</span>
+<span id="cb8-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-10" tabindex="-1"></a><span class="co"># Create the data frame</span></span>
+<span id="cb8-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-11" tabindex="-1"></a>my_dataframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> names, <span class="at">Age =</span> ages, <span class="at">Gender =</span> gender)</span>
+<span id="cb8-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-12" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-13" tabindex="-1"></a><span class="co"># Create the tibble</span></span>
+<span id="cb8-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb8-14" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Name =</span> names, <span class="at">Age =</span> ages, <span class="at">Gender =</span> gender)</span></code></pre></div>
 <p>Print out for data.frame:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-1" aria-hidden="true" tabindex="-1"></a>     Name Age Gender</span>
-<span id="cb9-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Alice  <span class="dv">25</span>      F</span>
-<span id="cb9-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     Bob  <span class="dv">30</span>      M</span>
-<span id="cb9-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Charlie  <span class="dv">22</span>      M</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-1" tabindex="-1"></a>     Name Age Gender</span>
+<span id="cb9-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-2" tabindex="-1"></a><span class="dv">1</span>   Alice  <span class="dv">25</span>      F</span>
+<span id="cb9-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-3" tabindex="-1"></a><span class="dv">2</span>     Bob  <span class="dv">30</span>      M</span>
+<span id="cb9-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb9-4" tabindex="-1"></a><span class="dv">3</span> Charlie  <span class="dv">22</span>      M</span></code></pre></div>
 <p>Print out for tibble:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
-<span id="cb10-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  Name     Age Gender</span>
-<span id="cb10-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> </span>
-<span id="cb10-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Alice     <span class="dv">25</span> F     </span>
-<span id="cb10-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Bob       <span class="dv">30</span> M     </span>
-<span id="cb10-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Charlie   <span class="dv">22</span> M     </span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-1" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
+<span id="cb10-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-2" tabindex="-1"></a>  Name     Age Gender</span>
+<span id="cb10-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-3" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span> </span>
+<span id="cb10-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-4" tabindex="-1"></a><span class="dv">1</span> Alice     <span class="dv">25</span> F     </span>
+<span id="cb10-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-5" tabindex="-1"></a><span class="dv">2</span> Bob       <span class="dv">30</span> M     </span>
+<span id="cb10-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb10-6" tabindex="-1"></a><span class="dv">3</span> Charlie   <span class="dv">22</span> M     </span></code></pre></div>
 </div>
 <div id="lists" class="section level4 hasAnchor" number="2.10.4.4">
 <h4><span class="header-section-number">2.10.4.4</span> Lists<a href="rstudio-basic-r-commands-swirl-tutorials.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In R, a list is a versatile data structure that can store a collection of values, where each element can be of a different type or even another data structure like a vector, matrix, or another list. You can create a list using the <code>list()</code> function. Here’s an example of a list:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the data</span></span>
-<span id="cb11-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-2" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>)</span>
-<span id="cb11-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-3" aria-hidden="true" tabindex="-1"></a>matrix_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb11-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-4" aria-hidden="true" tabindex="-1"></a>sublist <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">temperature =</span> <span class="dv">72</span>, <span class="at">weather =</span> <span class="st">&quot;sunny&quot;</span>)</span>
-<span id="cb11-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the list</span></span>
-<span id="cb11-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-7" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Names =</span> names, <span class="at">Data =</span> matrix_data, <span class="at">Sublist =</span> sublist)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-1" tabindex="-1"></a><span class="co"># Define the data</span></span>
+<span id="cb11-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-2" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>)</span>
+<span id="cb11-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-3" tabindex="-1"></a>matrix_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb11-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-4" tabindex="-1"></a>sublist <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">temperature =</span> <span class="dv">72</span>, <span class="at">weather =</span> <span class="st">&quot;sunny&quot;</span>)</span>
+<span id="cb11-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-5" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-6" tabindex="-1"></a><span class="co"># Create the list</span></span>
+<span id="cb11-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb11-7" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Names =</span> names, <span class="at">Data =</span> matrix_data, <span class="at">Sublist =</span> sublist)</span></code></pre></div>
 <p>Print out:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Names</span>
-<span id="cb12-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Alice&quot;</span>   <span class="st">&quot;Bob&quot;</span>     <span class="st">&quot;Charlie&quot;</span></span>
-<span id="cb12-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Data</span>
-<span id="cb12-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-5" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
-<span id="cb12-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">5</span></span>
-<span id="cb12-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span></span>
-<span id="cb12-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Sublist</span>
-<span id="cb12-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Sublist<span class="sc">$</span>temperature</span>
-<span id="cb12-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">72</span></span>
-<span id="cb12-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>Sublist<span class="sc">$</span>weather</span>
-<span id="cb12-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;sunny&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-1" tabindex="-1"></a><span class="sc">$</span>Names</span>
+<span id="cb12-2"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Alice&quot;</span>   <span class="st">&quot;Bob&quot;</span>     <span class="st">&quot;Charlie&quot;</span></span>
+<span id="cb12-3"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-4" tabindex="-1"></a><span class="sc">$</span>Data</span>
+<span id="cb12-5"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-5" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb12-6"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-6" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">5</span></span>
+<span id="cb12-7"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-7" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span></span>
+<span id="cb12-8"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-8" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-9" tabindex="-1"></a><span class="sc">$</span>Sublist</span>
+<span id="cb12-10"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-10" tabindex="-1"></a><span class="sc">$</span>Sublist<span class="sc">$</span>temperature</span>
+<span id="cb12-11"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-11" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">72</span></span>
+<span id="cb12-12"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-12" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-13" tabindex="-1"></a><span class="sc">$</span>Sublist<span class="sc">$</span>weather</span>
+<span id="cb12-14"><a href="rstudio-basic-r-commands-swirl-tutorials.html#cb12-14" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;sunny&quot;</span></span></code></pre></div>
 </div>
 <div id="rds-files" class="section level4 hasAnchor" number="2.10.4.5">
 <h4><span class="header-section-number">2.10.4.5</span> RDS Files<a href="rstudio-basic-r-commands-swirl-tutorials.html#rds-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>

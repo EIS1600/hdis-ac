@@ -292,28 +292,31 @@ By combining these components, the Grammar of Graphics provides a flexible and s
 
 First, we need to load and prepare some data that we will need for graphing. The following data will include the chronological distribution (by 50 *hijrī* year periods) of individual in top 10 Andalusian cities. Again, for simplification, we group individuals by the years of their death.
 
-```{R eval=FALSE, include=TRUE}
+```{R eval=TRUE, include=TRUE}
 
 library(tidyverse) # ggplot2 will be loaded with this command
+
+PUA <- readRDS("data/PUA_allDataTables_asList.rds")
 
 # get readable names of places
 lugarNombres <- PUA$lugar %>%
   select(idLugar, nombre, nombre_castellano)
 
-# count people in places
-lugar <- PUA$personaje_lugar %>%
-  select(idLugar, idPersonaje, idRelacion) %>%
-  left_join(personajeLite, by = c("idPersonaje" = "idPersonaje")) %>%
-  select(-nombreA, -nacimiento, -edad, -muerteCE) %>%
-  mutate(century = plyr::round_any(muerte, 50, f = ceiling)) %>%
-  left_join(lugarNombres)
+# create personajeLite
+personajeLite <- PUA$personaje %>%
+  select(idPersonaje, idFamilia, nombreA,
+         nacimiento, muerte, edad) %>%
+  mutate(nacimiento = na_if(nacimiento, 0),
+         muerte = na_if(muerte, 0),
+         edad = na_if(edad, 0))
 
 # count people in places
 lugar <- PUA$personaje_lugar %>%
   select(idLugar, idPersonaje, idRelacion) %>%
   left_join(personajeLite, by = c("idPersonaje" = "idPersonaje")) %>%
-  select(-nombreA, -nacimiento, -edad, -muerteCE) %>%
+  select(-nombreA, -nacimiento, -edad) %>%
   mutate(century = plyr::round_any(muerte, 50, f = ceiling)) %>%
+  left_join(lugarNombres) %>%
   filter(!is.na(century))
 
 # sleect the top 10 paces
@@ -339,7 +342,7 @@ lugarSummary <- lugar %>%
   ungroup() %>%
   select(label, individuals, century)
 
-lugarSummary
+knitr::kable(lugarSummary)
 ```
 
 Now, let’s prepare some additional data to make our visualization more readable: we will create labels for our x axis.
@@ -364,7 +367,7 @@ Before we proceed, we need to do one trick that is not really related to the `gg
 
 Now, we can generate our graph:
 
-```R
+```{R eval=TRUE, include=TRUE}
 lugarGraph <- ggplot() +
   geom_line(data = lugarSummary,
             aes(x = century, y = individuals),
@@ -467,14 +470,479 @@ ggsave(
 
 ![](./images/PUAR/PUA_top10_AndalusianCities_OverTime_02.svg)
 
-## Other types of graphs
+## Most Relevant Types of Graphs (for Audition Certificates Data)
+
+Let's now take a look at a few examples of most relevant graphs
+
+- scatter plots: useful for checking for correlations;
+- line charts: useful for plotting change over time;
+- histograms: useful for understanding distribution of values;
+- barcharts: used for categorical data representation;
+
+**NB:** Check examples in the appendix to this section with graphs based on the PUA data for more information on relevant graphs.
+
+```{r}
+
+# data
+
+ac_data <- readRDS("data/AS_data.rds")
+ac_metadata <- readRDS("data/AS_metadata.rds")
+
+# some helping data and functions
+
+AH2CEa <- function(AH) {
+  CE <- round(AH - AH/33 + 622)
+  return(CE)
+}
+
+AH2CEb <- function(AH) {
+  CE <- round(AH - AH/33 + 622)
+  AH <- ifelse(AH == 0, 1, AH)
+  final <- paste0(AH, " AH\n", CE, " CE")
+  return(final)
+}
+
+periodsAH <- seq(0, 1400, 100)
+periodsCEa <- AH2CEa(periodsAH)
+periodsCEb <- AH2CEb(periodsAH)
+```
+
+
+Let's prepare dates data:
+
+```{r}
+ac_dates <- ac_data %>%
+  filter(attribute_type == "attributes.year") %>%
+  mutate(attribute_value = as.numeric(attribute_value))
+```
+
+
+### Histograms
+
+How do histograms work? 1) they group values into bins; 2) they draw “bars/columns”, whose height equals the number of values in a bin;
+This is the most useful and easy to use type when you need to understand the distribution of values: it is much easier to get correct distribution; 
+Disadvantages: hard to do comparative graphs (although `freq_poly` may help).
+(Bar charts might seem similar, but they group data categorically.)
+
+
+```{r}
+# VERY SIMPLE
+ggplot() +
+  geom_histogram(data = ac_dates,aes(x = attribute_value), binwidth = 10)
+
+# PRETTIFIED
+ggplot() +
+  geom_histogram(data = ac_dates, aes(x = attribute_value), binwidth = 10) +
+  scale_x_continuous(breaks = periodsAH, labels = periodsCEb) +
+  labs(x = "", y = "") +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  labs(title = "Chronological Distribution of Audition Certificates (per decade)",
+       caption = "Data Source: Audition Certificates Platform (2023)",
+       x = "", y = "", family = "Brill")
+
+
+#ggsave("./tests/chronological_distribution_AC_per_decade_histogram.jpg",
+#       plot = last_plot(), width = 400, height = 200,
+#       units = "mm", dpi = "retina")
+
+# USING FREQPOLY
+
+ggplot() +
+  geom_freqpoly(data = ac_dates,
+                aes(x = attribute_value),
+                binwidth = 10)
+```
+
+
+**HW Question:**
+
+1. What will change if we change the value of bins?
+2. What other histograms can we generate with our data?
+
+
+### Line charts
+
+Line charts draw lines between a series of dots. They are a most common type of graphs for chronological distributions, however,
+they require much more care at the step of data preparation, especially to ensure that missing values are reflected at the final graph.
+
+
+```{r}
+# gaps lost
+
+chronologyA <- ac_data %>%
+  filter(attribute_type == "attributes.year") %>%
+  mutate(attribute_value = as.integer(attribute_value)) %>%
+  mutate(attribute_value = as.integer(ceiling(attribute_value / 10) * 10)) %>% # convert into decades
+  group_by(attribute_value) %>%
+  summarize(count = n()) %>%
+  rename(year = attribute_value, certificates = count) %>%
+  ungroup()
+
+ggplot() + 
+  geom_line(data = chronologyA, aes(x = year, y = certificates))
+
+
+# gaps kept
+
+dummy <- tibble(year = seq(350, 1400, 10), certificates = 0)
+
+chronologyB <- ac_data %>%
+  filter(attribute_type == "attributes.year") %>%
+  mutate(attribute_value = as.integer(attribute_value)) %>%
+  mutate(attribute_value = as.integer(ceiling(attribute_value / 10) * 10)) %>% # convert into decades
+  group_by(attribute_value) %>%
+  summarize(count = n()) %>%
+  rename(year = attribute_value, certificates = count) %>%
+  add_row(dummy) %>%
+  group_by(year) %>%
+  summarize(count = sum(certificates)) %>%
+  ungroup() #%>% mutate(count = ifelse(count == 0, NA, count))
+
+ggplot() + 
+  geom_line(data = chronologyB, aes(x = year, y = count))
+
+# together
+
+ggplot() + 
+  geom_line(data = chronologyA, aes(x = year, y = certificates), col = "blue") +
+  geom_line(data = chronologyB, aes(x = year, y = count), col = "darkgreen") + 
+  geom_segment(data = chronologyB, aes(x = year, xend = year, y = 0, yend = count), col = "red", linetype = 3)
+  
+
+# prettified
+
+ggplot() + 
+  geom_step(data = chronologyB, aes(x = year, y = count))+ 
+  scale_x_continuous(breaks = periodsAH, labels = periodsCEb) +
+  labs(x = "", y = "") +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  labs(title = "Chronological Distribution of Audition Certificates (per decade)",
+       caption = "Data Source: Audition Certificates Platform (2023)",
+       x = "", y = "", family = "Brill")
+
+#ggsave("./tests/chronological_distribution_AC_per_year.jpg",
+#       plot = last_plot(), width = 400, height = 200,
+#       units = "mm", dpi = "retina")
+```
+
+
+**HW questions:**
+
+1. Generate graphs for 20 year periods; for 50 year periods;
+2. Generate graphs for different geographical locations;
+
+### Scatterplots
+
+
+Scatterplots are used to plot relationships between two variables in order to see if there is any corelation between them. 
+Let's take a look at how it works on a completely different example, using `mtcars` standard dataset.
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  ggtitle("Scatterplot of MPG vs Car Weight") +
+  xlab("Weight (1000 lbs)") +
+  ylab("Miles per Gallon")
+```
+
+
+In this graph we compare weights of cars and their mileage per gallon (i.e. how many miles they can run on about 4 liters of gas).
+Each dot represents a car (a specific make and model) and it is plotted using its weight (x-axis) and its mileage (y-axis).
+Even without the red line, which is meant to represent the trend in data, you can see that the heavier the car, the shorter the distance
+it can run per gallon.
+
+The graph would be usually interpreted in the following manner: This scatterplot visually represents the relationship between the weight
+of the cars and their fuel efficiency. The points show the actual data, while the red line represents the best linear fit, illustrating
+the general trend. In this case, the negative slope of the line indicates a negative correlation, suggesting that as the weight of the
+car increases, its fuel efficiency (miles per gallon) tends to decrease.
+
+
+Now, let's try with our data:
+
+- check if the number of participants was increasing with time? I.e., in the later period these groups were larger than in earlier;
+- check if there is some correlation between the day of the week and the number of participants;
+
+```{r}
+
+ac_participants <- ac_data %>%
+  filter(type == "person") %>%
+  group_by(AS_ID) %>%
+  summarize(count = n())
+
+
+# year Vs participants
+
+ac_participants_year <- ac_data %>%
+  filter(attribute_type == "attributes.year") %>%
+  mutate(attribute_value = as.numeric(attribute_value)) %>%
+  left_join(ac_participants) %>%
+  # REMOVE UNDATES certificates: losing about 200 certificates
+  filter(!is.na(attribute_value))
+  
+ggplot(ac_participants_year, aes(x = attribute_value, y = count)) +
+  geom_point(color = "blue", alpha = 0.25) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  scale_x_continuous(breaks = periodsAH, labels = periodsCEb) +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  labs(title = "Year Vs Participants",
+       caption = "Data Source: Audition Certificates Platform (2023)",
+       x = "year AH", y = "# of participants", family = "Brill")
+
+
+ac_participants_year_filt <- ac_participants_year %>%
+  filter(attribute_value >= 500) %>%
+  filter(attribute_value <= 700) %>%
+  filter(count <= 100)
+
+
+ggplot(ac_participants_year_filt, aes(x = attribute_value, y = count)) +
+  geom_point(color = "blue", alpha = 0.25) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  scale_x_continuous(breaks = periodsAH, labels = periodsCEb) +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  labs(title = "Year Vs Participants",
+       caption = "Data Source: Audition Certificates Platform (2023)",
+       x = "year AH", y = "# of participants", family = "Brill")
+  
+
+# day Vs participants
+
+unique(ac_participants_dow$attribute_value)
+
+DOWtibble <- tibble(
+  attribute_value = c("Yawm al-ahad", "Yawm al-ithnayn", "Yawm al-thalatha", "Yawm al-arba'a", "Yawm al-khamis", "Yawm al-juma", "Yawm al-sabt"),
+  attribute_label = c("1. yawm al-aḥad", "2. yawm al-iṯnayn", "3. yawm al-ṯulaṯāʾ", "4. yawm al-arbiʿāʾ", "5. yawm al-ḫamīs", "6. yawm al-jumʿaŧ", "7. yawm al-sabt"),
+  attribute_index = c(1,2,3,4,5,6,7)
+)
+
+ac_participants_dow <- ac_data %>%
+  filter(attribute_type == "attributes.weekday") %>%
+  left_join(ac_participants) %>%
+  # REMOVE UNDATES certificates: losing about 200 certificates
+  filter(!is.na(attribute_value)) %>%
+  left_join(DOWtibble) %>%
+  filter(count <= 100)
+
+ggplot(ac_participants_dow, aes(x = attribute_index, y = count)) +
+  geom_point(color = "blue", alpha = 0.25, position = position_jitter(width=0.25, height=0.25)) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  scale_x_continuous(breaks = DOWtibble$attribute_index, labels = DOWtibble$attribute_label) +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  labs(title = "Day of the week Vs Participants",
+       caption = "Data Source: Audition Certificates Platform (2023)",
+       x = "day of the week", y = "# of participants", family = "Brill")
+
+## perhaps, types of books would be more relevant?!
+
+```
+
+
+### Bar charts
+
+Bar chart represent values per category. For example, we can check how many sessions we have per day of the week. 
+
+
+```{r}
+
+ac_participants_dow <- ac_data %>%
+  filter(attribute_type == "attributes.weekday") %>%
+  left_join(ac_participants) %>%
+  # REMOVE UNDATES certificates: losing about 200 certificates
+  filter(!is.na(attribute_value)) %>%
+  left_join(DOWtibble)
+
+
+ac_participants_per_dow <- ac_participants_dow %>%
+  group_by(attribute_label, attribute_index) %>%
+  summarize(
+    sessions = n(),
+    people_total = sum(count),
+    participants_mean = mean(count),
+    participants_median = median(count)
+  ) %>%
+  arrange(attribute_index)
+
+ac_participants_per_dow
+
+ggplot(ac_participants_per_dow, aes(x = factor(attribute_label), y = sessions)) +
+  geom_bar(stat = "identity", fill = "grey") +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  ggtitle("Total number of sessions by DOW") +
+  xlab("") +
+  ylab("people")
+
+ggplot(ac_participants_per_dow, aes(x = factor(attribute_label), y = people_total)) +
+  geom_bar(stat = "identity", fill = "grey") +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  ggtitle("Total number of people by DOW") +
+  xlab("") +
+  ylab("people")
+
+
+ggplot(ac_participants_per_dow, aes(x = factor(attribute_label), y = participants_mean)) +
+  geom_bar(stat = "identity", fill = "grey") +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  ggtitle("Mean number of people by DOW") +
+  xlab("") +
+  ylab("people")
+
+
+ggplot(ac_participants_per_dow, aes(x = factor(attribute_label), y = participants_median)) +
+  geom_bar(stat = "identity", fill = "grey") +
+  theme_set(theme_minimal())+
+  theme(text = element_text(family = "Brill"),
+        # face = "italic", # makes all italic...
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.ticks = element_line(size = 0.5),
+        axis.ticks.length.y = unit(.25, "cm"),
+        axis.ticks.length.x = unit(.25, "cm"),
+        legend.position = c(0.175,0.65), legend.title = element_blank(),
+  ) +
+  ggtitle("Median number of people by DOW") +
+  xlab("") +
+  ylab("people")
+
+```
+
+
+### Alternatives
+
+- `summary(vector)`
+- `library(gtExtras)`
+- summary table with pregenerated stats;
+
+
+```{r}
+
+ac_participants_per_dow <- ac_participants_dow %>%
+  group_by(attribute_label, attribute_index) %>%
+  summarize(
+    sessions = n(),
+    p_total = sum(count),
+    p_mean = mean(count),
+    p_median = median(count),
+    p_sd = sd(count),
+    p25 = quantile(count, 0.25),
+    p75 = quantile(count, 0.75),
+  ) %>%
+  arrange(attribute_label) %>%
+  select(-attribute_index)
+  
+ac_participants_per_dow
+
+knitr::kable(ac_participants_per_dow)
+
+```
+
+**Important:**
+
+- A **high standard deviation** indicates that the number of persons per meeting varies greatly from the average (mean) on that day. In other words, some meetings may have many attendees, while others have few.
+- A **low standard deviation** suggests that the number of persons per meeting is more consistent and doesn’t deviate much from the average on that day.
+- Days with a lower standard deviation would imply more uniform attendance across meetings.
+
+
+## Appendices
+
+### Appendix 1: Most useful graphs with examples
 
 Let's look as the examples of most useful graphs. (We will leave maps and networks for later, since they are more complicated and require preparing data in a specific manner.)
 
 - introduce major types of graphs;
 - give examples; create “simple” graphs: students' task #1 is to make them detailed and fully annotated; 
 
-### 1. Scatter plots
+#### Scatter plots
 
 Let's try something very simple. First, the correlation between the date of birth and the date of death—this is a silly example, because we do know that the later one is born, the later one dies; but it will show you how a correlation looks visually. Remember, you can save it into a file with: `ggsave("PUAR_scatterplot01.png", w = 6, h = 5)`
 
@@ -547,7 +1015,7 @@ plot(x = personajeLite$edad, y = personajeLite$muerte)
 plot(x = personajeLite$nacimiento, y = personajeLite$muerte)
 ```
 
-### 2. Line charts
+#### 2. Line charts
 
 We already have an example of a line chart.
 
@@ -564,7 +1032,7 @@ ggplot() +
 - create a fully-annotated chronological chart for top 10 professions (`actividad`);
 - create two fully-annotated charts for top 10 professions in two cities of your choice;
 
-### 3. Bar charts
+#### 3. Bar charts
 
 Let's graph bars of individuals in the top 10 Andalusian cities. We will need to do some data processing though.
 
@@ -585,7 +1053,7 @@ ggplot(lugarPersonaje) +
 	- for the entire al-Andalus;
 	- and for the top 10 cities;
 
-### 4. Histograms
+#### 4. Histograms
 
 Histograms are best for understanding the distribution of values. For example, ages (`edad`)
 
@@ -611,7 +1079,7 @@ ggplot() +
 - create a fully annotated histogram of the distribution of ages;
 - create a fully annotated histogram for the number of places visited by each individual in the PUA database;
 
-### 5. Wordclouds
+#### 5. Wordclouds
 
 Everyone seems to want to use wordclouds, but wordclouds are most commonly misused. Any issues with the following wordcloud? (Think of it this way: well-designed visualizations use position, color, shape, tile, and size in informative ways — ideally, each of them must encode/convey some information.)
 
@@ -670,89 +1138,8 @@ invisible(dev.off())
 
 ![](./images/PUAR/PUAR_wordcloud_arabe.png)
 
-**HW**
-- ! you cannot annotate these wordclouds in a similar manner.
-- create wordclouds of professions
-	- for the entire al-Andalus;
-	- for top ten cities;
 
-## Homework assignment
-
-Your homework assignment is given in the section above.
-
-<!--
-
-## Final word
-
-In conclusion, this lesson on graphs and graphing with R and ggplot has provided a detailed presentation of the power and versatility of data visualization. We explored the fundamentals of plotting, learned how to create various types of graphs, and discovered how to customize them using the ggplot2 package.
-
-By using R and ggplot2, we gained the ability to transform raw data into meaningful visual representations. We covered essential concepts such as data aesthetics, layers, and mappings, enabling us to effectively convey insights and patterns hidden within our datasets.
-
-Throughout the lesson, we practiced constructing bar plots, line plots, scatter plots, and more, while incorporating labels, titles, and annotations to enhance the clarity and interpretability of our visualizations. We also delved into the concepts of faceting and theming, further expanding our capabilities in creating professional-looking plots.
-
-By mastering the art of graphing, we have acquired a valuable tool for data exploration, analysis, and communication. The ability to create visually appealing and informative graphs equips us to effectively present our findings, engage our audience, and make data-driven decisions.
-
-As we continue to delve into the realm of data science and analysis, the knowledge gained from this lesson will prove invaluable. Armed with the skills to harness R and ggplot2 for graphing, we are well-equipped to tackle complex datasets, unravel trends, and tell compelling stories through our visualizations.
-
-Remember, practice is key to further honing these skills. So, continue exploring the vast possibilities of graphing with R and ggplot2, experimenting with different plot types, customization options, and creative ways to display your data. The world of graphs is at your fingertips, ready to amplify your data analysis journey.
-
--->
-
-
-<!--
-
-## Graphing Data
-
-Let's now combine our newly acquired knowledge of tibble manipulations (last class :) with the possibilities that `ggplot2` offers us. It allows you to create various types of charts, including:
-
-1.  Scatter plots;
-2.  Line charts;
-3.  Bar charts;
-4.  Histograms;
-5.  Box plots (option: Violin plots);
-6.  Density plots;
-7.  Area charts;
-8.  Heatmaps;
-10. Radial charts: great for representing complex objects with multiple characteristics (distribution of genre signals in a book);
-11. Wordclouds (not with ggplot2 though); not a very great visualization either; unless done properly
-12.  Pie charts should be avoided at all costs! If you use them knowledgeable people will know right away you know nothing about visualization of data. A much better alternative is a table with absolute numbers and percentages (you can knit ones into markdown code with knitr).
-
-The most useful charts depend on the context and the data you are working with. Some common chart types that are helpful in a wide range of scenarios include:
-
-1.  **Scatter plots**: For visualizing the relationship between two continuous variables. *Example:* correlation between the length of a book and the amount of text reuse in it;
-2.  **Line charts**: For visualizing trends over time or continuous variables. *Example*: numbers of books over periods; *alternative*: barbell chart --- to highlight gaps; 
-3.  **Bar charts**: For comparing discrete categories or showing proportions. *Example*: number of books by genres in the corpus; split into centuries; 
-4.  **Histograms**: For understanding the distribution of a single continuous variable. Example?
-5.  **Box plots**: For visualizing the distribution of a continuous variable across different categories. *Example*: distribution of lengths of books by genres; by periods;
-
-As for charts to avoid, pie charts are generally not recommended in general because they are less effective at communicating information than other types of charts. This is because it's harder to accurately compare the size of pie slices than bars or points in other types of charts.
-
-Remember that the most important aspect of data visualization is to convey information effectively. Always choose the chart type that best represents your data and makes it easy for your audience to understand the insights you are trying to communicate.
-
-1. need to discuss issues of our perception: shapes, colors, etc. -- Kieran Healey's book;
-1. Unique books per period (50 AH years or 100 AH years?);
-2. Books by genres per period (50 AH years or 100 AH years?);
-3. Need to show different types of graphs:
-	1. line chart --- unique books per period; books by genres per period;
-	2. bar chart --- books by genres; books by periods;
-	3. barbell charts? --- to highlight gaps;
-	4. pie charts: use a table with absolute numbers and percentages > show how to make one with typeset it with knitr;
-	5. radial charts: compound genre signal in books an in authors;
-	6. histograms: distribution of what?
-	7. scatterplots: text reuse (simplified data) > the larger the book, the higher the possibility of text reuse;
-4. Map of the Islamic world:
-	1. base map > for reuse;
-	2. data to be added on top;
-	3. focusing on specific provinces;
-5. Network example:
-	2. social network;
-	1. geographical network;
-
--->
-
-## Appendices
-
-### Appendix 1: When a “Simple” Table May Suffice
+### Appendix 2: When a “Simple” Table May Suffice
 
 > The **gt** package is all about making it simple to produce nice-looking display tables. Display tables? Well yes, we are trying to distinguish between data tables (e.g., tibbles,`data.frame`s, etc.) and those tables you’d find in a web page, a journal article, or in a magazine. Such tables can likewise be called presentation tables, summary tables, or just tables really. For more: <https://gt.rstudio.com/articles/intro-creating-gt-tables.html>
 
@@ -788,14 +1175,14 @@ gt_plt_summary(personajeLite)
 
 ![](./images/PUAR/PUAR_gtSummary.png)
 
-## Appendix: Interactive Graphs
+### Appendix 3: Interactive Graphs
 
 If you want to create an interactive graph, you can use `plotly` library —it can add some interactivity to a `ggplot` graph (<https://plotly.com/ggplot2/>); or 2) you can use a slightly different syntax to create `plotly` graphs directly (<https://plotly.com/r/>).
 
 > Example: a Genre Classification Experiment on OpenITI texts, <https://maximromanov.shinyapps.io/adhfais_app2/> 
 
 
-### Appendix: Checklist for Creating Visualizations
+### Appendix 4: Checklist for Creating Visualizations
 
 Creating effective visualizations involves taking into account several factors related to human perception and design principles. Here are some key issues to consider when designing charts, graphs, or other visualizations:
 
@@ -810,7 +1197,7 @@ Creating effective visualizations involves taking into account several factors r
 9.  **Test with your audience**: To ensure that your visualization is effective, share it with a sample of your intended audience and gather feedback. This can help you identify any issues or confusion that may arise and refine the visualization accordingly.
 
 
-## Appendix: Scientific Notation
+### Appendix 5: Scientific Notation
 
 Sooner or later you will run into numbers that are expressed with *scientific notation*. Here's an example of a number in scientific notation and its equivalent representation without scientific notation:
 
@@ -833,11 +1220,11 @@ options(scipen = 0)
 
 Keep in mind that these settings only affect how the numbers are displayed in R, not how they are stored or used in calculations.
 
-## Homework solutions (partial)
+### Appendix 6: Solutions for PUA Graphs (partial)
 
 Solutions are given only to the data problems; you should be able to figure out prettification assignments on your own.
 
-### Line charts
+#### Line charts
 
 - create a fully-annotated chronological chart for top 10 professions (`actividad`);
 
@@ -1003,7 +1390,7 @@ ggsave(
 
 ![](./images/PUAR/PUA_top10_CordobanProfessions_OverTime_01.svg)
 
-### 3. Bar charts
+#### Bar charts
 
 - add annotation to the cities graph;
 - create a fully-annotated bar chart for 10 most common professions
@@ -1094,7 +1481,7 @@ ggsave(
 
 ![](./images/PUAR/PUA_top10_AndalusianProfessions_Total02.svg)
 
-### 4. Histograms
+#### Histograms
 
 - create a fully annotated histogram of the distribution of ages;
 - create a fully annotated histogram for the number of places visited by each individual in the PUA database;
@@ -1140,7 +1527,7 @@ ggsave(
 ![](./images/PUAR/PUA_density_of_travels.svg)
 
 
-### 5. Wordclouds - Homework
+#### Wordclouds - Homework
 
 - ! you cannot annotate these wordclouds in a similar manner.
 - create wordclouds of professions:

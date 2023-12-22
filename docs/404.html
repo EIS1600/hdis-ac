@@ -23,7 +23,7 @@
 <meta name="author" content="Maxim G. Romanov" />
 
 
-<meta name="date" content="2023-12-16" />
+<meta name="date" content="2023-12-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -122,28 +122,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -222,35 +200,38 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation I</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#this-chapter-2"><i class="fa fa-check"></i><b>4.1</b> This Chapter</a></li>
-<li class="chapter" data-level="4.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#why-tidyverse"><i class="fa fa-check"></i><b>4.2</b> Why <code>tidyverse</code>?</a></li>
-<li class="chapter" data-level="4.3" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#main-data-file-formats-csv-and-tsv"><i class="fa fa-check"></i><b>4.3</b> Main Data File Formats: CSV and TSV</a></li>
-<li class="chapter" data-level="4.4" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-data-into-r"><i class="fa fa-check"></i><b>4.4</b> Loading Data into R</a>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#main-data-structures-review"><i class="fa fa-check"></i><b>4.2</b> Main Data Structures — Review</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#why-tidyverse"><i class="fa fa-check"></i><b>4.3</b> Why <code>tidyverse</code>?</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#main-data-file-formats-csv-and-tsv"><i class="fa fa-check"></i><b>4.4</b> Main Data File Formats: CSV and TSV</a></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-data-into-r"><i class="fa fa-check"></i><b>4.5</b> Loading Data into R</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-csv-and-tsv-files"><i class="fa fa-check"></i><b>4.4.1</b> Loading CSV and TSV files</a></li>
-<li class="chapter" data-level="4.4.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#r-specific-data-format-rds"><i class="fa fa-check"></i><b>4.4.2</b> R-specific Data “Format”: RDS</a></li>
+<li class="chapter" data-level="4.5.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-csv-and-tsv-files"><i class="fa fa-check"></i><b>4.5.1</b> Loading CSV and TSV files</a></li>
+<li class="chapter" data-level="4.5.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#r-specific-data-format-rds"><i class="fa fa-check"></i><b>4.5.2</b> R-specific Data “Format”: RDS</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-pua-data"><i class="fa fa-check"></i><b>4.5</b> Loading PUA data</a></li>
-<li class="chapter" data-level="4.6" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#exploring-pua-data"><i class="fa fa-check"></i><b>4.6</b> Exploring PUA Data</a></li>
-<li class="chapter" data-level="4.7" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#main-commands-for-engaging-with-a-tibble"><i class="fa fa-check"></i><b>4.7</b> Main commands for engaging with a tibble</a>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#loading-pua-data"><i class="fa fa-check"></i><b>4.6</b> Loading PUA data</a></li>
+<li class="chapter" data-level="4.7" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#pua-dataset-technical-description"><i class="fa fa-check"></i><b>4.7</b> PUA Dataset Technical Description</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#exploring-pua-data"><i class="fa fa-check"></i><b>4.8</b> Exploring PUA Data</a></li>
+<li class="chapter" data-level="4.9" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#main-commands-for-engaging-with-a-tibble"><i class="fa fa-check"></i><b>4.9</b> Main commands for engaging with a tibble</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#chaining-with"><i class="fa fa-check"></i><b>4.7.1</b> Chaining with <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="4.9.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#chaining-with"><i class="fa fa-check"></i><b>4.9.1</b> Chaining with <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#important-functions-from-dplyr"><i class="fa fa-check"></i><b>4.8</b> Important Functions from <code>dplyr</code></a></li>
-<li class="chapter" data-level="4.9" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#important-functions-from-tidyr"><i class="fa fa-check"></i><b>4.9</b> Important Functions from <code>tidyr</code></a></li>
-<li class="chapter" data-level="4.10" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#function-usage"><i class="fa fa-check"></i><b>4.10</b> Function usage</a>
+<li class="chapter" data-level="4.10" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#important-functions-from-dplyr"><i class="fa fa-check"></i><b>4.10</b> Important Functions from <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.11" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#important-functions-from-tidyr"><i class="fa fa-check"></i><b>4.11</b> Important Functions from <code>tidyr</code></a></li>
+<li class="chapter" data-level="4.12" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#function-usage"><i class="fa fa-check"></i><b>4.12</b> Function usage</a>
 <ul>
-<li class="chapter" data-level="4.10.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#filter"><i class="fa fa-check"></i><b>4.10.1</b> <code>filter()</code></a></li>
-<li class="chapter" data-level="4.10.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#select"><i class="fa fa-check"></i><b>4.10.2</b> <code>select()</code></a></li>
-<li class="chapter" data-level="4.10.3" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.10.3</b> <code>mutate()</code> and <code>transmute()</code></a></li>
-<li class="chapter" data-level="4.10.4" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#rename"><i class="fa fa-check"></i><b>4.10.4</b> <code>rename()</code></a></li>
-<li class="chapter" data-level="4.10.5" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#arrange"><i class="fa fa-check"></i><b>4.10.5</b> <code>arrange()</code></a></li>
-<li class="chapter" data-level="4.10.6" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#group_by-ungroup"><i class="fa fa-check"></i><b>4.10.6</b> <code>group_by()</code> / <code>ungroup()</code></a></li>
-<li class="chapter" data-level="4.10.7" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#summarise-or-summarize"><i class="fa fa-check"></i><b>4.10.7</b> <code>summarise()</code> or <code>summarize()</code></a></li>
-<li class="chapter" data-level="4.10.8" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#join_-functions"><i class="fa fa-check"></i><b>4.10.8</b> <code>join_*</code> functions</a></li>
-<li class="chapter" data-level="4.10.9" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#pivot_-functions"><i class="fa fa-check"></i><b>4.10.9</b> <code>pivot_*()</code> functions</a></li>
+<li class="chapter" data-level="4.12.1" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#filter"><i class="fa fa-check"></i><b>4.12.1</b> <code>filter()</code></a></li>
+<li class="chapter" data-level="4.12.2" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#select"><i class="fa fa-check"></i><b>4.12.2</b> <code>select()</code></a></li>
+<li class="chapter" data-level="4.12.3" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.12.3</b> <code>mutate()</code> and <code>transmute()</code></a></li>
+<li class="chapter" data-level="4.12.4" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#rename"><i class="fa fa-check"></i><b>4.12.4</b> <code>rename()</code></a></li>
+<li class="chapter" data-level="4.12.5" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#arrange"><i class="fa fa-check"></i><b>4.12.5</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="4.12.6" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#group_by-ungroup"><i class="fa fa-check"></i><b>4.12.6</b> <code>group_by()</code> / <code>ungroup()</code></a></li>
+<li class="chapter" data-level="4.12.7" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#summarise-or-summarize"><i class="fa fa-check"></i><b>4.12.7</b> <code>summarise()</code> or <code>summarize()</code></a></li>
+<li class="chapter" data-level="4.12.8" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#join_-functions"><i class="fa fa-check"></i><b>4.12.8</b> <code>join_*</code> functions</a></li>
+<li class="chapter" data-level="4.12.9" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#pivot_-functions"><i class="fa fa-check"></i><b>4.12.9</b> <code>pivot_*()</code> functions</a></li>
 </ul></li>
-<li class="chapter" data-level="4.11" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#homework-tasks"><i class="fa fa-check"></i><b>4.11</b> Homework Tasks</a></li>
-<li class="chapter" data-level="4.12" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#appendix-window-function-in-tidyverse"><i class="fa fa-check"></i><b>4.12</b> Appendix: “Window” function in <code>tidyverse</code></a></li>
+<li class="chapter" data-level="4.13" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#homework-tasks"><i class="fa fa-check"></i><b>4.13</b> Homework Tasks</a></li>
+<li class="chapter" data-level="4.14" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#appendix-window-function-in-tidyverse"><i class="fa fa-check"></i><b>4.14</b> Appendix: “Window” function in <code>tidyverse</code></a></li>
+<li class="chapter" data-level="4.15" data-path="data-manipulation-i.html"><a href="data-manipulation-i.html#appendix-pua-database-description"><i class="fa fa-check"></i><b>4.15</b> Appendix: PUA Database Description</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="data-manipulation-ii.html"><a href="data-manipulation-ii.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation II</a>
 <ul>
@@ -320,30 +301,22 @@ div.csl-indent {
 <li class="chapter" data-level="8.4.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#code-breakdown"><i class="fa fa-check"></i><b>8.4.2</b> Code Breakdown</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#simpler-graphs"><i class="fa fa-check"></i><b>8.5</b> Simpler graphs</a></li>
-<li class="chapter" data-level="8.6" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#other-types-of-graphs"><i class="fa fa-check"></i><b>8.6</b> Other types of graphs</a>
+<li class="chapter" data-level="8.6" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#most-relevant-types-of-graphs-for-audition-certificates-data"><i class="fa fa-check"></i><b>8.6</b> Most Relevant Types of Graphs (for Audition Certificates Data)</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#scatter-plots"><i class="fa fa-check"></i><b>8.6.1</b> 1. Scatter plots</a></li>
-<li class="chapter" data-level="8.6.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#line-charts"><i class="fa fa-check"></i><b>8.6.2</b> 2. Line charts</a></li>
-<li class="chapter" data-level="8.6.3" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#bar-charts"><i class="fa fa-check"></i><b>8.6.3</b> 3. Bar charts</a></li>
-<li class="chapter" data-level="8.6.4" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#histograms"><i class="fa fa-check"></i><b>8.6.4</b> 4. Histograms</a></li>
-<li class="chapter" data-level="8.6.5" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#wordclouds"><i class="fa fa-check"></i><b>8.6.5</b> 5. Wordclouds</a></li>
+<li class="chapter" data-level="8.6.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#histograms"><i class="fa fa-check"></i><b>8.6.1</b> Histograms</a></li>
+<li class="chapter" data-level="8.6.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#line-charts"><i class="fa fa-check"></i><b>8.6.2</b> Line charts</a></li>
+<li class="chapter" data-level="8.6.3" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#scatterplots"><i class="fa fa-check"></i><b>8.6.3</b> Scatterplots</a></li>
+<li class="chapter" data-level="8.6.4" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#bar-charts"><i class="fa fa-check"></i><b>8.6.4</b> Bar charts</a></li>
+<li class="chapter" data-level="8.6.5" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#alternatives"><i class="fa fa-check"></i><b>8.6.5</b> Alternatives</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#homework-assignment"><i class="fa fa-check"></i><b>8.7</b> Homework assignment</a></li>
-<li class="chapter" data-level="8.8" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendices"><i class="fa fa-check"></i><b>8.8</b> Appendices</a>
+<li class="chapter" data-level="8.7" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendices"><i class="fa fa-check"></i><b>8.7</b> Appendices</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-1-when-a-simple-table-may-suffice"><i class="fa fa-check"></i><b>8.8.1</b> Appendix 1: When a “Simple” Table May Suffice</a></li>
-</ul></li>
-<li class="chapter" data-level="8.9" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-interactive-graphs"><i class="fa fa-check"></i><b>8.9</b> Appendix: Interactive Graphs</a>
-<ul>
-<li class="chapter" data-level="8.9.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-checklist-for-creating-visualizations"><i class="fa fa-check"></i><b>8.9.1</b> Appendix: Checklist for Creating Visualizations</a></li>
-</ul></li>
-<li class="chapter" data-level="8.10" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-scientific-notation"><i class="fa fa-check"></i><b>8.10</b> Appendix: Scientific Notation</a></li>
-<li class="chapter" data-level="8.11" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#homework-solutions-partial"><i class="fa fa-check"></i><b>8.11</b> Homework solutions (partial)</a>
-<ul>
-<li class="chapter" data-level="8.11.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#line-charts-1"><i class="fa fa-check"></i><b>8.11.1</b> Line charts</a></li>
-<li class="chapter" data-level="8.11.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#bar-charts-1"><i class="fa fa-check"></i><b>8.11.2</b> 3. Bar charts</a></li>
-<li class="chapter" data-level="8.11.3" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#histograms-1"><i class="fa fa-check"></i><b>8.11.3</b> 4. Histograms</a></li>
-<li class="chapter" data-level="8.11.4" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#wordclouds---homework"><i class="fa fa-check"></i><b>8.11.4</b> 5. Wordclouds - Homework</a></li>
+<li class="chapter" data-level="8.7.1" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-1-most-useful-graphs-with-examples"><i class="fa fa-check"></i><b>8.7.1</b> Appendix 1: Most useful graphs with examples</a></li>
+<li class="chapter" data-level="8.7.2" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-2-when-a-simple-table-may-suffice"><i class="fa fa-check"></i><b>8.7.2</b> Appendix 2: When a “Simple” Table May Suffice</a></li>
+<li class="chapter" data-level="8.7.3" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-3-interactive-graphs"><i class="fa fa-check"></i><b>8.7.3</b> Appendix 3: Interactive Graphs</a></li>
+<li class="chapter" data-level="8.7.4" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-4-checklist-for-creating-visualizations"><i class="fa fa-check"></i><b>8.7.4</b> Appendix 4: Checklist for Creating Visualizations</a></li>
+<li class="chapter" data-level="8.7.5" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-5-scientific-notation"><i class="fa fa-check"></i><b>8.7.5</b> Appendix 5: Scientific Notation</a></li>
+<li class="chapter" data-level="8.7.6" data-path="visualizations-plot-and-ggplot.html"><a href="visualizations-plot-and-ggplot.html#appendix-6-solutions-for-pua-graphs-partial"><i class="fa fa-check"></i><b>8.7.6</b> Appendix 6: Solutions for PUA Graphs (partial)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="an-introduction-to-git-github-and-rstudios-git-integration.html"><a href="an-introduction-to-git-github-and-rstudios-git-integration.html"><i class="fa fa-check"></i><b>9</b> An Introduction to Git, Github and RStudio’s Git Integration</a>
