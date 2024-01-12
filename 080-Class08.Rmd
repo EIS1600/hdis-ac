@@ -752,7 +752,7 @@ ggplot(ac_participants_year_filt, aes(x = attribute_value, y = count)) +
 
 # day Vs participants
 
-unique(ac_participants_dow$attribute_value)
+#unique(ac_participants_dow$attribute_value)
 
 DOWtibble <- tibble(
   attribute_value = c("Yawm al-ahad", "Yawm al-ithnayn", "Yawm al-thalatha", "Yawm al-arba'a", "Yawm al-khamis", "Yawm al-juma", "Yawm al-sabt"),
