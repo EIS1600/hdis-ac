@@ -522,7 +522,7 @@ div.csl-indent {
 <li>we can also try to look at the solar months, perhaps there is some correlation with seasons (too hot or too cold)?
 <ul>
 <li>here the problem is in the conversion of Hijrī dates to Gregorian dates, but we should be able to get months more or less right.</li>
-<li>converter: <a href="https://www.muqawwim.com/" class="uri">https://www.muqawwim.com/</a>, code: <a href="https://github.com/theodore-s-beers/muqawwim" class="uri">https://github.com/theodore-s-beers/muqawwim</a>; <strong>very-hard-but-cool task</strong>: 1) find the code for this app; 2) convert it into R code; 3) use it to convert all our dates date;</li>
+<li>converter: <a href="https://www.muqawwim.com/" class="uri">https://www.muqawwim.com/</a>, code: <a href="https://github.com/theodore-s-beers/muqawwim" class="uri">https://github.com/theodore-s-beers/muqawwim</a>; <strong>Very-hard-but-cool task</strong>: 1) find the code for this app; 2) convert it into R code; 3) use it to convert all our dates date;</li>
 </ul></li>
 </ul></li>
 <li>Network potential:
@@ -568,7 +568,20 @@ div.csl-indent {
 <span id="cb207-7"><a href="optimization-and-exploratory-data-analysis.html#cb207-7" aria-hidden="true" tabindex="-1"></a>peopleCount <span class="ot">&lt;-</span> names <span class="sc">%&gt;%</span></span>
 <span id="cb207-8"><a href="optimization-and-exploratory-data-analysis.html#cb207-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
 <span id="cb207-9"><a href="optimization-and-exploratory-data-analysis.html#cb207-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb207-10"><a href="optimization-and-exploratory-data-analysis.html#cb207-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<span id="cb207-10"><a href="optimization-and-exploratory-data-analysis.html#cb207-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb207-11"><a href="optimization-and-exploratory-data-analysis.html#cb207-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-12"><a href="optimization-and-exploratory-data-analysis.html#cb207-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb207-13"><a href="optimization-and-exploratory-data-analysis.html#cb207-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-14"><a href="optimization-and-exploratory-data-analysis.html#cb207-14" aria-hidden="true" tabindex="-1"></a>onomasticNgrams <span class="ot">&lt;-</span> names <span class="sc">%&gt;%</span></span>
+<span id="cb207-15"><a href="optimization-and-exploratory-data-analysis.html#cb207-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>role) <span class="sc">%&gt;%</span></span>
+<span id="cb207-16"><a href="optimization-and-exploratory-data-analysis.html#cb207-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(unigram, name, <span class="at">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb207-17"><a href="optimization-and-exploratory-data-analysis.html#cb207-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(unigram))</span>
+<span id="cb207-18"><a href="optimization-and-exploratory-data-analysis.html#cb207-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-19"><a href="optimization-and-exploratory-data-analysis.html#cb207-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-20"><a href="optimization-and-exploratory-data-analysis.html#cb207-20" aria-hidden="true" tabindex="-1"></a>onomasticFL <span class="ot">&lt;-</span> onomasticNgrams <span class="sc">%&gt;%</span></span>
+<span id="cb207-21"><a href="optimization-and-exploratory-data-analysis.html#cb207-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(unigram) <span class="sc">%&gt;%</span></span>
+<span id="cb207-22"><a href="optimization-and-exploratory-data-analysis.html#cb207-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb207-23"><a href="optimization-and-exploratory-data-analysis.html#cb207-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count))</span></code></pre></div>
 
 </div>
 </div>

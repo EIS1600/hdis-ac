@@ -115,7 +115,7 @@ EDA is a flexible and context-dependent process. The specific methods and tools 
   - we can also check months: are certain months (Ramaḍān?) are more important in this context?
   - we can also try to look at the solar months, perhaps there is some correlation with seasons (too hot or too cold)?
     - here the problem is in the conversion of Hijrī dates to Gregorian dates, but we should be able to get months more or less right.
-    - converter: <https://www.muqawwim.com/>, code: <https://github.com/theodore-s-beers/muqawwim>; **very-hard-but-cool task**: 1) find the code for this app; 2) convert it into R code; 3) use it to convert all our dates date;
+    - converter: <https://www.muqawwim.com/>, code: <https://github.com/theodore-s-beers/muqawwim>; **Very-hard-but-cool task**: 1) find the code for this app; 2) convert it into R code; 3) use it to convert all our dates date;
 
 - Network potential:
   - We can start by simply counting how many times the same names appear across our dataset;
@@ -154,6 +154,19 @@ peopleCount <- names %>%
   group_by(name) %>%
   summarize(freq = n()) %>%
   ungroup()
+
+library(tidytext)
+
+onomasticNgrams <- names %>%
+  select(-role) %>%
+  unnest_tokens(unigram, name, token = "ngrams", n = 1) %>%
+  filter(!is.na(unigram))
+
+
+onomasticFL <- onomasticNgrams %>%
+  group_by(unigram) %>%
+  summarize(count = n()) %>%
+  arrange(desc(count))
 
 ```
 
